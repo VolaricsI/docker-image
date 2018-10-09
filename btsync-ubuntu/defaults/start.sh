@@ -8,22 +8,16 @@ USERNAME=btsync
 D_UID=${PUID:=1000}
 D_GID=${PGID:=1000}
 
-echo "Setting owner for config and data directories."
-id $USERNAME >/dev/null && userdel --force --remove $USERNAME		##Ha van ilyen user töröljük, hogy megfelelő ID-vel újra létrehozhassuk
-id -g $D_GID 2>/dev/null || groupadd -g $D_GID $USERNAME
-id    $D_UID 2>/dev/null || adduser --system --uid $D_UID --gid $D_GID $USERNAME
+echo "Setting user and owner for config and data directories."
+userdel  --force $USERNAME 2>/dev/null							##Mindenképpen töröljük,
+groupdel -f 	 $USERNAME 2>/dev/null
+groupadd -g $D_GID $USERNAME								## hogy a megfelelő ID-vel újra létrehozhassuk
+adduser --system --no-create-home --home /nonexistent --uid $D_UID --gid $D_GID $USERNAME
 
 chown -R $D_UID:$D_GID $CONFIGDIR
 chown    $D_UID $DATADIR
 
-if [ ! -d $CONFIGDIR ]; then
-        echo "The config directory does not exist! Please add it as a volume."; exit 1
-fi
-if [ ! -d $DATADIR ]; then
-        echo "The data directory does not exist! Please add it as a volume."; exit 1
-fi
-
-if [ ! -f $CONFIGDIR/sync.conf  ]; then
+if [ ! -f $CONFIGDIR/sync.conf  ]; then							## Ha nincs konfig akkor kap egy alapot
         echo "Doing initial setup."
         # Starting deluge
 	cp /defaults/sync.conf.example $CONFIGDIR/sync.conf.example
