@@ -1,2 +1,2 @@
-A docker-hez kapcsolódó fejlestéseim
+A docker-hez kapcsolódó fejlesztéseim
 
