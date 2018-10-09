@@ -1,0 +1,14 @@
+#!/bin/bash
+
+docker image prune -f
+
+Date=$( date +%Y-%m-%d )
+
+docker image build --tag volaricsi/deluge --tag volaricsi/deluge:${Date} .
+
+Ver=$( docker run --rm  -t volaricsi/deluge /defaults/verzio )
+docker tag volaricsi/deluge volaricsi/deluge:${Ver}
+
+docker push volaricsi/deluge:${Date}
+docker push volaricsi/deluge:${Ver}
+docker push volaricsi/deluge
