@@ -8,7 +8,7 @@ RUN apk update && apk upgrade && 	\
     apk add runit && cp /sbin/chpst /usr/bin/ && apk del runit && 	\
     cd /tmp && wget --quiet https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz && 	\
     tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && 	\
-    mkdir -p /defaults && mkdir -p /config && mkdir -p /downloads
+    mkdir -p /defaults /config /downloads
 
 COPY defaults /defaults
 
@@ -18,7 +18,8 @@ RUN mv /defaults/start.sh /start.sh && chmod +x /start.sh && 	\
     sed 's/\/\/ \"listening_port\" : .*/\"listening_port\" : 55555 ,/g; \
 	 s/\/\/ \"storage_path\" .*/\"storage_path\" : \"\/config" ,/g; \
 	 s/\/\/  \"directory_root\" : .*/\"directory_root\" : \"\/downloads\" ,/g; ' 	\
-    |grep -v "^//"	>/defaults/sync.conf.example
+    |grep -v "^//"	>/defaults/sync.conf.example && 	\
+    rm -rf /tmp/.sync /tmp/*
 
 
 # Expose the deluge control port and data port.

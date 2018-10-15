@@ -28,9 +28,13 @@ if [ ! -f $CONFIGDIR/sync.conf  ]; then				## Ha nincs konfig akkor kap egy alap
 
 fi
 
-/usr/bin/rslsync --help |grep "Resilio Sync"		## a verzio kiíratás miatt
+    cd /tmp
 
-echo "Starting resilio..."
-umask $UMASK 	>/dev/null
+    /usr/bin/rslsync --help |grep "Resilio Sync"		## a verzio kiíratás miatt
 
-exec chpst -u $USERNAME /usr/bin/rslsync --nodaemon --config $CONFIGDIR/sync.conf
+    rm -rf /tmp/.sync /tmp/*	# Az előző sor feleslegét takarítja el....
+
+    echo "Starting resilio..."
+    umask $UMASK
+
+    exec chpst -u $USERNAME /usr/bin/rslsync --nodaemon --config $CONFIGDIR/sync.conf
