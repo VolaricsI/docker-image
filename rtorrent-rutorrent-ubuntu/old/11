@@ -1,0 +1,18 @@
+#!/bin/bash
+#	Created by Volarics Istvan (Voli)
+
+#:::::: Fix beallitasok :::::::
+#:::::: Beallitasok :::::::::::
+#:::::: Fuggvenyek ::::::::::::
+#:::::::: Start :::::::::::::::
+#===============================================================================
+PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
+
+xmlrpc localhost d.multicall "main"  "d.get_base_filename="  |grep "Index [ 0-9]\+ String:"	\
+|grep "xc3"	\
+|sed 's/\\xc3\\x81/Á/g; s/\\xc3\\xa1/á/g; s/\\xc3\\xb3/ó/g; s/\\xc3\\xb6/ö/g; s/\\xc3\\xbc/ü/g; s/\\xc3\\xba/ú/g; s/\\xc3\\x89/É/g; s/\\xc5\\xb1/ű/g;  s/\\xc3\\xb6/--ö/g; s/\\xc5\\x91/ő/g; s/\\xc3\\xa9/é/g;' \
+|sed 's/\\xc3\\xad/í/g; s/\\xc3\\x8d/Í/g; s/\\xc3\\x9a/ú/g; s/\\xc3\\x93/Ó/g;  '		\
+|grep "xc3"
+
+
+echo ...........; read a;

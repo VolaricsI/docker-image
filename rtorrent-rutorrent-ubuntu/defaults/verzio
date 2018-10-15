@@ -1,0 +1,8 @@
+#!/bin/bash
+#	Created by Volarics Istvan (Voli)
+
+Ver1=$( dpkg -l|grep rtorrent|sed 's/.*rtorrent//g; s/^ \+//g; s/ .*//g; ' )
+
+Ver2=$( grep "version:" /var/www/ruTorrent/js/webui.js |grep "[0-9]\+\.[0-9]\+"|sed 's/.*version: *\"//g; s/\".*//g; s/\r.*//g; ' )
+
+echo -n "rtorrent-${Ver1}_rutorrent-${Ver2}"

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+    exec 2>&1
+
+
+
+    sv -w5 check rtorrent || exit 1	## rtorrent nélkül nincs értelme
+    sleep 1				## Várunk az rtorrent-re mivel az másolja a konfig file-t.
+
+    mkdir -p /config/web
+    [ ! -e /config/web/php-fpm_rutorrent.conf ] && cp /defaults/php-fpm_rutorrent.conf /config/web/
+
+
+    exec /usr/sbin/php-fpm7.2 --nodaemonize --force-stderr -y /config/web/php-fpm_rutorrent.conf
+
+
