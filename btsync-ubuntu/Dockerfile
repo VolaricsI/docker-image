@@ -14,8 +14,6 @@ RUN apt update && apt upgrade -y && 	\
 # Clean up.
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-##COPY --from=linuxserver/resilio-sync:latest /config/sync.conf /defaults/sync.conf.linuxserver
-
 COPY defaults /defaults
 
 # Add the start script. Create example config
