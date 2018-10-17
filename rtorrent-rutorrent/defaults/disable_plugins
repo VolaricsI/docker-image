@@ -1,0 +1,24 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+DIR=/var/www/ruTorrent				# ruTorrent helye
+INIFILE=$DIR/conf/plugins.ini
+
+MINIMAL=" spectrogram mediainfo screenshots unpack "
+
+function Clear(){						#Alap állapotba hozzuk
+    cp /defaults/plugins.ini $INIFILE
+    echo -e "\n\n;; Kitiltott plugin-ek:\n" 	>>$INIFILE
+}
+
+function Insert(){
+    while [ ".$1" != "." ]; do
+    echo "[$1]  enabled = no" 	>>$INIFILE
+    [ ".$1" == ".all"     ] && Clear && Insert $( ls $DIR/plugins |sort )
+    [ ".$1" == ".minimal" ] && Clear && Insert $MINIMAL
+    shift;
+    done
+}
+
+	Clear
+	Insert $*

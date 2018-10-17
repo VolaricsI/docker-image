@@ -1,0 +1,8 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+Ver1=$( apk info -d rtorrent |grep rtorrent |sed 's/.*rtorrent//g; s/^ \+//g; s/ .*//g; ' )
+
+Ver2=$( grep "version:.*[0-9]" /var/www/ruTorrent/js/webui.js |sed 's/.*\"\([0-9]\)/\1/g; s/\".*//g; ' )
+
+echo -n "rtorrent${Ver1}_rutorrent-${Ver2}"
