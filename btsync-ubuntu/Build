@@ -2,7 +2,7 @@
 
 docker image prune -f
 
-IMAGE_NAME=volaricsi/ubuntu-resilio
+IMAGE_NAME=volaricsi/resilio-ubuntu
 Date=$( date +%Y-%m-%d )
 
 docker image build --tag ${IMAGE_NAME} --tag ${IMAGE_NAME}:${Date} .
