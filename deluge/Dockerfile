@@ -17,7 +17,7 @@ COPY defaults /defaults
 RUN mv /defaults/start.sh /start.sh && chmod +x /start.sh
 
 # Expose the deluge control port and data port.
-EXPOSE 58846 6881
+EXPOSE 58846 6881 6881/udp
 
 # Setup volumes.
 VOLUME /config /downloads
