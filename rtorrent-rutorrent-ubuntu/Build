@@ -2,7 +2,7 @@
 
 docker image prune -f
 
-IMAGE_NAME=rtorrent-rutorrent-runit
+IMAGE_NAME=rtorrent-rutorrent-ubuntu
 
 Date=$( date +%Y-%m-%d )
 

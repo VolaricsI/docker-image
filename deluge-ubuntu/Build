@@ -1,8 +1,9 @@
 #!/bin/bash
 
+
 docker image prune -f
 
-IMAGE_NAME=rtorrent-rutorrent
+IMAGE_NAME=deluge-ubuntu
 
 Date=$( date +%Y-%m-%d )
 

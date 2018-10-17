@@ -1,4 +1,0 @@
-#!/bin/bash
-
-    diff -u nginx.conf.orig 	nginx.conf 		>nginx.patch
-    diff -u php-fpm.conf.orig 	php-fpm.conf 		>php-fpm.patch
