@@ -41,5 +41,5 @@ fi
 
     echo Starting supervisord...
 
-    /usr/bin/supervisord		## Ezt használom az exec helyett mert így eltűnik egy hibaüzenet: "...reaped unknown pid..."
-#    exec /usr/bin/supervisord
+    /usr/bin/supervisord					## Ezt használom az exec helyett mert így eltűnik egy hibaüzenet: "...reaped unknown pid..."
+#    exec /usr/bin/supervisord -c /etc/supervisord.conf
