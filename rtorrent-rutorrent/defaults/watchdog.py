@@ -30,6 +30,8 @@ def main():
         if body["processname"] != "rtorrent":
 	    continue
 
+        write_stderr("==========> most probalom kigyilkolni..."  );
+
 	pidfile = open('/supervisord.pid','r')
 	pid 	= int( pidfile.readline() );
         os.kill( pid,signal.SIGQUIT )
