@@ -1,2 +1,1 @@
-A docker-hez kapcsolódó fejlesztéseim
-
+A docker-hez kapcsolódó konténereim....
