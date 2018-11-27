@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.7
 
 		##Ezek a programok kellenek még a plugin-eknek ha szükségét érzed
 #ENV PLUGIN_PRG=" ffmpeg sox mediainfo unrar "
@@ -26,13 +26,12 @@ RUN apk update && apk upgrade 	\
 	# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 
-#    mkdir -p /run/nginx /run/php /var/log/nginx && 	\
-
 COPY defaults /defaults
 
 		# Konfig file-ok elhelyezése;  ; a disable_plugins-hoz + alap plugin beállítás
 RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig && mv /defaults/nginx.conf /etc/nginx/nginx.conf 	\
     && mkdir -p /etc/nginx/sites-enabled && cp /defaults/nginx-rutorrent.conf /etc/nginx/sites-enabled/ 	\
+    && cp /defaults/verzio /usr/bin/ 	\
 	# php-fpm configja
     && rm /etc/php7/php-fpm.d/* && mv /defaults/php-fpm-rutorrent.conf /etc/php7/php-fpm.d/ 	\
     && sed -i 's/.*error_log =.*/error_log = \/proc\/1\/fd\/1/g; ' /etc/php7/php-fpm.conf 	\
