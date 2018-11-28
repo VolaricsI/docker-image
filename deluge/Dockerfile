@@ -1,9 +1,9 @@
 FROM alpine:edge
 
-RUN apk update && apk upgrade && 	\
-    apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing deluge && 	\
-    apk add runit && cp /sbin/chpst /bin/chpst && apk del runit 
-
+RUN apk update && apk upgrade 	\
+    && apk add runit && cp /sbin/chpst /bin/chpst && apk del runit 	\
+    && apk add openssl 	\
+    && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing deluge
 
 COPY defaults /defaults
 
