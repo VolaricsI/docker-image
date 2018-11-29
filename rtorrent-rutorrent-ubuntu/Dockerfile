@@ -1,38 +1,44 @@
 FROM ubuntu
 MAINTAINER Volarics István volaricsi@gmail.com
 
-					## Ezen programok kellenek; 	Ideiglenesen; 	A szükséges Könyvtárak
 
-RUN export DEBIAN_FRONTEND=noninteractive && 	\
-    apt update && apt -y upgrade && apt install -y rtorrent screen nginx php-fpm runit libxmlrpc-core-c3-dev curl git && 	\
-    mkdir -p /defaults && mkdir -p /config && mkdir -p /downloads && mkdir -p /run/php && 	\
-    echo "A ruTorrent és egy kis pach hogy a pluginek lássák a curl-t..." && 	\
-    cd /var/www && git clone https://github.com/Novik/ruTorrent.git && chown -R www-data:www-data /var/www && 	\
-    cd /var/www/ruTorrent/conf && mv config.php config.php.1 && sed "s/\("curl".*=> \)''/\1'\/usr\/bin\/curl'/g; " config.php.1 >config.php && rm config.php.1
+RUN export DEBIAN_FRONTEND=noninteractive 	\
+    && echo "Ezen programok kellenek" 	\
+	&& apt update && apt -y upgrade && apt install -y rtorrent screen nginx php-fpm runit 	\
+    && echo "A Szükséges könyvtárak" 	\
+	&& mkdir -p /defaults /config /downloads 	\
+    && echo "A ruTorrent és egy kis pach hogy a pluginek lássák a curl-t..." 	\
+	&& apt install -y curl git 	\
+	&& cd /var/www && git clone https://github.com/Novik/ruTorrent.git && chown -R www-data:www-data /var/www 	\
+	&& sed -i "s/\("curl".*=> \)''/\1'\/usr\/bin\/curl'/g; " /var/www/ruTorrent/conf/config.php 	\
+    && echo "Ideiglenesen kellet programok eltávolítása" 	\
+	&& apt remove --purge -y git && apt autoremove --purge -y
 
 COPY defaults /defaults
 
-RUN 	mv /defaults/start.sh / && 	\
-    echo "A runit inditok legyartasa es a szükséges beáálítások, hogy ne legyen hibaüzenet....." && 	\
-	mkdir -p /etc/runit/runsvdir/default/nginx 	&& mv /defaults/run_nginx    /etc/runit/runsvdir/default/nginx/run 	&& chmod +x /etc/runit/runsvdir/default/nginx/run 	&& 	\
-	mkdir -p /etc/runit/runsvdir/default/php-fpm 	&& mv /defaults/run_php-fpm  /etc/runit/runsvdir/default/php-fpm/run 	&& chmod +x /etc/runit/runsvdir/default/php-fpm/run 	&& 	\
-	mkdir -p /etc/runit/runsvdir/default/rtorrent 	&& mv /defaults/run_rtorrent /etc/runit/runsvdir/default/rtorrent/run 	&& chmod +x /etc/runit/runsvdir/default/rtorrent/run 	&& 	\
-	touch /etc/init.d/rcS && chmod +x /etc/init.d/rcS && touch /etc/init.d/rmnologin && chmod +x /etc/init.d/rmnologin && touch /etc/init.d/rc && chmod +x /etc/init.d/rc && 	\
-    echo "A nginx configja....." && \
-	rm -f /etc/nginx/sites-enabled/default && mv /defaults/nginx_rutorrent_minimal.conf /etc/nginx/sites-enabled/ && 	\
-	cd /etc/nginx/ && mv nginx.conf nginx.conf.orig && 	\
-	sed 's/\(worker_processes\) auto;/\1 2;/g; s/\(access_log\) .\+;/\1 \/proc\/1\/fd\/1;/g; s/\(error_log\) .\+;/\1 \/proc\/1\/fd\/1;/g ' nginx.conf.orig >nginx.conf &&	\
-    echo "A php-fpm beallitasa az error log átírányítva a konzolra..." && \
-	cd /etc/php/7.2/fpm && mv php-fpm.conf php-fpm.conf.orig && sed 's/\(error_log = \).*$/\1 \/proc\/1\/fd\/1/g; ' php-fpm.conf.orig >php-fpm.conf && \
-    echo "Az rtorrent plugins configurálása...." && \
-	cp /var/www/ruTorrent/conf/plugins.ini /var/www/ruTorrent/conf/plugins.ini.orig && /defaults/disable_plugins hibas && 	\
-    echo "A felesleg eltavolitasa...."
+RUN mv /defaults/start.sh / && cp /defaults/verzio /defaults/disable_plugins /defaults/ellenorzes /usr/bin/ 	\
+    && echo "A runit inditok legyartasa es a szükséges beáálítások; ne legyen hibaüzenet..." 	\
+	&& mkdir -p /etc/runit/runsvdir/default/nginx 		&& mv /defaults/run_nginx    /etc/runit/runsvdir/default/nginx/run 	&& chmod +x /etc/runit/runsvdir/default/nginx/run 	\
+	&& mkdir -p /etc/runit/runsvdir/default/php-fpm 	&& mv /defaults/run_php-fpm  /etc/runit/runsvdir/default/php-fpm/run 	&& chmod +x /etc/runit/runsvdir/default/php-fpm/run 	\
+	&& mkdir -p /etc/runit/runsvdir/default/rtorrent 	&& mv /defaults/run_rtorrent /etc/runit/runsvdir/default/rtorrent/run 	&& chmod +x /etc/runit/runsvdir/default/rtorrent/run 	\
+	&& touch    /etc/init.d/rcS /etc/init.d/rmnologin /etc/init.d/rc && chmod +x /etc/init.d/rcS /etc/init.d/rmnologin /etc/init.d/rc 	\
+    && echo "A nginx configja..." 	\
+	&& rm -f /etc/nginx/sites-enabled/default && mv /defaults/nginx_rutorrent_minimal.conf /etc/nginx/sites-enabled/ 	\
+	&& sed -i 's/\(worker_processes\) auto;/\1 2;/g; s/\(access_log\) .\+;/\1 \/proc\/1\/fd\/1;/g; s/\(error_log\) .\+;/\1 \/proc\/1\/fd\/1;/g ' /etc/nginx/nginx.conf 	\
+    && echo "A php-fpm beallitasa az error log átírányítva a konzolra..." 	\
+	&& cd /etc/php/7.2/fpm && cp php-fpm.conf php-fpm.conf.orig && sed -i 's/\(error_log = \).*$/\1 \/proc\/1\/fd\/1/g; ' php-fpm.conf 	\
+    && echo "Az rtorrent plugins configurálása..." 	\
+	&& cp /var/www/ruTorrent/conf/plugins.ini /var/www/ruTorrent/conf/plugins.ini.orig && disable_plugins default
 
 #Ez csak akkor kell ha pluginokat is akarsz használni...
 #RUN apt install -y sox unzip unrar mediainfo ffmpeg
 
-## Takarítás
-RUN apt remove --purge -y git && apt autoremove --purge -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache
+# Csak az xmlrpc programra van szükségem
+RUN apt install -y libxmlrpc-core-c3-dev && cp /usr/bin/xmlrpc /usr/local/bin && apt remove --purge -y libxmlrpc-core-c3-dev
+
+## Takarítás, ami várhatóan meg kell
+RUN apt remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales 	\
+    && apt autoremove --purge -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache
 
 # Expose the WebUI control port and data ports.
 EXPOSE 80 6881/udp 51413
