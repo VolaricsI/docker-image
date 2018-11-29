@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+
+ rutorrent:
+  container_name: rutorrent
+  image: volaricsi/rtorrent-rutorrent
+  restart: always
+
+  ports:
+        - 88:80
+        - 6881:6881/udp
+        - 5113:51413
+#        - 5000:5000
+
+  volumes:
+    - /home/torrent/.rutorrent/:/config
+    - /home/rorrent/data:/downloads
+
+  environment:
+    # torrent user
+    - PUID=2202
+    - PGID=2202
+    - UMASK=002
+    - PHP_MEM=100M
+    - DISABLE_PLUGINS=minimal
+#    - INSTALL=maradek
+#    - DISABLE_PLUGINS=all; minimal; vagy lista
+
