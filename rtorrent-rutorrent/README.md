@@ -9,7 +9,7 @@
     - 	80 	A webes kezelőfelület (ruTorrent)
     - 	6881 	Az rtorrent dht portja
     - 	51413 	Az rtorrent adatcsere portja
-    - 	5000 	Az rtorrent vezérl/lekérdező portja
+    - 	5000 	Az rtorrent vezérlő/lekérdező portja
 
     ## Változók amin keresztül állítható a conténer
     - PUID 	: user  ID
@@ -22,7 +22,7 @@
 		    ## Lehetséges értékei
 		-- "all" 	: minden plugin tiltva.
 		-- "clear" 	: minden plugin engedélyezve
-		-- "minimal" 	: A minimal telepítésnél ezek a pluginok nem fognak menni (" spectrogram mediainfo screenshots unpack ")
+		-- "default" 	: A minimal telepítésnél ezek a pluginok nem fognak menni (" spectrogram mediainfo screenshots unpack ")
 		-- " spectrogram mediainfo screenshots unpack " 	: ez itt most egy példa lista....
 
     - INSTALL 	: Értéke bármi és induláskor feltelepíti a hiányzó csomagokat ( ffmpeg sox mediainfo unrar )
@@ -31,6 +31,7 @@
     ## Futó konténerben parancsok
 	    -- docker exec containerName /defaults/verzio			Kiírja a verzi számokat: rtorrent és ruTorrent
 	    -- docker exec containerName /defaults/disable_plugins lista 	Miként a DISABLE_PLUGINS-nál
+	    -- docker exec containerName /defaults/ellenorzes 			Azon könyvtárak/file-ok melyekhez nem tartozik torrent
 
 
 supervisord.py
