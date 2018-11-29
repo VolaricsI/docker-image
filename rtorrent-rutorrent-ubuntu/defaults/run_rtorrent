@@ -1,12 +1,5 @@
 #!/bin/bash
 
-    exec 2>&1
-
-CONFIGDIR=/config
-DATADIR=/downloads
-
-USERNAME=rtorrent
-
 if [ ! -e /config/rtorrent/rtorrent.rc ]; then
     mkdir -p /config/web
     mkdir -p /config/rtorrent
@@ -16,7 +9,7 @@ fi
 
     Session_Dir=$( grep "session = " /config/rtorrent/rtorrent.rc |sed 's/.*[ =]//g;' )
     mkdir -p ${Session_Dir}
-    chown $USERNAME:$USERNAME -R /config
+    chown abc:abc -R /config
 
     if [ -e ${Session_Dir}/rtorrent.lock ]; then
 	kill $(cat ${Session_Dir}/rtorrent.lock|sed 's/.*+//g') 	2>/dev/null
@@ -24,5 +17,6 @@ fi
     fi
 
     umask $UMASK 	>/dev/null
+    exec 2>&1
 
-    exec chpst -u $USERNAME screen  -D -L  -m /usr/bin/rtorrent -n -o import=/config/rtorrent/rtorrent.rc
+    exec chpst -u abc screen  -D -L  -m /usr/bin/rtorrent -n -o import=/config/rtorrent/rtorrent.rc
