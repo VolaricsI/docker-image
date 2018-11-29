@@ -1,10 +1,10 @@
 #!/bin/bash
 
-    exec 2>&1
-
     sv -w3 check php-fpm || exit 1	## A php-fpm nélül nem tud működni
     sleep 1				## és induljon is el...
 
     [ -e /config/web/nginx.conf ] && CONF_FILE=" -c /config/web/nginx.conf "
+
+    exec 2>&1
 
     exec nginx ${CONF_FILE} -g 'daemon off; error_log /proc/1/fd/1; '
