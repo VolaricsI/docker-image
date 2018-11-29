@@ -9,8 +9,9 @@ RUN export DEBIAN_FRONTEND=noninteractive 	\
 	&& mkdir -p /defaults /config /downloads 	\
     && echo "A ruTorrent és egy kis pach hogy a pluginek lássák a curl-t..." 	\
 	&& apt install -y curl git 	\
-	&& cd /var/www && git clone https://github.com/Novik/ruTorrent.git && chown -R www-data:www-data /var/www 	\
+	&& cd /var/www && git clone https://github.com/Novik/ruTorrent.git && rm -rf /var/www/ruTorrent/.git 	\
 	&& sed -i "s/\("curl".*=> \)''/\1'\/usr\/bin\/curl'/g; " /var/www/ruTorrent/conf/config.php 	\
+	&& chown -R www-data:www-data /var/www 	\
     && echo "Ideiglenesen kellet programok eltávolítása" 	\
 	&& apt remove --purge -y git && apt autoremove --purge -y
 
