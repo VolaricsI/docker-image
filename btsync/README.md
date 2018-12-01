@@ -1,5 +1,5 @@
 
-    alpine alapon, glibc-vel: resilio
+    alpine (ubuntu) alapon, glibc-vel: resilio
 
 
 - ``-v /home/btsync/config: /config``: Beállításai és a saját adatbázisa, ha nincs config file akkor egy alapértelmezettel indul
