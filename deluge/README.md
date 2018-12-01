@@ -1,5 +1,6 @@
 
-    alpine/ubuntu alapon, deluge a testing tárolóból származik
+    alpine/ubuntu alapon, 
+    alpine esetén a deluge a testing tárolóból származik most (2018-12-01) nem működő képes
 
 
 - ``-v /home/deluge/config:/config`` 	: sets up your host's directory to map to the ``/config`` directory in the container.
