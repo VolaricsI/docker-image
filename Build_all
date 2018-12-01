@@ -1,0 +1,16 @@
+#!/bin/bash
+
+docker image prune -f
+
+DIR=$(pwd)
+
+ls |sort |while read a; do
+    [ ! -d ${a} 	] && continue
+    [ ! -e ${a}/Build 	] && continue
+
+    echo ">>>>>>>>>>>>>>>>>${a}/Build<<<<<<<<<<<<<<<<<<<"
+    cd ${a}
+    pwd
+    ./Build
+    cd $DIR
+done
