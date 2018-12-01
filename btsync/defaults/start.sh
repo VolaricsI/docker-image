@@ -12,7 +12,7 @@ if [ "$ALAP" = "ubuntu" ]; then 										## hogy megfelelő ID-kel újra létre
     addgroup --system -gid $D_GID abc
     adduser --system  --disabled-password --no-create-home --home /tmp -uid $D_UID -gid $D_GID abc
 else
-    addgroup -S -g $D_GID abc 					## hogy megfelelő ID-kel újra létrehozhassuk
+    addgroup -S -g $D_GID abc
     adduser  -S -D -H -h /tmp -u $D_UID -G abc abc
 fi
 
