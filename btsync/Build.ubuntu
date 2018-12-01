@@ -5,7 +5,7 @@ IMAGE_NAME=volaricsi/resilio-ubuntu
 Date=$( date +%Y-%m-%d )
 
 
-docker image build --tag ${IMAGE_NAME} --tag ${IMAGE_NAME}:${Date} .
+docker image build --tag ${IMAGE_NAME} --tag ${IMAGE_NAME}:${Date} -f Dockerfile.ubuntu  .
 Ver=$( docker run --rm  -t ${IMAGE_NAME} rslsync --help|grep "Resilio Sync"|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g;  ' )
 docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${Ver}
 
