@@ -1,5 +1,5 @@
 
-    alpine alapon, deluge a testing tárolóból származik
+    alpine/ubuntu alapon, deluge a testing tárolóból származik
 
 
 - ``-v /home/deluge/config:/config`` 	: sets up your host's directory to map to the ``/config`` directory in the container.

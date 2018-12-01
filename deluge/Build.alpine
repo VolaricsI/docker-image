@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-IMAGE_NAME=deluge-ubuntu
+IMAGE_NAME=deluge
 Date=$( date +%Y-%m-%d )
 
 
-docker image build --tag volaricsi/${IMAGE_NAME} --tag volaricsi/${IMAGE_NAME}:${Date} .
+docker image build --tag volaricsi/${IMAGE_NAME} --tag volaricsi/${IMAGE_NAME}:${Date} -f Dockerfile.alpine .
 Ver=$( docker run --rm  -it volaricsi/${IMAGE_NAME} /defaults/verzio )
 docker tag volaricsi/${IMAGE_NAME} volaricsi/${IMAGE_NAME}:${Ver}
 
