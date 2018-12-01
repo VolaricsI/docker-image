@@ -1,6 +1,7 @@
 ############## build stage ##############
 FROM alpine as buildstage
 
+#A git-tel erre a verzióra kell állni
 ARG VER_LIBTORRENT=libtorrent-1_1_9
 ARG VER_QBITTORRENT=v4_1_x
 
