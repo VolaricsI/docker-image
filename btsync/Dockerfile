@@ -14,8 +14,7 @@ RUN apk update && apk upgrade 	\
 COPY defaults /defaults
 
 # Add the start script. Create example config
-RUN cd /defaults/ && chmod +x * && mv start.sh / && cp verzio create_default_config /usr/bin/	\
-    && create_default_config >sync.conf.example
+RUN cd /defaults/ && chmod +x * && mv start.sh / && cp verzio create_default_config /usr/bin/
 
 # Expose the deluge control port and data port.
 EXPOSE 55555 8888
