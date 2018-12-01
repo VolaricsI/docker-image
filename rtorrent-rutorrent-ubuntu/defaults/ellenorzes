@@ -20,7 +20,7 @@ xmlrpc localhost 	d.multicall "main" "d.get_base_path=" 	\
 
 ls /downloads |sed 's/\[/./g; s/\]/./g; ' |while read a; do
     grep  -e "^${a}" ${L2}	>/dev/null && continue
-    echo "Directory: >>${a}<<"
+    echo ">>${a}<<"
 done
 
 rm ${L1} ${L2}	2>/dev/null
