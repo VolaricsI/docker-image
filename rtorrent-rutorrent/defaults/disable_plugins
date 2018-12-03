@@ -4,21 +4,23 @@
 DIR=/var/www/ruTorrent				# ruTorrent helye
 INIFILE=$DIR/conf/plugins.ini
 
-MINIMAL=" spectrogram mediainfo screenshots unpack "
+DEFAULT=" mediainfo screenshots spectrogram unpack "
 
-function Clear(){						#Alap állapotba hozzuk
+Clear(){						#Alap állapotba hozzuk
     cp /defaults/plugins.ini $INIFILE
     echo -e "\n\n;; Kitiltott plugin-ek:\n" 	>>$INIFILE
 }
 
-function Insert(){
+Insert(){
     while [ ".$1" != "." ]; do
     echo "[$1]  enabled = no" 	>>$INIFILE
-    [ ".$1" == ".all"     ] && Clear && Insert $( ls $DIR/plugins |sort )
-    [ ".$1" == ".minimal" ] && Clear && Insert $MINIMAL
+    [ ".$1" = ".all"     ] && Clear && Insert $( ls $DIR/plugins |sort )
+    [ ".$1" = ".default" ] && Clear && Insert $DEFAULT
     shift;
     done
 }
 
 	Clear
 	Insert $*
+
+supervisorctl restart nginx	>/dev/null
