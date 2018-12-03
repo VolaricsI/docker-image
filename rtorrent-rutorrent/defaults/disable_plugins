@@ -1,21 +1,21 @@
 #!/bin/sh
 #	Created by Volarics Istvan (Voli)
 
-DIR=/var/www/ruTorrent				# ruTorrent helye
-INIFILE=$DIR/conf/plugins.ini
+DIR=/var/www/ruTorrent/plugins				# ruTorrent helye
+INIFILE=/config/rutorrent_settings/plugins.ini
 
 DEFAULT=" mediainfo screenshots spectrogram unpack "
 
 Clear(){						#Alap állapotba hozzuk
-    cp /defaults/plugins.ini $INIFILE
+    cp /defaults/plugins.ini ${INIFILE} && chown abc:abc ${INIFILE}
     echo -e "\n\n;; Kitiltott plugin-ek:\n" 	>>$INIFILE
 }
 
 Insert(){
     while [ ".$1" != "." ]; do
-    echo "[$1]  enabled = no" 	>>$INIFILE
-    [ ".$1" = ".all"     ] && Clear && Insert $( ls $DIR/plugins |sort )
-    [ ".$1" = ".default" ] && Clear && Insert $DEFAULT
+    echo "[$1]  enabled = no" 	>>${INIFILE}
+    [ ".$1" = ".all"     ] && Clear && Insert $( ls ${DIR} |sort )
+    [ ".$1" = ".default" ] && Clear && Insert ${DEFAULT}
     shift;
     done
 }
@@ -23,4 +23,4 @@ Insert(){
 	Clear
 	Insert $*
 
-supervisorctl restart nginx	>/dev/null
+supervisorctl restart nginx 	>/dev/null
