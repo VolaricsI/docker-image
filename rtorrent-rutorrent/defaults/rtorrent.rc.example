@@ -1,4 +1,4 @@
-#log.open_file = "rtorrent", /config/log/rtorrent.log
+#log.open_file = "rtorrent", /config/rtorrent.log
 #log.add_output = "info", "rtorrent"
 
 min_peers = 40
@@ -9,7 +9,7 @@ min_peers = 40
 
 
 directory = /downloads
-session = /config/rtorrent/rtorrent_sess
+session = /config/rtorrent_sess
 schedule = watch_directory_1,5,5,"load.start=/config/rtorrent_watched/*.torrent"
 
 schedule = low_diskspace,5,60,close_low_diskspace=100M
