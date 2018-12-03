@@ -29,7 +29,7 @@ server {
 
     location ~ \.php$ {
 	fastcgi_split_path_info ^(.+\.php)(/.+)$;
-	fastcgi_pass 	unix:/var/run/php/php7.0-fpm.sock;
+	fastcgi_pass 	unix:/run/php-fpm-rutorrent.sock;
 	fastcgi_index 	index.php;
 	include 	/etc/nginx/fastcgi_params;
 	fastcgi_param 	SCRIPT_FILENAME $request_filename;
@@ -41,7 +41,7 @@ server {
 	scgi_param 	SCRIPT_NAME /RPC2;
     }
 
-}
+}	#server
 
 
 }	#http
