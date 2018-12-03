@@ -37,7 +37,7 @@ fi
 		# Jól álljanak a jogosultságok
     chown -RL $D_UID:$D_GID 	/config
     chown -RL $D_UID 		/downloads
-    chown -RL nginx:www-data 	/var/www
+    chown -RL abc:abc 	/var/www
 
 							## Plugin-ok kívülről történő beállítása
 [ ".$DISABLE_PLUGINS" != "." ] && disable_plugins "$DISABLE_PLUGINS"		## Plugins beállítás kívülről

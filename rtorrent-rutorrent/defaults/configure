@@ -25,6 +25,7 @@
     && rm -f /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* && mkdir -p /run/nginx 	\
     && mv /defaults/nginx-rutorrent.conf /etc/nginx/conf.d/ 	\
     && cp nginx.conf nginx.conf.orig 	\
+    && sed -i 's/user nginx;/user abc;/g; ' 			nginx.conf 	\
     && sed -i 's/\(worker_processes\) auto;/\1 2;/g;' 		nginx.conf 	\
     && sed -i 's/\(access_log\) .\+;/\1 \/proc\/1\/fd\/1;/g;' 	nginx.conf 	\
     && sed -i 's/\(error_log\) .\+;/\1 \/proc\/1\/fd\/1;/g;' 	nginx.conf 	\
@@ -46,11 +47,11 @@
     || exit 4
 
 
-    id nginx 2>/dev/null
-    if [ $? != 0 ]; then
-	rm -rf /var/lib/nginx
-	adduser --system  --disabled-password --home /var/lib/nginx  --ingroup www-data nginx
-    fi
+#    id nginx 2>/dev/null
+#    if [ $? != 0 ]; then
+#	rm -rf /var/lib/nginx
+#	adduser --system  --disabled-password --home /var/lib/nginx  --ingroup www-data nginx
+#    fi
 
     [ ! -e /var/www/ruTorrent ] &&  ln -s /usr/share/webapps/rutorrent /var/www/ruTorrent	## Ha nem git-tel lett felrakva (alpine)
 
@@ -58,7 +59,7 @@
        rm -rf /var/www/ruTorrent/share/settings && mkdir -p /config/rutorrent_settings && ln -s /config/rutorrent_settings /var/www/ruTorrent/share/settings 	\
     && rm -rf /var/www/ruTorrent/share/torrents && mkdir -p /config/rutorrent_watched  && ln -s /config/rutorrent_watched  /var/www/ruTorrent/share/torrents 	\
     && rm -rf /var/www/ruTorrent/.git 	\
-    && chown -RL nginx:www-data /var/www/ 	\
+    && chown -RL abc:abc /var/www/ 	\
 	# a rutorrent lássa a curl-t + a log nem kell
        sed -i "s/\("curl".*=> \)''/\1'\/usr\/bin\/curl'/g; " 	/var/www/ruTorrent/conf/config.php 	\
     && sed -i 's/\(.*$log_file = .*\)/\/\/\1/g; ' 		/var/www/ruTorrent/conf/config.php 	\
