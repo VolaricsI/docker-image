@@ -47,12 +47,6 @@
     || exit 4
 
 
-#    id nginx 2>/dev/null
-#    if [ $? != 0 ]; then
-#	rm -rf /var/lib/nginx
-#	adduser --system  --disabled-password --home /var/lib/nginx  --ingroup www-data nginx
-#    fi
-
     [ ! -e /var/www/ruTorrent ] &&  ln -s /usr/share/webapps/rutorrent /var/www/ruTorrent	## Ha nem git-tel lett felrakva (alpine)
 
 	# ruTorrent beállításai megmaradjanak
