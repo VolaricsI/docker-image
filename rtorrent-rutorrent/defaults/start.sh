@@ -17,20 +17,19 @@ fi
 
 
 							## A rutorrent mentéseinek helye
-    [ ! -d /config/rutorrent_settings ] && mkdir -p /config/rutorrent_settings
     [ ! -d /config/rutorrent_watched  ] && mkdir -p /config/rutorrent_watched
-
+    [ ! -d /config/rutorrent_settings ] && mkdir -p /config/rutorrent_settings
+    [ ! -e /config/rutorrent_settings/plugins.ini ] && disable_plugins
 
 		# Jól álljanak a jogosultságok
-    chown -RL abc:abc 	/config
-    chown -RL abc 	/downloads
-    chown -RL abc:abc 	/var/www
+    chown -Rc abc:abc 	/config
+    chown -Rc abc 	/downloads
 
 							## Plugin-ok kívülről történő beállítása
 [ ".$DISABLE_PLUGINS" != "." ] && disable_plugins "$DISABLE_PLUGINS"		## Plugins beállítás kívülről
-[ ".$INSTALL"         != "." ] && apk add $PLUGIN_PRG_LIST			## Minden további csomagot felrak
+[ ".$INSTALL"         != "." ] && apk add $PLUGIN_PRG_LIST			## Minden további csomagot felrak ami kell
 
     echo Starting supervisord...
 
 #exec /usr/bin/supervisord
-    /usr/bin/supervisord					## Ezt használom az exec helyett mert így eltűnik egy hibaüzenet: "...INFO reaped unknown pid..."
+    /usr/bin/supervisord			## Ezt használom az exec helyett mert így eltűnik egy hibaüzenet: "...INFO reaped unknown pid..."
