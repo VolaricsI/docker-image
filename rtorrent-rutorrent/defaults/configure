@@ -2,6 +2,8 @@
 #
 #	Create by Voli
 
+	# Létrehozzuk az abc felhasználót
+    /defaults/adduser-abc 	|| exit 1
 
 	# futtatható programok beállítása és helyre mozgatása
        cd /defaults 	\
@@ -53,7 +55,7 @@
        rm -rf /var/www/ruTorrent/share/settings && mkdir -p /config/rutorrent_settings && ln -s /config/rutorrent_settings /var/www/ruTorrent/share/settings 	\
     && rm -rf /var/www/ruTorrent/share/torrents && mkdir -p /config/rutorrent_watched  && ln -s /config/rutorrent_watched  /var/www/ruTorrent/share/torrents 	\
     && rm -rf /var/www/ruTorrent/.git 	\
-#    && chown -RL abc:abc /var/www/ 	\
+    && chown -RL abc:abc /var/www/ 	\
 	# a rutorrent lássa a curl-t + a log nem kell
        sed -i "s/\("curl".*=> \)''/\1'\/usr\/bin\/curl'/g; " 	/var/www/ruTorrent/conf/config.php 	\
     && sed -i 's/\(.*$log_file = .*\)/\/\/\1/g; ' 		/var/www/ruTorrent/conf/config.php 	\
