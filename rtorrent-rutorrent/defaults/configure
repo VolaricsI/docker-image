@@ -2,65 +2,74 @@
 #
 #	Create by Voli
 
-	# Létrehozzuk az abc felhasználót
-    /defaults/adduser-abc 	|| exit 1
-
 	# futtatható programok beállítása és helyre mozgatása
-       cd /defaults 	\
-    && chmod +x start.sh configure disable_plugins ellenorzes verzio  	\
+    cd /defaults 	\
+    && chmod +x start.sh configure disable_plugins ellenorzes verzio adduser-abc  	\
     && mv start.sh / && mv disable_plugins ellenorzes verzio /usr/bin/ 	\
     || exit 1
+
+	# Létrehozzuk az abc felhasználót
+    /defaults/adduser-abc 	|| exit 2
 
 	# A supervisord beállítása
     if [ -e /etc/supervisor/supervisord.conf ]; then 		## Ubuntu esetén
 	mv /defaults/supervisord.ini /etc/supervisor/conf.d/supervisord.conf
-	sed -i 's/\/var\/log\/supervisor\/supervisord.log/\/proc\/1\/fd\/1/' /etc/supervisor/supervisord.conf
+#	sed -i 's/\/var\/log\/supervisor\/supervisord.log/\/proc\/1\/fd\/1/' /etc/supervisor/supervisord.conf
 	mkdir -p /var/log/supervisor
-
     else							## alpine esetére
 	mkdir -p /etc/supervisor.d
 	mv supervisord.ini /etc/supervisor.d/
-    fi
+    fi 	\
+    || exit 3
 
 	# A nginx configja...
     cd /etc/nginx 	\
-    && rm -f /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* && mkdir -p /run/nginx 	\
-    && mv /defaults/nginx-rutorrent.conf /etc/nginx/conf.d/ 	\
     && cp nginx.conf nginx.conf.orig 	\
+    && rm -f /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* && mkdir -p /run/nginx 	\
     && sed -i 's/user nginx;/user abc;/g; ' 			nginx.conf 	\
     && sed -i 's/\(worker_processes\) auto;/\1 2;/g;' 		nginx.conf 	\
     && sed -i 's/\(access_log\) .\+;/\1 \/proc\/1\/fd\/1;/g;' 	nginx.conf 	\
     && sed -i 's/\(error_log\) .\+;/\1 \/proc\/1\/fd\/1;/g;' 	nginx.conf 	\
+    && mv /defaults/nginx-rutorrent.conf /etc/nginx/conf.d/ 	\
     && touch /var/log/nginx/error.log 	\
-    || exit 2
-
-	# php-fpm configja pool.d van az ubuntun
-    cd $( dirname $( find /etc -iname php-fpm.conf ) ) 	\
-    && if [ -e pool.d ]; then ln -s pool.d php-fpm.d; fi 	\
-    && cp php-fpm.conf php-fpm.conf.orig 	\
-    && cp /defaults/php-fpm-rutorrent.conf /defaults/php-fpm-rutorrent.conf.example 	\
-    && sed -i 's/.*\(error_log = \).*$/\1 \/proc\/1\/fd\/1/g; ' php-fpm.conf 	\
-    && rm -f php-fpm.d/* && mv /defaults/php-fpm-rutorrent.conf php-fpm.d/ 	\
-    && mkdir -p /run/php 	\
-    || exit 3
-
-	# php-fpm futtatójara link
-    ln -s $( ls /usr/sbin/php-fpm* ) /usr/bin/php-fpm 	\
+    && chown -R abc:abc /var/tmp/nginx 	\
     || exit 4
 
+	# php-fpm configja pool.d van az ubuntun; abba a könyvtárba megyek ahol a php-fpm.conf file van
+    cd $( dirname $( find /etc -iname php-fpm.conf ) ) 	\
+    && cp php-fpm.conf php-fpm.conf.orig 	\
+    && sed -i 's/.*\(error_log = \).*$/\1 \/proc\/1\/fd\/1/g; ' php-fpm.conf 	\
+    && if [ -e pool.d ]; then ln -s pool.d php-fpm.d; fi 	\
+    && cp /defaults/php-fpm-rutorrent.conf /defaults/php-fpm-rutorrent.conf.example 	\
+    && rm -f php-fpm.d/* && mv /defaults/php-fpm-rutorrent.conf php-fpm.d/ 	\
+    && mkdir -p /run/php 	\
+    || exit 5
 
-    [ ! -e /var/www/ruTorrent ] &&  ln -s /usr/share/webapps/rutorrent /var/www/ruTorrent	## Ha nem git-tel lett felrakva (alpine)
+	# php-fpm futtatójára link
+    ln -s $( ls /usr/sbin/php-fpm* ) /usr/bin/php-fpm 	\
+    || exit 6
 
-	# ruTorrent beállításai megmaradjanak
-       rm -rf /var/www/ruTorrent/share/settings && mkdir -p /config/rutorrent_settings && ln -s /config/rutorrent_settings /var/www/ruTorrent/share/settings 	\
+	## Ha nem git-tel lett felrakva (alpine); 
+    [ ! -e /var/www/ruTorrent ] && ln -s /usr/share/webapps/rutorrent /var/www/ruTorrent
+
+	# Hogy a ruTorrent beállításai megmaradjanak
+    rm -rf /var/www/ruTorrent/.git 	\
+    && rm -rf /var/www/ruTorrent/share/settings && mkdir -p /config/rutorrent_settings && ln -s /config/rutorrent_settings /var/www/ruTorrent/share/settings 	\
     && rm -rf /var/www/ruTorrent/share/torrents && mkdir -p /config/rutorrent_watched  && ln -s /config/rutorrent_watched  /var/www/ruTorrent/share/torrents 	\
-    && rm -rf /var/www/ruTorrent/.git 	\
-    && chown -RL abc:abc /var/www/ 	\
+    || exit 7
+
 	# a rutorrent lássa a curl-t + a log nem kell
        sed -i "s/\("curl".*=> \)''/\1'\/usr\/bin\/curl'/g; " 	/var/www/ruTorrent/conf/config.php 	\
     && sed -i 's/\(.*$log_file = .*\)/\/\/\1/g; ' 		/var/www/ruTorrent/conf/config.php 	\
-    || exit 5
+    || exit 8
 
-	# a plugin-ek kezelése
-    cp /var/www/ruTorrent/conf/plugins.ini /defaults/ && if [ ".$PLUGIN_PRG" = "." ]; then disable_plugins default; fi 	\
-    || exit 6
+	# a plugin-ek kezelése: ini file áthelyezése a config alá
+       mv /var/www/ruTorrent/conf/plugins.ini /defaults/ 	\
+    && cp /defaults/plugins.ini /config/rutorrent_settings/ 	\
+    && ln -s /config/rutorrent_settings/plugins.ini /var/www/ruTorrent/conf/plugins.ini 	\
+    && chown -R abc:abc /var/www 	\
+    || exit 9
+
+    [ ".$PLUGIN_PRG" = "." ] && disable_plugins default		#Ha van mit beállítani
+
+    chown -Rc abc:abc 	/config /downloads /var/www
