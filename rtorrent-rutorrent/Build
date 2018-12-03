@@ -1,15 +1,1 @@
-#!/bin/bash
-
-
-IMAGE_NAME=rtorrent-rutorrent
-Date=$( date +%Y-%m-%d )
-
-
-docker image build --tag volaricsi/${IMAGE_NAME} --tag volaricsi/${IMAGE_NAME}:${Date} .
-Ver=$( docker run --rm  -it volaricsi/${IMAGE_NAME} /defaults/verzio )
-docker tag volaricsi/${IMAGE_NAME} volaricsi/${IMAGE_NAME}:${Ver}
-
-
-docker push 	volaricsi/${IMAGE_NAME}:${Date}
-docker push 	volaricsi/${IMAGE_NAME}:${Ver}
-docker push 	volaricsi/${IMAGE_NAME}
+Build.ubuntu

@@ -1,0 +1,64 @@
+FROM ubuntu
+MAINTAINER Volarics István volaricsi@gmail.com
+
+	## Ekkor a csomagban léző rutorrent-et teszi fel és nem a github-os verziót
+#ENV RUTORRENT_PKG=" rutorrent "
+
+		##Ezek a programok kellenek még a plugin-eknek ha szükségét érzed
+#ENV PLUGIN_PRG_LIST=" ffmpeg sox mediainfo unrar "
+#ENV PLUGIN_PRG=$PLUGIN_PRG_LIST
+
+
+ENV TIME_ZONE=Europe/Budapest
+
+# Kell a start.sh-nak mivel innen tudja, hogy más programok kezelit a felhasználókat.
+ENV ALAP=ubuntu
+
+RUN export DEBIAN_FRONTEND=noninteractive 	\
+		# Ezek kellenek a futáshoz
+    && apt update && apt -y upgrade && apt install -y supervisor 	rtorrent 	php-fpm nginx 	curl $PLUGIN_PRG 	$RUTORRENT_PKG	\
+		# Ami csak a telepítéshez kellenek, illetve a chpst
+    && apt install -y tzdata git runit libxmlrpc-core-c3-dev && cp $( find / -iname chpst )  /usr/sbin/chpst && cp /usr/bin/xmlrpc /usr/sbin 	\
+    && ln -nf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone fi 	\
+		# A ruTorrent ha nem csomagból raktad fel
+    && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 	\
+		# Ideiglenesen kellet programok eltávolítása
+    && apt remove --purge -y git runit libxmlrpc-core-c3-dev 	bzip2 && apt autoremove --purge -y 	\
+	# Az alap könyvtárak
+    && mkdir -p /defaults /config /downloads
+
+
+COPY defaults /defaults
+
+RUN /defaults/configure
+
+
+# Csak az xmlrpc programra van szükségem
+#RUN apt install -y libxmlrpc-core-c3-dev && cp /usr/bin/xmlrpc /usr/local/bin && apt remove --purge -y libxmlrpc-core-c3-dev
+
+## Takarítás, ami várhatóan meg kell
+#RUN apt remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales && apt autoremove --purge -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache
+
+
+## WebAdmin, dht, data ports; ha kell akkor az rtorrent xmlrpc távirányító portja
+EXPOSE 80 6881/udp 51413 5000
+
+## Konfigok helye; ide kerülnek a letöltések
+VOLUME /config /downloads
+
+# Run the start script on boot.
+CMD ["/start.sh"]
+
+
+		# A szükséges programok; A végén törlöm ami már nem kell; ffmpeg-től a plugin-eknek kellenek
+	# A futtató környezet
+#    && apk add --no-cache supervisor  rtorrent      curl      	\
+	# Csak a telepítéshez kell
+#    && apk add runit git 	\
+	# ruTorrent telepítése vagy forrásból vagy csomagból
+#    && mkdir -p /var/www && cd /var/www 	\
+
+	# ami már nem kell
+#    && apk del runit git 	\
+
+
