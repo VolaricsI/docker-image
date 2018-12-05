@@ -21,7 +21,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt update && apt upgrade -y 	\
 COPY defaults /defaults
 
 # Add the start script. Create example config
-RUN cd /defaults/ && chmod +x * && mv start.sh / && mv * /usr/bin/
+RUN cd /defaults/ && chmod +x * && mv start.sh / && mv * /usr/bin/ && adduser-abc
 
 # Expose the deluge control port and data port.
 EXPOSE 55555 8888
