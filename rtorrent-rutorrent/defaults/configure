@@ -27,12 +27,13 @@
     && cp nginx.conf nginx.conf.orig 	\
     && rm -f /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* && mkdir -p /run/nginx 	\
     && sed -i 's/user nginx;/user abc;/g; ' 			nginx.conf 	\
+    && sed -i 's/user www-data;/user abc;/g; ' 			nginx.conf 	\
     && sed -i 's/\(worker_processes\) auto;/\1 2;/g;' 		nginx.conf 	\
     && sed -i 's/\(access_log\) .\+;/\1 \/proc\/1\/fd\/1;/g;' 	nginx.conf 	\
     && sed -i 's/\(error_log\) .\+;/\1 \/proc\/1\/fd\/1;/g;' 	nginx.conf 	\
     && mv /defaults/nginx-rutorrent.conf /etc/nginx/conf.d/ 	\
     && touch /var/log/nginx/error.log 	\
-    && chown -R abc:abc /var/tmp/nginx 	\
+    && mkdir -p /var/tmp/nginx && chown -R abc:abc /var/tmp/nginx 	\
     || exit 4
 
 	# php-fpm configja pool.d van az ubuntun; abba a könyvtárba megyek ahol a php-fpm.conf file van
