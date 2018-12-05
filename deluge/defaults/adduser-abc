@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+# set abc user and group id, and comment
+	D_UID=${PUID:=1000}
+	D_GID=${PGID:=1000}
+	UserLeiras="Ezzel_a_felhasznaloval_fut_minden_program"
+
+# Az aktuális állapot
+	M_UID=$( id -u abc 2>/dev/null )
+	M_GID=$( id -g abc 2>/dev/null )
+
+	[ ".${M_UID}" = ".${D_UID}" ] && [ ".${M_GID}" = ".${D_GID}" ] && exit 0	## Nincs változás igény
+
+
+    echo "Setting User and owner for config and data directories."
+
+	## Melyik környezetben vagyok? az alapján paraméterezem a programokat
+	adduser 2>&1|grep BusyBox >/dev/null	## 0: alpine
+	if [ $? = 0 ]; then
+		ParGroup="-S -g $D_GID abc"
+		ParUser="-S -D -H -h /tmp -u $D_UID -G abc -g $UserLeiras abc"
+	else
+		ParGroup="--system -gid $D_GID abc"
+		ParUser="--system  --disabled-password --no-create-home --home /tmp -uid $D_UID -gid $D_GID --gecos $UserLeiras abc"
+	fi
+
+    deluser abc  2>/dev/null		## Törlök mindent
+    delgroup abc 2>/dev/null
+
+    addgroup $ParGroup			## és (újra) létre hozom
+    adduser  $ParUser
