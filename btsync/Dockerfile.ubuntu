@@ -3,12 +3,15 @@
 FROM ubuntu
 MAINTAINER Volarics István volaricsi@gmail.com
 
+ENV TIME_ZONE=Europe/Budapest
+
 # Kell a start.sh-nak mivel innen tudja, hogy más programok kezelit a felhasználókat.
 ENV ALAP=ubuntu
 
-# Install required packages.: sgrep, chpst program, and resilio
-RUN apt update && apt upgrade -y 	\
-    && apt install -y wget runit && cp /usr/bin/chpst /bin/chpst 	\
+# Install required packages.: chpst program, and resilio
+RUN export DEBIAN_FRONTEND=noninteractive && apt update && apt upgrade -y 	\
+    && apt install -y wget runit tzdata && cp /usr/bin/chpst /bin/chpst 	\
+    && ln -nf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone 	\
     && cd /tmp && wget --quiet https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz 	\
     && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ 	\
     && apt remove --purge -y wget runit && apt autoremove --purge -y && apt clean 	\
@@ -18,7 +21,7 @@ RUN apt update && apt upgrade -y 	\
 COPY defaults /defaults
 
 # Add the start script. Create example config
-RUN cd /defaults/ && chmod +x * && mv start.sh / && cp verzio create_default_config /usr/bin/
+RUN cd /defaults/ && chmod +x * && mv start.sh / && mv * /usr/bin/
 
 # Expose the deluge control port and data port.
 EXPOSE 55555 8888
