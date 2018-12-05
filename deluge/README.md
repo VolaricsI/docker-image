@@ -1,3 +1,5 @@
+    Az alpine verziió jelenleg (2018-12-04) sokszor hibás a verzió (rc)
+
 
     alpine/ubuntu alapon, 
     alpine esetén a deluge a testing tárolóból származik most (2018-12-01) nem működő képes
