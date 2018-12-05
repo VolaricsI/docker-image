@@ -7,17 +7,20 @@ MAINTAINER Volarics István volaricsi@gmail.com
 # Kell a start.sh-nak mivel innen tudja, hogy más programok kezelit a felhasználókat.
 ENV ALAP=ubuntu
 
+ENV TIME_ZONE=Europe/Budapest
+
 # Install required packages.: deluged, deluge-console and chpst program
-RUN apt update && apt install -y software-properties-common && add-apt-repository -y ppa:deluge-team/ppa && apt update -y && 	\
-    apt install -y deluged deluge-console && 	\
-    apt install runit && cp /usr/bin/chpst /bin/chpst && 	\
-    apt remove --purge -y software-properties-common runit && apt autoremove --purge -y && apt clean && 	\
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && 	\
-    mkdir -p /defaults && mkdir -p /config && mkdir -p /downloads
+RUN apt update && apt install -y software-properties-common && add-apt-repository -y ppa:deluge-team/ppa && apt update -y 	\
+    && apt install -y deluged deluge-console 	\
+    && apt install runit tzdata && cp /usr/bin/chpst /bin/chpst 	\
+    && ln -nf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone 	\
+    && apt remove --purge -y software-properties-common runit tzdata && apt autoremove --purge -y && apt clean 	\
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 	\
+    && mkdir -p /defaults && mkdir -p /config && mkdir -p /downloads
 
 COPY defaults /defaults
 
-RUN mv /defaults/start.sh /start.sh && chmod +x /start.sh
+RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /usr/bin/
 
 # Expose the deluge control port and data port.
 EXPOSE 58846 6881 6881/udp
