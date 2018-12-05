@@ -13,8 +13,8 @@
 - ``-p 58846:58846`` 	: setups a port forwarding rule for the  management port.
 - ``-p 6881:6881`` 	: setups a port forwarding rule for the dht and data in ports
 
--  -e PUID 	: user  ID
--  -e GUID 	: group ID
+-  -e PUID 	: user  ID		#Már az image készítés közben is használható
+-  -e GUID 	: group ID		#Már az image készítés közben is használható
 -  -e UMASK 	: umask értéke
 
 -  -e PRG_PARAM : további paramétereket lehet hozzáadni a parancssorhoz pl. " -L warning ", bővebb naplózás

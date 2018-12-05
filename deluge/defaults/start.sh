@@ -6,7 +6,7 @@
 
 if [ ! -f /config/auth  ]; then								## Ha nincs konfigurálva akkor kap egy alapértelmezettet
 	echo "Doing initial setup..."
-	chown -R $D_UID:$D_GID 	/config
+	chown -R abc:abc 	/config
 	chpst -u abc deluged -c /config							# A megfelelő user configuráljon
 
 	while [ ! -f /config/auth ]; do sleep 1; done					# Wait until auth file created.
@@ -26,10 +26,8 @@ if [ ! -f /config/auth  ]; then								## Ha nincs konfigurálva akkor kap egy a
 	echo deluge:deluge:10 >>  /config/auth
 fi
 
-
-chown -R $D_UID:$D_GID 	/config
-chown    $D_UID 	/downloads
-
+    chown -R abc:abc 	/config
+    chown    abc 	/downloads
 
 	echo "Starting deluged..."
 

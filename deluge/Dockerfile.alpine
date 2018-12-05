@@ -1,5 +1,8 @@
 FROM alpine:edge
 
+				## Már a készítéskor megadhatod az user/group id-t
+ENV PUID=2002
+ENV PGID=2002
 
 ENV TIME_ZONE=Europe/Budapest
 
@@ -13,7 +16,8 @@ RUN apk update && apk upgrade 	\
 
 COPY defaults /defaults
 
-RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /defaults/adduser-abc /usr/bin/
+RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /defaults/adduser-abc /usr/bin/ 	\
+    && adduser-abc
 
 # Expose the deluge control port and data port.
 EXPOSE 58846 6881 6881/udp
