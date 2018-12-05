@@ -11,9 +11,6 @@ MAINTAINER Volarics István volaricsi@gmail.com
 
 ENV TIME_ZONE=Europe/Budapest
 
-# Kell a start.sh-nak mivel innen tudja, hogy más programok kezelit a felhasználókat.
-ENV ALAP=ubuntu
-
 RUN export DEBIAN_FRONTEND=noninteractive 	\
 		# Ezek kellenek a futáshoz
     && apt update && apt -y upgrade && apt install -y supervisor 	rtorrent 	php-fpm nginx 	curl $PLUGIN_PRG 	$RUTORRENT_PKG	\
@@ -23,7 +20,7 @@ RUN export DEBIAN_FRONTEND=noninteractive 	\
 		# A ruTorrent ha nem csomagból raktad fel
     && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 	\
 		# Ideiglenesen kellet programok eltávolítása
-    && apt remove --purge -y git runit libxmlrpc-core-c3-dev 	bzip2 && apt autoremove --purge -y 	\
+    && apt remove --purge -y git runit libxmlrpc-core-c3-dev  && apt autoremove --purge -y 	\
 	# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 
