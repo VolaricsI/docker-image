@@ -11,10 +11,9 @@ RUN apk update && apk upgrade 	\
     && ln -nf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone 	\
     && apk del tzdata
 
-
 COPY defaults /defaults
 
-RUN mv /defaults/start.sh /start.sh && chmod +x /start.sh
+RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /defaults/adduser-abc /usr/bin/
 
 # Expose the deluge control port and data port.
 EXPOSE 58846 6881 6881/udp

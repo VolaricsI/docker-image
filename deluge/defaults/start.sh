@@ -1,21 +1,8 @@
 #!/bin/sh
+#
+#	Create by Voli
 
-# set deluge user and group id
-D_UID=${PUID:=1000}
-D_GID=${PGID:=1000}
-
-echo "Setting User and owner for config and data directories."
-id abc 		2>/dev/null && deluser  abc 									## Ha van ilyen user vagy group töröljük,
-id -g $D_GID 	2>/dev/null && delgroup abc
-
-if [ "$ALAP" = "ubuntu" ]; then 										## hogy megfelelő ID-kel újra létrehozhassuk
-    addgroup --system -gid $D_GID abc
-    adduser --system  --disabled-password --no-create-home --home /tmp -uid $D_UID -gid $D_GID abc
-else
-    addgroup -S -g $D_GID abc
-    adduser  -S -D -H -h /tmp -u $D_UID -G abc abc
-fi
-
+    adduser-abc || exit 1		## Ha kell akkor ujra alkotjuk az abc felhasználót
 
 if [ ! -f /config/auth  ]; then								## Ha nincs konfigurálva akkor kap egy alapértelmezettet
 	echo "Doing initial setup..."
