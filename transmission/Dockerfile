@@ -11,7 +11,7 @@ RUN apk add --no-cache transmission-daemon 	\
 
 COPY defaults /defaults
 
-RUN cd /defaults && mv start.sh / && cp healtcheck verzio /usr/bin/ && chmod +x /start.sh /usr/bin/healtcheck /usr/bin/verzio
+RUN cd /defaults && chmod +x * && mv start.sh / && cp healtcheck verzio adduser-abc /usr/bin/
 
 # ports and volumes;
 EXPOSE 51413 51413/udp 9091
