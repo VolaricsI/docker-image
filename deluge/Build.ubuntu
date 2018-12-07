@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
-
-IMAGE_NAME=deluge-ubuntu
+IMAGE_NAME=volaricsi/deluge-ubuntu
 Date=$( date +%Y-%m-%d )
 
 
-docker image build --tag volaricsi/${IMAGE_NAME} --tag volaricsi/${IMAGE_NAME}:${Date} -f Dockerfile.ubuntu .
-Ver=$( docker run --rm  -it volaricsi/${IMAGE_NAME} verzio )
-docker tag volaricsi/${IMAGE_NAME} volaricsi/${IMAGE_NAME}:${Ver}
+docker image build --tag ${IMAGE_NAME} -f Dockerfile.ubuntu .
+Ver=$( docker run --rm   ${IMAGE_NAME} verzio )
+docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${Ver}
+docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${Ver}-${Date}
 
 
-docker push 	volaricsi/${IMAGE_NAME}:${Date}
-docker push 	volaricsi/${IMAGE_NAME}:${Ver}
-docker push 	volaricsi/${IMAGE_NAME}
+docker push ${IMAGE_NAME}
+docker push ${IMAGE_NAME}:${Ver}
+docker push ${IMAGE_NAME}:${Ver}-${Date}
