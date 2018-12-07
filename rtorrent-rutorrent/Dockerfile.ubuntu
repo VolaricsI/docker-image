@@ -4,10 +4,9 @@ MAINTAINER Volarics István volaricsi@gmail.com
 	## Ekkor a csomagban léző rutorrent-et teszi fel és nem a github-os verziót
 #ENV RUTORRENT_PKG=" rutorrent "
 
-		##Ezek a programok kellenek még a plugin-eknek ha szükségét érzed
-#ENV PLUGIN_PRG_LIST=" ffmpeg sox mediainfo unrar "
+	##Ezek a programok kellenek még a plugin-eknek; ha szükségét érzed vedd ki a commentet
+ENV PLUGIN_PRG_LIST=" ffmpeg sox mediainfo unrar "
 #ENV PLUGIN_PRG=$PLUGIN_PRG_LIST
-
 
 ENV TIME_ZONE=Europe/Budapest
 
@@ -20,7 +19,10 @@ RUN export DEBIAN_FRONTEND=noninteractive 	\
 		# A ruTorrent ha nem csomagból raktad fel
     && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 	\
 		# Ideiglenesen kellet programok eltávolítása
-    && apt remove --purge -y git runit libxmlrpc-core-c3-dev  && apt autoremove --purge -y 	\
+    && apt remove --purge -y git runit libxmlrpc-core-c3-dev 	\
+		# A szügségtelen programok, melyek az alap image-ben vannak
+    && apt remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales 	\
+    && apt autoremove --purge -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache 	\
 	# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 
@@ -28,13 +30,6 @@ RUN export DEBIAN_FRONTEND=noninteractive 	\
 COPY defaults /defaults
 
 RUN /defaults/configure
-
-
-# Csak az xmlrpc programra van szükségem
-#RUN apt install -y libxmlrpc-core-c3-dev && cp /usr/bin/xmlrpc /usr/local/bin && apt remove --purge -y libxmlrpc-core-c3-dev
-
-## Takarítás, ami várhatóan meg kell
-#RUN apt remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales && apt autoremove --purge -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache
 
 
 ## WebAdmin, dht, data ports; ha kell akkor az rtorrent xmlrpc távirányító portja
@@ -45,17 +40,3 @@ VOLUME /config /downloads
 
 # Run the start script on boot.
 CMD ["/start.sh"]
-
-
-		# A szükséges programok; A végén törlöm ami már nem kell; ffmpeg-től a plugin-eknek kellenek
-	# A futtató környezet
-#    && apk add --no-cache supervisor  rtorrent      curl      	\
-	# Csak a telepítéshez kell
-#    && apk add runit git 	\
-	# ruTorrent telepítése vagy forrásból vagy csomagból
-#    && mkdir -p /var/www && cd /var/www 	\
-
-	# ami már nem kell
-#    && apk del runit git 	\
-
-
