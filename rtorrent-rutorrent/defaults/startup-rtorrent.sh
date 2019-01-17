@@ -7,9 +7,9 @@
 
 
 					## Ha fut leállítom, de mindenképp törlöm a lock file-t mivel ha van akkor nem fog elindulni
-    Lock_File=$( grep "session = " /config/rtorrent.rc |sed 's/.*[ =]//g;' )/rtorrent.lock
+    Lock_File=$( grep "session.*=" /config/rtorrent.rc |sed 's/.*[ =]//g;' )/rtorrent.lock
     if [ -e ${Lock_File} ]; then
-	kill $(cat ${Lock_File} |sed 's/.*+//g')
+	kill $( cat ${Lock_File} |sed 's/.*+//g' ) 	2>/dev/null
 	rm ${Lock_File}
     fi
 
