@@ -2,6 +2,11 @@
 #
 #	Create by Voli
 
+    if [ .$( cat /downloads/.docker-mount-point ) != ./downloads ]; then		## Csak akkor fusson ha VALÓBAN a megfelelő könyvtár van alatta
+	echo "Nem megfelelő a csatolt könyvtár...."
+	exit 1
+    fi
+
     /defaults/adduser-abc || exit 1		## Ha kell akkor ujra alkotjuk az abc felhasználót
 
 
