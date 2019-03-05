@@ -26,7 +26,7 @@
 		ParUser="--system  --disabled-password --no-create-home --home /tmp -uid $D_UID -gid $D_GID --gecos $UserLeiras abc"
 	fi
 
-    deluser abc  2>/dev/null		## Törlök mindent
+    deluser  abc 2>/dev/null		## Törlök mindent
     delgroup abc 2>/dev/null
 
     addgroup $ParGroup			## és (újra) létre hozom

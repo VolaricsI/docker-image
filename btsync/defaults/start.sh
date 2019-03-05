@@ -1,4 +1,6 @@
 #!/bin/sh
+#
+#	Create by Voli
 
     adduser-abc
 
@@ -15,7 +17,7 @@ fi
     echo "Starting resilio..."
     cd /tmp
     /usr/bin/rslsync --help |grep "Resilio Sync"		## a verzio kiíratás miatt
-    rm -rf /tmp/.sync /tmp/*
+    rm -rf /tmp/.sync
 
     umask $UMASK
 

@@ -1,5 +1,6 @@
 #!/bin/sh
-#	Created by Volarics Istvan (Voli)
+#
+#	Create by Voli
 
 TMP_CNF=config
 
@@ -11,4 +12,4 @@ TMP_CNF=config
 
     grep -v -e "^//" $TMP_CNF
 
-    rm -rf .sync $TMP_CNF resilio_dumps
+    rm -rf .sync $TMP_CNF

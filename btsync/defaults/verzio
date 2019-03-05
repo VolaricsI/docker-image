@@ -1,10 +1,11 @@
 #!/bin/sh
-#	Created by Volarics Istvan (Voli)
+#
+#	Create by Voli
 
-cd /tmp
+    cd /tmp
 
-Ver=$( rslsync --help|grep "Resilio Sync"|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
+    Ver=$( rslsync --help|grep "Resilio Sync"|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
 
-rm /tmp/.sync/* ; rmdir /tmp/.sync
+    rm -rf /tmp/.sync
 
-echo -n "${Ver}"
+    echo -n "${Ver}"
