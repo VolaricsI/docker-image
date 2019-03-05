@@ -20,7 +20,7 @@ RUN apt update && apt install -y software-properties-common && add-apt-repositor
 
 COPY defaults /defaults
 
-RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /defaults/adduser-abc /usr/bin/
+RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /defaults/adduser-abc /usr/bin/ && echo "$PUID-----$PGUI!!!!!"
 
 # Expose the deluge control port and data port.
 EXPOSE 58846 6881 6881/udp
