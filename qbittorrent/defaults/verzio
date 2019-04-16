@@ -1,4 +1,0 @@
-#!/bin/sh
-#	Created by Volarics Istvan (Voli)
-
-echo -n "$( qbittorrent-nox -v 2>&1|grep "^qBittorrent"| sed 's/.* //g; s/^v//g; ' )"

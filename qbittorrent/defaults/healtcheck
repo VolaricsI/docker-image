@@ -1,4 +1,0 @@
-#!/bin/sh
-#	Created by Volarics Istvan (Voli)
-
-curl --connect-timeout 15 --show-error --silent --fail --location "http://localhost:$( ps |grep "webui-port="|sed 's/.*webui-port=//' )" >/dev/null || exit 1

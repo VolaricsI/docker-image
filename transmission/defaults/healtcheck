@@ -1,4 +1,0 @@
-#!/bin/sh
-#	Created by Volarics Istvan (Voli)
-
-curl --connect-timeout 15 --show-error --silent --output /dev/null --fail --location "http://localhost:9091"  || exit 1
