@@ -1,5 +1,6 @@
 #!/bin/sh
-#	Created by Volarics Istvan (Voli)
+#
+#	Create by Voli
 
 DIR=/var/www/ruTorrent/plugins				# ruTorrent helye
 INIFILE=/config/rutorrent_settings/plugins.ini
