@@ -29,9 +29,9 @@
 
 
     ## Futó konténerben parancsok
-	    -- docker exec containerName /defaults/verzio			Kiírja a verzi számokat: rtorrent és ruTorrent
-	    -- docker exec containerName /defaults/disable_plugins lista 	Miként a DISABLE_PLUGINS-nál
-	    -- docker exec containerName /defaults/ellenorzes 			Azon könyvtárak/file-ok melyekhez nem tartozik torrent
+	    -- docker exec containerName verzio				Kiírja a verzi számokat: rtorrent és ruTorrent
+	    -- docker exec containerName disable_plugins lista 		Miként a DISABLE_PLUGINS-nál
+	    -- docker exec containerName ellenorzes 			Azon könyvtárak/file-ok melyekhez nem tartozik torrent
 
 
 supervisord.py
