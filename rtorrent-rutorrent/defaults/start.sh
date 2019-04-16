@@ -21,6 +21,14 @@ fi
     mkdir -p ${Dir_Session} ${Dir_Watch}
 
 
+					## Ha fut leállítom, de mindenképp törlöm a lock file-t mivel ha van akkor nem fog elindulni
+    Lock_File=${Dir_Session}/rtorrent.lock
+    if [ -e ${Lock_File} ]; then
+	kill $( cat ${Lock_File} |sed 's/.*+//g' ) 	2>/dev/null
+	rm ${Lock_File}
+    fi
+
+
 							## A rutorrent mentéseinek helye
     [ ! -d /config/rutorrent_watched  ] && mkdir -p /config/rutorrent_watched
     [ ! -d /config/rutorrent_settings ] && mkdir -p /config/rutorrent_settings
@@ -37,4 +45,4 @@ fi
     echo Starting supervisord...
 
 #exec /usr/bin/supervisord
-    /usr/bin/supervisord			## Ezt használom az exec helyett mert így eltűnik egy hibaüzenet: "...INFO reaped unknown pid..."
+    /usr/bin/supervisord			## Ezt használom az exec helyett mert így eltűnik ez a hibaüzenet: "...INFO reaped unknown pid..."
