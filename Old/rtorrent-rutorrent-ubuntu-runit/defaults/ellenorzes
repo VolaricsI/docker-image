@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+#:::::: Beallitasok :::::::::::
+#:::::: Ellenorzesek ::::::::::
+
+L1=/tmp/D1_dir.lst
+L2=/tmp/D2_tor.lst
+
+##ls /downloads |sed 's/\[/./g; s/\]/./g; ' 	>${L1}
+
+
+xmlrpc localhost 	d.multicall "main" "d.get_base_path=" 	\
+    |grep "String:" |sed "s/'$//g; s/.\+ String: '//g; s/.*downloads\///g; s/\[/./g; s/\]/./g; " 	\
+    |sed 's/\\xc3\\xb3/ó/g; s/\\xc3\\xa9/é/g; s/\\xc3\\x89/É/; s/\\xc3\\xa1/á/g; s/\\xc3\\x81/Á/g; s/\\xc3\\xba/ú/g; s/\\xc3\\x9a/Ú/g; s/\\xc3\\xb6/ö/g; s/\\xc3\\x8d/Í/g; s/\\xc3\\xbc/ü/g; s/\\xc5\\x91/ő/g; s/\\xc3\\xad/í/g; s/\\xc5\\xb1/ű/g; s/\\xc3\\xa4/ä/g; s/\\xc3\\x93/Ó/g; s/\\xe2\\x80\\x93/–/g; ' 	\
+    |grep -v "^$"|sort -u >${L2}
+
+
+ls /downloads |sed 's/\[/./g; s/\]/./g; ' |while read a; do
+    grep  -e "^${a}" ${L2}	>/dev/null && continue
+    echo ">>${a}<<"
+done
+
+rm ${L1} ${L2}	2>/dev/null

@@ -1,0 +1,4 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+echo -n "$( transmission-daemon -V 2>&1|sed 's/ *(.*//g; s/.* //g; ' )"
