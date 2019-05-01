@@ -16,7 +16,7 @@ if [ ! -e /config/rtorrent.rc ]; then			## Ha nincs konfig akkor kap egy alapot 
 fi
 
 							## Az rtorrent-nek kellenek ezek a könyvtárak
-    Dir_Session=$( grep "session = "      /config/rtorrent.rc |sed 's/.*[ =]//g;' )
+    Dir_Session=$( grep "session.*="      /config/rtorrent.rc |sed 's/.*[ =]//g;' )
     Dir_Watch=$(   grep "watch_directory" /config/rtorrent.rc |sed 's/.*=//g; s/\/\*.*//g; ' )
     mkdir -p ${Dir_Session} ${Dir_Watch}
 

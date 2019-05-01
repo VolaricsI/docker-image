@@ -4,7 +4,7 @@
 
 	# futtatható programok beállítása és helyre mozgatása
     cd /defaults 	\
-    && chmod +x start.sh configure disable_plugins ellenorzes verzio adduser-abc  	\
+    && chmod +x start.sh configure* disable_plugins ellenorzes verzio adduser-abc  	\
     && mv start.sh / && mv disable_plugins ellenorzes verzio /usr/bin/ 	\
     || exit 1
 

@@ -5,7 +5,7 @@
 DIR=/var/www/ruTorrent/plugins				# ruTorrent helye
 INIFILE=/config/rutorrent_settings/plugins.ini
 
-DEFAULT=" mediainfo screenshots spectrogram unpack "
+DEFAULT=" mediainfo screenshots spectrogram unpack _cloudflare "
 
 Clear(){						#Alap állapotba hozzuk
     cp /defaults/plugins.ini ${INIFILE} && chown abc:abc ${INIFILE}
