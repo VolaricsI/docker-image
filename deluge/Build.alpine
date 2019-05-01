@@ -10,6 +10,6 @@ docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${Ver}
 docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${Ver}-${Date}
 
 
-docker push ${IMAGE_NAME}
-docker push ${IMAGE_NAME}:${Ver}
-docker push ${IMAGE_NAME}:${Ver}-${Date}
+#docker push ${IMAGE_NAME}
+#docker push ${IMAGE_NAME}:${Ver}
+#docker push ${IMAGE_NAME}:${Ver}-${Date}

@@ -1,23 +1,18 @@
 FROM alpine:edge
 
 				## Már a készítéskor megadhatod az user/group id-t
-ENV PUID=2002
-ENV PGID=2002
+ENV PUID=2002 PGID=2002
 
-ENV TIME_ZONE=Europe/Budapest
+##ENV TIME_ZONE=Europe/Budapest
 
 RUN apk update && apk upgrade 	\
     && apk add runit && cp /sbin/chpst /bin/chpst && apk del runit 	\
     && apk add openssl 	\
-    && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing deluge 	\
-    && apk add tzdata 	\
-    && ln -nf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE >/etc/timezone 	\
-    && apk del tzdata
+    && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing deluge
 
 COPY defaults /defaults
 
-RUN chmod +x /defaults/* && mv /defaults/start.sh /start.sh && mv /defaults/verzio /defaults/adduser-abc /usr/bin/ 	\
-    && adduser-abc
+RUN /defaults/config.sh
 
 # Expose the deluge control port and data port.
 EXPOSE 58846 6881 6881/udp

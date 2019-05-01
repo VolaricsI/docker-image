@@ -6,12 +6,12 @@
 
 if [ ! -f /config/auth  ]; then								## Ha nincs konfigurálva akkor kap egy alapértelmezettet
 	echo "Doing initial setup..."
-	chown -R abc:abc 	/config
-	chpst -u abc deluged -c /config							# A megfelelő user configuráljon
+	chown -Rc abc:abc 	/config
+	chpst -u  abc deluged -c /config						# A megfelelő user configuráljon
 
 	while [ ! -f /config/auth ]; do sleep 1; done					# Wait until auth file created.
 
-	deluge-console -c /config "config -s allow_remote True"				# allow remote access
+	deluge-console -c /config "config -s allow_remote True"				# Nem csak a konténerből lehet managelni
 
 	deluge-console -c /config "config -s download_location 		/downloads"	# setup default paths to go to the user's defined data folder.
 	deluge-console -c /config "config -s move_completed_path 	/downloads"
