@@ -10,8 +10,6 @@ if [ ! -z ${ALAP} ]; then
     A_tag=":${ALAP}"; A_file="_${ALAP}"; A_ver="${ALAP}_"
 fi
 
-echo 111${ALAP}222${A_tag}333${A_file}444${A_ver}555
-
 echo 	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 	if [ $? -ne 0 ]; then
@@ -28,8 +26,3 @@ echo 	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 
 echo	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}_${Date}
 	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}_${Date}
-
-
-#docker push ${IMAGE_NAME}
-#docker push ${IMAGE_NAME}:${Ver}
-#docker push ${IMAGE_NAME}:${Ver}-${Date}
