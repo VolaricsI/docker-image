@@ -1,0 +1,33 @@
+FROM frolvlad/alpine-glibc
+
+
+LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
+	url="https://github.com/VolaricsI/docker-image"
+
+
+	## Személyre szabott beállítások; TIME_ZONE kell ha nem tudod mi legyen akkor UTC
+ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest
+
+# Install required packages.: a runit-ből csak a chpst kell; resilio
+RUN apk update && apk upgrade 	\
+	## CSak a build során kell
+    && apk add runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst 				\
+    && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 	\
+	## A resillio beszerzése és helyére rakása
+    && cd /tmp && wget --quiet https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz 	\
+    && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && rm -rf /tmp/* 				\
+	## Mér nem kellenek
+    && apk del runit tzdata 	\
+    && mkdir -p /defaults /config /downloads
+
+COPY defaults /defaults
+
+RUN /defaults/configure.sh
+
+# data ports; táviránító/management port;
+EXPOSE 55555 8888
+
+## Konfigok helye; ide kerülnek a letöltések
+VOLUME /config /downloads
+
+CMD ["/start.sh"]
