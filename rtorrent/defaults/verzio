@@ -1,0 +1,12 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+Apk=$(  find /usr/sbin /sbin -xdev  -iname apk  -type f -perm  -u+rwx )
+Dpkg=$( find /usr/bin  /bin  -xdev  -iname dpkg -type f -perm  -u+rwx )
+
+Ver1a=$( [ ".$Apk" != "."  ] && $Apk info -d rtorrent |grep rtorrent |sed 's/.*rtorrent//g; s/ .*//g; s/^-//g; ' )
+Ver1d=$( [ ".$Dpkg" != "." ] && $Dpkg -l|grep rtorrent|sed 's/.*rtorrent//g; s/^ \+//g; s/ .*//g; ' )
+
+Ver2=$( grep "version:.*[0-9]" /var/www/ruTorrent/js/webui.js |sed 's/.*\"\([0-9]\)/\1/g; s/\".*//g; ' )
+
+echo -n "rt-${Ver1a}${Ver1d}_rut-${Ver2}"

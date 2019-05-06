@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import sys
+import os
+import signal
+
+from supervisor.childutils import listener
+
+def write_stdout(s):
+    sys.stdout.write(s)
+    sys.stdout.flush()
+
+
+def write_stderr(s):
+    sys.stderr.write(s)
+    sys.stderr.flush()
+
+
+def main():
+
+     while True:
+        headers, body = listener.wait(sys.stdin, sys.stdout)
+        body = dict([pair.split(":") for pair in body.split(" ")])
+#        write_stderr("Headers: %r\n" % repr(headers))
+#        write_stderr("Body: %r\n" % repr(body))
+        listener.ok(sys.stdout)
+
+        write_stderr("==========>\t%s\t===>\t%s\t ++++++\n" % (body["processname"] , headers["eventname"]) );
+
+        if body["processname"] != "rtorrent":
+	    continue
+
+        write_stderr("==========> most probalom kigyilkolni..."  );
+
+	pidfile = open('/run/supervisord.pid','r')
+	pid 	= int( pidfile.readline() );
+        os.kill( pid,signal.SIGQUIT )
+        os.kill( 1  ,signal.SIGQUIT )
+
+
+if __name__ == '__main__':
+    main()
+## Allapotok elnevezesei:
+###events=PROCESS_STATE,PROCESS_STATE_STARTING,PROCESS_STATE_RUNNING,PROCESS_STATE_BACKOFF,PROCESS_STATE_STOPPING,PROCESS_STATE_EXITED,PROCESS_STATE_STOPPED,PROCESS_STATE_FATAL,PROCESS_STATE_UNKNOWN

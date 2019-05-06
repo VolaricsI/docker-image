@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+DIR=/var/www/ruTorrent/plugins				# ruTorrent pluginek helye
+INIFILE=/config/rutorrent_settings/plugins.ini
+
+Tilt(){
+    while [ ".$1" != "." ]; do
+	echo "[$1]  enabled = no" 	>>${INIFILE}
+	shift;
+    done
+}
+
+	# Minden engedélyezve (nincs minden tiltva)
+    cp /defaults/plugins.ini ${INIFILE} && chown abc:abc ${INIFILE}
+    echo -e "\n\n;; Kitiltott plugin-ek:\n" 	>>$INIFILE
+
+case ".$1" in
+  .all)
+	    Tilt $( ls ${DIR} |sort )
+	;;
+  .default)
+	    Tilt ${PLUGIN_DEFAULT_TILTVA}
+	;;
+  *)
+	    Tilt $*
+	;;
+esac
+
