@@ -25,12 +25,14 @@ RUN apk update && apk upgrade 	\
     && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 		\
 	# ami már nem kell (tzdata törlése később)
     && apk del git runit 	\
+	# A munin plugin-ek hibátlan működéséhez kell, valamint az "ellenorzes"-hez
+    && apk add perl 		\
 	# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 
 COPY defaults /defaults
 
-RUN /defaults/configure.sh && /defaults/configure-lighttpd.sh && /defaults/configure-rutorrent.sh
+RUN /defaults/configure.sh && /defaults/configure-lighttpd.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
 
 
 ## dht; data ports; WebAdmin; távirányító/management port (xmlrpc)
