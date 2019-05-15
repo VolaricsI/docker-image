@@ -1,0 +1,29 @@
+FROM alpine:edge
+
+LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
+	url="https://github.com/VolaricsI/docker-image"
+
+	## Személyre szabott beállítások
+ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=default
+
+	## Install required packages.: a runit-ből csak a chpst kell;
+RUN apk update && apk upgrade 	\
+    && apk add git tzdata runit && cp $( find / -iname chpst ) /usr/sbin/chpst 				\
+    && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 	\
+	## Már nem kellenek
+    && apk del runit tzdata 	\
+	## Deluge
+    && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing deluge 	\
+    && mkdir -p /defaults /config /downloads
+
+COPY defaults /defaults
+
+RUN /defaults/config.sh
+
+## dht; data ports; Admin/távirányító/management port
+EXPOSE 6881/udp 6881 58846
+
+## Konfigok helye; ide kerülnek a letöltések
+VOLUME /config /downloads
+
+CMD ["/start.sh"]
