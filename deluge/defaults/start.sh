@@ -2,7 +2,7 @@
 #
 #	Create by Voli
 
-    adduser-abc || exit 1		## Ha kell akkor ujra alkotjuk az abc felhasználót
+    /defaults/adduser-abc || exit 1		## Ha kell akkor ujra alkotjuk az abc felhasználót
 
 if [ ! -f /config/auth  ]; then								## Ha nincs konfigurálva akkor kap egy alapértelmezettet
 	echo "Doing initial setup..."
@@ -20,7 +20,7 @@ if [ ! -f /config/auth  ]; then								## Ha nincs konfigurálva akkor kap egy a
 
 	deluge-console -c /config "config -s random_port 		false"
 
-	deluge-console -c /config "halt"; sleep 1				# Legyen ideje leállni
+	deluge-console -c /config "halt"; sleep 1					# Legyen ideje leállni
 
 	echo "Adding initial authentication details."
 	echo deluge:deluge:10 >>  /config/auth
@@ -32,4 +32,4 @@ fi
 	echo "Starting deluged..."
 
 	umask $UMASK
-	exec chpst -u abc 	/usr/bin/deluged --do-not-daemonize --config=/config $PRG_PARAM
+	exec chpst -u abc:abc 	/usr/bin/deluged --do-not-daemonize --config=/config $PRG_PARAM

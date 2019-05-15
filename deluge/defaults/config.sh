@@ -4,5 +4,5 @@
 
     chmod +x /defaults/*
     mv /defaults/start.sh /
-    mv /defaults/verzio /defaults/adduser-abc /usr/bin/
-    adduser-abc
+    mv /defaults/verzio /usr/bin/
+    /defaults/adduser-abc
