@@ -1,0 +1,34 @@
+#!/usr/bin/perl -w
+#
+
+my $ip 		= "127.0.0.1";
+my $port 	= 5000;
+
+my $line	= "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+    <methodCall><methodName>d.multicall</methodName>
+	<params>
+	    <param><value><string>main</string></value></param>
+	    <param><value><string>d.get_base_path=</string></value></param>
+	</params>
+    </methodCall>";
+
+
+use IO::Socket;
+
+my $llen	= length $line;
+my $header	= "CONTENT_LENGTH\000${llen}\000SCGI\001\000";
+my $hlen	= length $header;
+$line	= "${hlen}:${header},${line}";
+
+    socket( SOCK, PF_INET, SOCK_STREAM, getprotobyname( "tcp" ) );
+    connect( SOCK, sockaddr_in( $port, inet_aton( $ip ) ) );
+
+	print SOCK $line; flush SOCK;
+
+	while ( $line = <SOCK> ) {
+	    print "$line";
+	}
+
+    close (SOCK);
+
+exit;
