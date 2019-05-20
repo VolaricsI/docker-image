@@ -7,5 +7,5 @@
 
 cd /defaults/munin
 ls |while read a; do
-    sed -i 's/filetransfer/rTorrent/g' $a
+    sed -i 's/filetransfer/Torrent/g' $a
 done
