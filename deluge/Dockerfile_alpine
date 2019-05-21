@@ -18,7 +18,7 @@ RUN apk update && apk upgrade 	\
 
 COPY defaults /defaults
 
-RUN /defaults/config.sh
+RUN /defaults/config.sh && /defaults/config-deluge.sh
 
 ## dht; data ports; Admin/távirányító/management port
 EXPOSE 6881/udp 6881 58846

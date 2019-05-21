@@ -6,8 +6,9 @@ LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	## Személyre szabott beállítások
 ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=default
 
+	## Kell az apt-utils, hogy ne legyenek hibaüzenetek
+RUN export DEBIAN_FRONTEND=noninteractive &&  apt-get update -y && apt-get install -y apt-utils && apt-get upgrade -y 	\
 	## Install required packages.: a runit-ből csak a chpst kell;
-RUN apt-get update -y &&  apt-get upgrade -y 	\
     && apt-get install -y runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst 			\
     && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 	\
     && apt-get remove --purge -y runit tzdata 		\
@@ -21,7 +22,7 @@ RUN apt-get update -y &&  apt-get upgrade -y 	\
 
 COPY defaults /defaults
 
-RUN /defaults/config.sh
+RUN /defaults/config.sh && /defaults/config-deluge.sh && /defaults/config-munin.sh
 
 ## dht; data ports; Admin/távirányító/management port
 EXPOSE 6881/udp 6881 58846
