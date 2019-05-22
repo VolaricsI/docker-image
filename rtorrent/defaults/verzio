@@ -9,4 +9,6 @@ Ver1d=$( [ ".$Dpkg" != "." ] && $Dpkg -l|grep rtorrent|sed 's/.*rtorrent//g; s/^
 
 Ver2=$( grep "version:.*[0-9]" /var/www/ruTorrent/js/webui.js |sed 's/.*\"\([0-9]\)/\1/g; s/\".*//g; ' )
 
-echo -n "rt-${Ver1a}${Ver1d}_rut-${Ver2}"
+BDate=$( cat /defaults/BuildDate.txt )
+
+echo -n "rt-${Ver1a}${Ver1d}_rut-${Ver2}_${BDate}"

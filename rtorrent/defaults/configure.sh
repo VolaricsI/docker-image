@@ -18,6 +18,7 @@
 
     rm -rf /run && ln -s /tmp /run || exit 3
 
+    date +%Y-%m-%d 	>/defaults/BuildDate.txt
 
 	# Létrehozzuk az abc felhasználót
     /defaults/adduser-abc 	|| exit 2
