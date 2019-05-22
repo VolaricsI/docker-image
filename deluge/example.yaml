@@ -23,6 +23,7 @@ services:
     - UMASK=002
     - PRG_PARAM= -L warning 
 
+	## CSak akkor hatásos ha még nincs konfig file!!!
     -DELUGE_USERNAME=delugeusername
     -DELUGE_PASSWORD=delugepassword
 
