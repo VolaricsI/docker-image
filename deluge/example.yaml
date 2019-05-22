@@ -27,6 +27,10 @@ services:
     -DELUGE_USERNAME=delugeusername
     -DELUGE_PASSWORD=delugepassword
 
+	## A munin paramétere; a konténer indításakor modosítja a plugint
+    - MUNIN_category="torrent"
+    - MUNIN_tittle="deluge"
+
 
 
   networks:

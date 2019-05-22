@@ -6,7 +6,7 @@
 
     /defaults/config-deluge.sh 			## Ha kell legyártja az alap konfigot
 
-	## A munin plugin-nek kell, hogy be tudjon jelentkezni a deluge-be
+	## A munin plugin-nek kell, hogy be tudjon jelentkezni a deluge-be.,,
     /defaults/setup-munin.sh
 
     chown -R abc:abc 	/config
