@@ -2,8 +2,6 @@
 
 IMAGE_NAME=volaricsi/resilio
 
-Date=$( date +%Y-%m-%d )
-
 ALAP=$( echo $0|sed 's/.*_//g;' )
 
 if [ ! -z ${ALAP} ]; then
@@ -24,5 +22,5 @@ echo 	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 		exit 1
 	fi
 
-echo	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}_${Date}
-	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}_${Date}
+echo	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}
+	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}

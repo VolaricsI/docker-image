@@ -11,5 +11,7 @@
 	# Létrehozzuk az abc felhasználót
     /defaults/adduser-abc 	|| exit 2
 
+    date +%Y-%m-%d 	>/defaults/BuildDate.txt
+
     mkdir -p 		/config /downloads
     chown -RL abc:abc 	/config /downloads

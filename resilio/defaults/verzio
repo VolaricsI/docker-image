@@ -8,4 +8,6 @@
 
     rm -rf /tmp/.sync
 
-    echo -n "${Ver}"
+    BDate=$( cat /defaults/BuildDate.txt )
+
+    echo -n "${Ver}_${BDate}"
