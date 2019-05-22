@@ -4,6 +4,10 @@
 
 [ -f /config/auth  ] && exit 0 								## Ha van akkor nincs mit csinálni - van már config
 
+	D_USER=${DELUGE_USERNAME:=deluge}
+	D_PASS=${DELUGE_PASSWORD:=deluge}
+
+
 	echo "Doing initial setup..."
 
 	mkdir /config/state/
@@ -26,4 +30,5 @@
 	deluge-console -c /config "halt"; sleep 1					# Legyen ideje leállni
 
 	echo "Adding initial authentication details."
-	echo deluge:deluge:10 >>  /config/auth
+
+	echo "${D_USER}:${D_PASS}:10" 	>>/config/auth

@@ -1,0 +1,39 @@
+version: '2.1'
+
+services:
+
+ deluge:
+  container_name: deluge
+  image: volaricsi/deluge
+  restart: always
+
+  ports:
+    - 6881:6881
+    - 6881:6881/udp
+    - 58846:58846
+
+  volumes:
+    - /srv/Deluge/config/:/config
+    - /srv/Deluge/downloads:/downloads
+
+  environment:
+    # torrent user
+    - PUID=2002
+    - PGID=2002
+    - UMASK=002
+    - PRG_PARAM= -L warning 
+
+    -DELUGE_USERNAME=delugeusername
+    -DELUGE_PASSWORD=delugepassword
+
+
+
+  networks:
+   p2p.lan:
+
+networks:
+ p2p.lan:
+  name: deluge
+  driver: bridge
+  driver_opts:
+   com.docker.network.bridge.name: docker_deluge

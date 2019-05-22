@@ -21,6 +21,6 @@
 
 - Change the default username and password in your config directory's auth file.
 
-## Default Passwords
-Username: deluge
-Password: deluge
+	##A deluge managent felhasználója, ha nincs megadva akkor deluge/deluge
+-  -e DELUGE_USERNAME 	:
+-  -e DELUGE_PASSWORD 	:
