@@ -13,6 +13,7 @@
 	mkdir /config/state/
 	touch /config/state/torrents.state 						# Ne legyen hibaüzenet
 
+	mkdir /config/In								# Innen fogja autómatán felemelni a torrenteket
 	chown -Rc abc:abc 	/config
 	chpst -u  abc deluged -c /config 						# A megfelelő user configuráljon
 
@@ -23,7 +24,10 @@
 	deluge-console -c /config "config -s download_location 		/downloads"	# setup default paths to go to the user's defined data folder.
 	deluge-console -c /config "config -s move_completed_path 	/downloads"
 	deluge-console -c /config "config -s torrentfiles_location 	/downloads"
-	deluge-console -c /config "config -s autoadd_location 		/downloads"
+	deluge-console -c /config "config -s autoadd_enable 		true" 		# Felolvassa a torrent file-okat
+	deluge-console -c /config "config -s autoadd_location 		/config/In"
+	deluge-console -c /config "config -s copy_torrent_file 		true" 		# A feldolgozott torrentet elteszi későbbre
+	deluge-console -c /config "config -s torrentfiles_location 	/config/Backup"
 
 	deluge-console -c /config "config -s random_port 		false"
 
