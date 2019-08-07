@@ -1,7 +1,6 @@
-#FROM alpine:edge
-FROM alpine
+FROM alpine:edge
 
-LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
+LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
 	url="https://github.com/VolaricsI/docker-image"
 
 	## Személyre szabott beállítások
@@ -14,7 +13,7 @@ RUN apk update && apk upgrade 	\
 	## Már nem kellenek
     && apk del runit tzdata 	\
 	## Deluge
-    && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing deluge 	\
+    && echo "http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories && apk update && apk add deluge 	\
     && mkdir -p /defaults /config /downloads
 
 COPY defaults /defaults
