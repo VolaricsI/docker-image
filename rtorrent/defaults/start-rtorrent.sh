@@ -16,8 +16,8 @@ fi
     [ -e ${Lock_File} ] && rm ${Lock_File}
 
 	# Jól álljanak a jogosultságok
-    chown -RLc abc:abc 	/config
-    chown -RLc abc 	/downloads
+    chown -Rc abc:abc 	/config
+time    chown -Rc abc 	/downloads
 
 
     cd /tmp
