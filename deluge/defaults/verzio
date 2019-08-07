@@ -1,7 +1,8 @@
 #!/bin/sh
 #	Created by Volarics Istvan (Voli)
 
-Ver=$( deluged --version|grep "deluged:"|sed 's/deluged://g; s/ \+//g; s/ \+//g; s/\r.*//g; ' )
+#Ver=$( deluged --version|grep "deluged:"|sed 's/deluged://g; s/ \+//g; s/ \+//g; s/\r.*//g; ' )
+Ver=$( deluged --version|grep "^deluged" |sed 's/.* \+// ' )
 BDate=$( cat /defaults/BuildDate.txt )
 
 echo -n "${Ver}_${BDate}"
