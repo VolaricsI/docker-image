@@ -17,12 +17,16 @@ fi
 
 	# Jól álljanak a jogosultságok
     chown -Rc abc:abc 	/config
-time    chown -Rc abc 	/downloads
+    chown -Rc abc 	/downloads
 
 
-    cd /tmp
     umask $UMASK 			# Csak ha van UMASK, különben csak kiírja
 
-   exec chpst -u abc:abc /usr/bin/screen -Dmfa -S rtorrent /usr/bin/rtorrent -n -o import=/config/rtorrent.rc
+    export TERM="xterm"
+    export HOME="/config"
+    export PWD="/config"
+    cd /config
 
-##    exec chpst -u abc:abc /bin/sh -c "TERM=xterm exec /usr/bin/rtorrent -n -o import=/config/rtorrent.rc "
+    exec chpst -u abc:abc /usr/bin/rtorrent -n -o import=/config/rtorrent.rc
+
+##   exec chpst -u abc:abc /usr/bin/screen -Dmfa -S rtorrent /usr/bin/rtorrent -n -o import=/config/rtorrent.rc

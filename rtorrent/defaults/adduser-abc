@@ -19,10 +19,10 @@
 	adduser 2>&1|grep BusyBox >/dev/null	## 0: alpine
 	if [ $? = 0 ]; then
 		ParGroup="-S -g $D_GID abc"
-		ParUser="-S -D -H -h /tmp -u $D_UID -G abc abc"
+		ParUser="-S -D -H -h /config -u $D_UID -G abc abc"
 	else
 		ParGroup="--system -gid $D_GID abc"
-		ParUser="--system  --disabled-password --no-create-home --home /tmp -uid $D_UID -gid $D_GID abc"
+		ParUser="--system  --disabled-password --no-create-home --home /config -uid $D_UID -gid $D_GID abc"
 	fi
 
     deluser abc  2>/dev/null && delgroup abc 2>/dev/null 		## Törlök mindent

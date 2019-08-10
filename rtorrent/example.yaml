@@ -7,6 +7,8 @@ services:
   image: volaricsi/rtorrent
   restart: always
 
+  tty: true
+
   ports:
         - 80:80
         - 6881:6881/udp
