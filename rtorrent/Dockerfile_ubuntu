@@ -17,7 +17,7 @@ ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=defau
 		# Kell az apt-utils, hogy ne legyenek hibaüzenetek
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -y install apt-utils && apt-get -y upgrade 	\
 		# Ezek kellenek a futáshoz
-    && apt-get install -y rtorrent screen 	lighttpd php-cgi php-json 	\
+    && apt-get install -y rtorrent 	lighttpd php-cgi php-json 	\
 		# Csak azért így külön, mert ekkor nem telepítí az apache-ot és ezek amúgy is csak a plugin-ek működéséhez kellenek
     && apt-get install -y php curl 	\
 		# Ami csak a telepítéshez kellenek, illetve a chpst

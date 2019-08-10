@@ -19,7 +19,7 @@ ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=defau
 		# A szükséges programok; A végén törlöm ami már nem kell; ffmpeg-től a plugin-eknek kellenek
 RUN apk update && apk upgrade 	\
 	# A futtató környezet: rtorrent, web admin; modulok
-    && apk add --no-cache rtorrent screen 	lighttpd php5-cgi php5-json 	php curl 	\
+    && apk add --no-cache rtorrent 	lighttpd php5-cgi php5-json 	php curl 	\
 	# Mert a 3.7-ben 5-ös php van
     && ln -s /usr/bin/php-cgi5 /usr/bin/php-cgi && ln -s /usr/bin/php5 /usr/bin/php 		\
 	# Csak a telepítéshez kellenek
