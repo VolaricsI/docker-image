@@ -8,8 +8,8 @@ if [ ! -z ${ALAP} ]; then
     A_tag=":${ALAP}"; A_file="_${ALAP}"; A_ver="${ALAP}_"
 fi
 
-echo 	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
-	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
+echo 	docker image build --no-cache --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
+	docker image build --no-cache --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 	if [ $? -ne 0 ]; then
 		echo Sikertelen build.....
 		exit 1
@@ -24,3 +24,5 @@ echo 	docker image build --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 
 echo	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}
 	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}
+
+	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:latest
