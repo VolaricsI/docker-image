@@ -1,0 +1,18 @@
+#!/bin/sh
+
+    sv -w3 check php-fpm >/dev/null || exit 1 	## A php-fpm nélül nem tud működni
+
+    CONF_FILE="/config/nginx.conf"
+
+    if [ ! -e /config/nginx.conf ]; then
+	cp /defaults/nginx.conf.example /config/
+	cp /defaults/nginx.conf.example ${CONF_FILE}
+    fi
+
+    chown -R -c abc:abc /var/www/*
+
+    exec 2>&1
+
+#    exec nginx ${CONF_FILE} -g 'daemon off; error_log /proc/1/fd/1; '
+
+exec nginx -c ${CONF_FILE} -g 'daemon off; '

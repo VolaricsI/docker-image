@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ ! -e /config/rtorrent.rc ]; then
+    cp /defaults/rtorrent.rc.example 	/config/rtorrent.rc.example
+    cp /defaults/rtorrent.rc.example 	/config/rtorrent.rc
+fi
+
+    mkdir -p /config/rutorrent_settings /config/watched
+
+    Session_Dir=$( grep -v "#" /config/rtorrent.rc |grep "^session.*="    |head -1 |sed 's/.*[ =]//' )
+#   Watch_Dir=$(   grep -v "#" /config/rtorrent.rc |grep "watch_directory"|head -1 |sed 's/.*[ =]//; s/*.*// ' )
+
+    [ -e ${Session_Dir}/rtorrent.lock ] && rm ${Session_Dir}/rtorrent.lock
+
+    umask $UMASK >/dev/null
+    exec 2>&1
+
+	## Így a konzolra mehet a log...
+    chown -R abc:abc /dev/pts/0
+
+    chown abc:abc -R -c /config
+
+    cd /config/
+
+    exec chpst -u abc /usr/bin/rtorrent -o system.daemon.set=true -o import=/config/rtorrent.rc
+
+	## Ha kilép, akkor mindenképpen álljon le a konténer
+#    kill 1

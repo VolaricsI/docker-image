@@ -1,0 +1,18 @@
+#!/bin/sh
+
+    sv -w5 check rtorrent >/dev/null || exit 1 	## rtorrent nélkül nincs értelme
+
+    CONF_FILE="/config/php-fpm.conf"
+    if [ ! -e ${CONF_FILE} ]; then
+	cp /defaults/php-fpm.conf.example /config/
+	cp /defaults/php-fpm.conf.example ${CONF_FILE}
+    fi
+
+    exec 2>&1
+
+    killall $( whereis php-fpm |cut -d: -f2 ) 	2>/dev/null
+
+
+#    exec    $( which php-fpm ) --nodaemonize --force-stderr -y ${CONF_FILE}
+
+    exec    $( whereis php-fpm |cut -d: -f2 ) --nodaemonize --force-stderr -y ${CONF_FILE}
