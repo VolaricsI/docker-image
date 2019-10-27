@@ -25,13 +25,13 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -y instal
 		# A ruTorrent ha nem csomagból raktad fel
     && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 	\
 		# Ideiglenesen kellet programok eltávolítása
-##    && apt-get remove --purge -y git 	\
+    && apt-get remove --purge -y git 	\
 		# A munin plugin-ek hibátlan működéséhez kell
-##    && apt-get install -y netbase 					\
+    && apt-get install -y netbase 					\
 		# A szügségtelen programok, melyek az alap image-ben vannak
-##    && apt-get remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales openssh-client xauth patch less shared-mime-info mc	\
+    && apt-get remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales openssh-client xauth patch less shared-mime-info mc	\
 		# A csomagkezelő adatainak tisztítása
-##    && apt-get autoremove --purge -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache 	\
+    && apt-get autoremove --purge -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache 	\
 		# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 
