@@ -4,7 +4,7 @@
 
     if [ .$( cat /downloads/.docker-mount-point ) != ./downloads ]; then		## Csak akkor fusson ha VALÓBAN a megfelelő könyvtár van alatta
 	echo "Nem megfelelő a csatolt könyvtár...."
-#	exit 1
+	exit 1
     fi
 
 
@@ -14,4 +14,6 @@
 #    chown -RLc abc:abc 	/config
 #    chown -RLc abc 	/downloads
 
-    exec /usr/bin/runsvdir /etc/service
+    /defaults/start-lighttpd.sh &
+
+    exec /defaults/start-rtorrent.sh

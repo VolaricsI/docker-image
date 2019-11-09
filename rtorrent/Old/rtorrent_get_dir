@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+
+
+$0-list | grep "^<value><string>" |sed 's/.\+<string>//; s/<\/string>.\+//; ' |while read a; do
+
+	$0-path "$a" |grep "^<param><value><string>" |sed 's/.\+<string>//; s/<\/string>.\+// '
+done
+
+
+
+
+
+echo ..............; read a;

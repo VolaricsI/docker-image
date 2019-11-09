@@ -1,0 +1,52 @@
+#!/usr/bin/perl -w
+
+use IO::Socket;
+
+my $ip 		= "127.0.0.1";
+my $port 	= 5000;
+my @Hash=();
+
+	socket(  SOCK, PF_INET, SOCK_STREAM, getprotobyname( "tcp" ) );
+	connect( SOCK, sockaddr_in( $port, inet_aton( $ip ) ) );
+
+	my $line	= "<?xml version=\"1.0\" encoding=\"utf-8\"?> <methodCall> <methodName>download_list</methodName> </methodCall>";
+	my $llen	= length $line;
+	my $header	= "CONTENT_LENGTH\000${llen}\000SCGI\001\000";
+	my $hlen	= length $header;
+	$line		= "${hlen}:${header},${line}";
+
+	print SOCK $line; flush SOCK;
+	while ( $line = <SOCK> ) {
+		next if $line !~ /<value><string>/ ;
+		$line =~ s/<value><string>// ;
+		$line =~ s/<.*// ;
+		$line =~ s/[\r\n]+//g;
+		push @Hash, "$line";
+	}
+
+	foreach $hash (@Hash)
+	{
+		$line = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+				<methodCall><methodName>d.base_path</methodName>
+						<params> <param><value><string>$hash</string></value></param> </params>
+				</methodCall>";
+
+		my $llen	= length $line;
+		my $header	= "CONTENT_LENGTH\000${llen}\000SCGI\001\000";
+		my $hlen	= length $header;
+		$line		= "${hlen}:${header},${line}";
+
+		close (SOCK);
+		socket(  SOCK, PF_INET, SOCK_STREAM, getprotobyname( "tcp" ) );
+		connect( SOCK, sockaddr_in( $port, inet_aton( $ip ) ) );
+
+		print SOCK $line; flush SOCK;
+		while ( $line = <SOCK> ) {
+			next if $line !~ /<param><value><string>/ ;
+			$line =~ s/<param><value><string>// ;
+			$line =~ s/<.*// ;
+			print "$line";
+		}
+	}
+	close (SOCK);
+exit;

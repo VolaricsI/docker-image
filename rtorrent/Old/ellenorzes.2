@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+L1=/tmp/D2_tor.lst
+#:::::: Beallitasok :::::::::::
+#:::::: Ellenorzesek ::::::::::
+	## A [,],& lecserélem mert vezérlő karakterek, vagy mert xml formátumban az &
+
+Utvonal=$( dirname $0 )
+
+${Utvonal}/rtorrent_get-xml download_list |while read a; do
+	${Utvonal}/rtorrent_get-xml d.base_path "$a"
+done 	|sed 's/\[/./g; s/\]/./g; s/&amp;/./g;' 	>${L1}
+
+
+find /downloads -maxdepth 1 -mindepth 1 |sed 's/\[/./g; s/\]/./g; s/\&/./g; ' |while read a; do
+    grep  -e "^${a}" ${L1}	>/dev/null && continue
+    echo ">>${a}<<"
+done
+
+rm ${L1} 	2>/dev/null
+
+exit 0
