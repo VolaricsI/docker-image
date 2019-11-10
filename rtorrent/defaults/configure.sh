@@ -11,17 +11,33 @@
 
 	# futtatható programok beállítása és helyre mozgatása
     cd /defaults 	\
-    && chmod +x ellenorzes verzio plugins_disable plugins_install connect adduser-abc *.sh 	\
-    && mv       ellenorzes verzio plugins_disable plugins_install connect /bin/ 			\
-    && mv start.sh start-runit.sh / 	\
+    && chmod +x ellenorzes verzio plugins_disable plugins_install rtorrent-get-dir adduser-abc *.sh 		\
+    && mv       ellenorzes verzio plugins_disable plugins_install rtorrent-get-dir 			 /bin/ 	\
+    && mv start.sh / 	\
     || exit 2
 
-    rm -rf /run && ln -s /tmp /run || exit 3
+
+	## php-fpm a default log (ha van) a /tmp-ben menjen, mert induláskor létrehozza ha nincs
+    rm /var/log/php-fpm.log 2>/dev/null; touch /tmp/php-fpm.log; ln -s /tmp/php-fpm.log /var/log/php-fpm.log
+
+	## A php-fpm futtatóját beállítom
+    PhpFpmNeve=$( find /usr/sbin/ -executable|grep php-fpm )
+        ## Ubuntu
+    [ ! -e /usr/bin/php-fpm ] && [ -e "${PhpFpmNeve}" ] && ln -s ${PhpFpmNeve} /usr/bin/php-fpm
+
+    if [ ! -e /usr/bin/php-fpm ]; then
+	echo A php-fpm futtatóját nem sikerült beállítani...
+	exit 3
+    fi
+
+
+    rm -rf /run && ln -s /tmp /run && mkdir /run/lock || exit 4
 
     date +%Y-%m-%d 	>/defaults/BuildDate.txt
 
 	# Létrehozzuk az abc felhasználót
-    /defaults/adduser-abc 	|| exit 2
+    /defaults/adduser-abc 	|| exit 5
 
-    mkdir -p 		/config /downloads
+
+    mkdir -p 		/config /downloads /defaults
     chown -RL abc:abc 	/config /downloads /defaults
