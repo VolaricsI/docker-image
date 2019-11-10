@@ -1,11 +1,12 @@
 
-    alpine/ububntu alapon, rtorrent aminek a kezelő felülete a ruTorrent; lighttpd a webserver ami php-cgi-t futtat maga alatt
+    alpine/ububntu alapon, rtorrent aminek a kezelő felülete a ruTorrent; ngnix a webserver ami php-fpm -et futtat
 
-    A lighttpd nincs figyelve; csak  a "─screen──rtorrent─" vonal; a lighttpd daemon-ként fut a háttérben
+    A három alkalmazást a runit felügyeli
 
     Az "alpine-3.7"-es visszaosztásban akadozik bár az a stable, az ubuntus tökéletes;
 
-    Az ubuntu-nál az 5000 portot nem kell ki vezetni mivel abban benne van az xmlrpc program amit az ellenorzes program gasznál
+#    Az ubuntu-nál az 5000 portot nem kell ki vezetni mivel abban benne van az xmlrpc program amit az ellenorzes program gasznál
+    Az xmlrpc-t már perl alapon megoldottam így nem kell kivezetni az 5000-es porttot
 
 
     ## Volumes
@@ -30,8 +31,8 @@
 		-- "default" 	: Az alap telepítéshez tartozóan eggyes pluginok nem fognak menni (${PLUGIN_DEFAULT_TILTVA})
 		-- " spectrogram mediainfo screenshots unpack " 	: ez itt most egy példa lista....
 
-    ## Jelenleg nem működik
-    - INSTALL 	: Értéke bármi és induláskor feltelepíti a hiányzó csomagokat ( pl. ffmpeg sox mediainfo unrar )
+	    ## Jelenleg nem működik
+	    - INSTALL 	: Értéke bármi és induláskor feltelepíti a hiányzó csomagokat ( pl. ffmpeg sox mediainfo unrar )
 
 
     ## Futó konténerben parancsok
@@ -39,7 +40,6 @@
 	    -- docker exec containerName plugins_disable lista 		Miként a lista => PLUGIN_DISABLE-nál
 	    -- docker exec containerName plugins_install 		Minden szükséges programot telepít és ezután engedélyez MINDEN plugint
 	    -- docker exec containerName ellenorzes 			Azon könyvtárak/file-ok melyekhez nem tartozik torrent
-	    -- docker exec containerName -it connect 			Be csatlakozik az rtorrent felületére ( screen-ben fut az rtorrent )
 
 
 Label verziókra RFC: http://label-schema.org/rc1/
