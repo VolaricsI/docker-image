@@ -1,12 +1,11 @@
 
     alpine/ububntu alapon, rtorrent aminek a kezelő felülete a ruTorrent; ngnix a webserver ami php-fpm -et futtat
 
-    A három alkalmazást a runit felügyeli
+    Mind három alkalmazást a runit felügyeli
 
     Az "alpine-3.7"-es visszaosztásban akadozik bár az a stable, az ubuntus tökéletes;
 
-#    Az ubuntu-nál az 5000 portot nem kell ki vezetni mivel abban benne van az xmlrpc program amit az ellenorzes program gasznál
-    Az xmlrpc-t már perl alapon megoldottam így nem kell kivezetni az 5000-es porttot
+    Az ellenőrzést már perl alapon megoldottam így nem kell kivezetni az 5000-es (xmlrpc) porttot
 
 
     ## Volumes
@@ -17,7 +16,7 @@
     - 	80 	A webes kezelőfelület (ruTorrent)
     - 	6881 	Az rtorrent dht portja
     - 	51413 	Az rtorrent adatcsere portja
-    - 	5000 	Az rtorrent vezérlő/lekérdező portja
+    - 	5000 	Az rtorrent vezérlő/lekérdező portja (nem kell kivezetni
 
     ## Változók amin keresztül állítható a Konténer; már a készítéskor használhatók!!!
     - PUID 	: user  ID
