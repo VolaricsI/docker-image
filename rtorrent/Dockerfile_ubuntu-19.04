@@ -14,24 +14,24 @@ ENV PLUGIN_DEFAULT_TILTVA="screenshots mediainfo spectrogram _cloudflare rss rss
 ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=default
 
 
-		# Kell az apt-utils, hogy ne legyenek hibaüzenetek
+		# Kell az apt-utils, hogy ne legyenek hibaüzenetek és a kötelező upgrade
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -y install apt-utils && apt-get -y upgrade 	\
 		# Ezek kellenek a futáshoz
     && apt-get install -y runit rtorrent 	nginx php-fpm php-json 	\
 		# Csak azért így külön, mert ekkor nem telepítí az apache-ot és ezek amúgy is csak a plugin-ek működéséhez kellenek
     && apt-get install -y php curl 	\
-		# Ami csak a telepítéshez kellenek, illetve a chpst
+		# Ami csak a telepítéshez kellenek, illetve az image-ben turkálásra
     && apt-get install -y tzdata git mc	\
 		# A ruTorrent ha nem csomagból raktad fel
-    && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 	\
-		# Ideiglenesen kellet programok eltávolítása
-    && apt-get remove --purge -y git 	\
+    && git clone https://github.com/Novik/ruTorrent.git /var/www/ruTorrent 	\
 		# A munin plugin-ek hibátlan működéséhez kell
     && apt-get install -y netbase 					\
+		# Ideiglenesen kelletek eltávolítása
+    && apt-get remove --purge -y git mc 	\
 		# A szügségtelen programok, melyek az alap image-ben vannak
     && apt-get remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales openssh-client xauth patch less shared-mime-info mc	\
 		# A csomagkezelő adatainak tisztítása
-    && apt-get autoremove --purge -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache 	\
+    && apt-get autoremove --purge -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache && mkdir -p mkdir -p /var/cache/apt/archives/partial	\
 		# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 
@@ -39,11 +39,11 @@ COPY defaults /defaults
 
 RUN /defaults/configure.sh && /defaults/configure-runit.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
 
-## dht; data ports; WebAdmin; [ távirányító/management (xmlrpc) port (5000) már nem szükséges ]
+## dht; data ports; WebAdmin; [ távirányító/management (xmlrpc) port (5000) már nem szükséges kivezetni ]
 EXPOSE 6881/udp 51413 80
 
 ## Konfigok helye; ide kerülnek a letöltések
 VOLUME /config /downloads
 
 # Run the start script on boot.
-CMD ["/start-runit.sh"]
+CMD ["/start.sh"]
