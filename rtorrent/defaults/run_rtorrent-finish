@@ -1,4 +1,4 @@
 #!/bin/sh
 
-    cat /etc/service/rtorrent/supervise/pid
-    chpst -u abc /usr/bin/kill -s SIGINT $( cat /etc/service/rtorrent/supervise/pid )
+	## Ha az rTorrent leáll akkor a kontáner is álljon le
+    killall runsvdir
