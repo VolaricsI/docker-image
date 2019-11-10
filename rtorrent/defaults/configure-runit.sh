@@ -4,10 +4,14 @@
 
     cd /defaults
 
+	# Ubuntu alatt is ugyanott legyen a program
+    [ ! -e /sbin/runsvdir ] && ln -s /usr/bin/runsvdir /sbin/runsvdir
 	# Létrehozzuk a könyvtárakat és bemásoljuk ami kell
-       rm /etc/service && mkdir -p /etc/service/rtorrent/supervise /etc/service/nginx/supervise /etc/service/php-fpm/supervise 	\
-    && mv run_rtorrent 		/etc/service/rtorrent/run 	\
-    && mv run_rtorrent-finish 	/etc/service/rtorrent/finish 	\
-    && mv run_nginx 		/etc/service/nginx/run 		\
-    && mv run_php-fpm 		/etc/service/php-fpm/run 	\
-    && chmod +x -R 		/etc/service/ 			|| exit 2
+    rm -rf /etc/service 	\
+    && 	for neve in rtorrent nginx php-fpm ; do
+		mkdir -p 	/tmp/runit-${neve}-supervise /etc/service/${neve}
+		ln -s 		/tmp/runit-${neve}-supervise /etc/service/${neve}/supervise
+		mv run_${neve} 	/etc/service/${neve}/run
+		if [ -e run_${neve}-finish ]; then mv run_${neve}-finish /etc/service/${neve}/finish ;  fi
+	done 	\
+    && chmod +x -R 		/etc/service/ 			|| exit 12
