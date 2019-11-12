@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+
+    [ -x /bin/apk ] && apk add ${PLUGINS_INSTALL}
+
+
+
+    plugins_disable
+

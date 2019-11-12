@@ -1,0 +1,40 @@
+version: '2.1'
+
+services:
+
+ rtorrent:
+  container_name: rtorrent
+  image: volaricsi/rtorrent
+  restart: always
+
+  tty: true
+
+  ports:
+        - 80:80
+        - 6881:6881/udp
+        - 51413:51413
+        - 5000:5000
+
+  volumes:
+    - /srv/rtorrent/config:/config
+    - /srv/rtorrent/downloads:/downloads
+
+  environment:
+    # torrent user
+    - PUID=2002
+    - PGID=2002
+    - UMASK=002
+    - PLUGIN_DISABLE=default
+#    - DISABLE_PLUGINS=all
+
+
+  networks:
+   p2p.lan:
+
+networks:
+ p2p.lan:
+  name: rutorrent
+  driver: bridge
+  driver_opts:
+   com.docker.network.bridge.name: docker_rtorrent
+

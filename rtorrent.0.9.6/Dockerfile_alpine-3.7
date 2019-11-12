@@ -1,0 +1,47 @@
+		## Mert ebben van a 0.9.6-os STABIL rtorrent
+FROM alpine:3.7
+
+LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
+	url="https://github.com/VolaricsI/docker-image"
+
+
+		## Alap telepítésben ezek a modulok majd tiltásra kerülnek, mert nincs mögöttük program (default)
+ENV PLUGIN_DEFAULT_TILTVA=" mediainfo screenshots spectrogram unpack _cloudflare rss rssurlrewrite " 	\
+		## Hogy a fentiek tiltva legyenek
+	PLUGIN_DISABLE=default 	\
+		## Ezen programok telepítése után az összes plugin menni fog
+	PLUGIN_PRG_INSTALL=" ffmpeg mediainfo sox unrar "
+
+		## Személyre szabott beállítások
+ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=default
+
+
+		# A szükséges programok; A végén törlöm ami már nem kell; ffmpeg-től a plugin-eknek kellenek
+RUN apk update && apk upgrade 	\
+	# A futtató környezet: rtorrent, web admin; modulok
+    && apk add --no-cache rtorrent 	lighttpd php5-cgi php5-json 	php curl 	\
+	# Mert a 3.7-ben 5-ös php van
+    && ln -s /usr/bin/php-cgi5 /usr/bin/php-cgi && ln -s /usr/bin/php5 /usr/bin/php 		\
+	# Csak a telepítéshez kellenek
+    && apk add git tzdata runit && cp $( find / -iname chpst ) /usr/sbin/chpst 	\
+	# A ruTorrent
+    && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 		\
+	# ami már nem kell (tzdata törlése később)
+    && apk del git runit 	\
+	# A munin plugin-ek hibátlan működéséhez kell, valamint az "ellenorzes"-hez
+    && apk add perl 		\
+	# Az alap könyvtárak
+    && mkdir -p /defaults /config /downloads
+
+COPY defaults /defaults
+
+RUN /defaults/configure.sh && /defaults/configure-lighttpd.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
+
+
+## dht; data ports; WebAdmin; távirányító/management port (xmlrpc)
+EXPOSE 6881/udp 51413 80 5000
+
+## Konfigok helye; ide kerülnek a letöltések
+VOLUME /config /downloads
+
+CMD ["/start.sh"]

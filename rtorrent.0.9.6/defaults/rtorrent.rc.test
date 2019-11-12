@@ -1,0 +1,43 @@
+#log.open_file = "rtorrent", /config/rtorrent.log
+#log.add_output = "info", "rtorrent"
+#log.add_output = "debug", "rtorrent"
+#log.add_output = "error", "rtorrent"
+
+system.umask.set = 002
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+directory = /downloads
+session   = /config/rtorrent_sess
+schedule  = watch_directory_1,5,5,"load.start=/config/rtorrent_watched/*.torrent"
+
+check_hash = yes
+encryption = allow_incoming,try_outgoing,enable_retry
+
+# ip = 178.32.28.51
+bind = 0.0.0.0
+port_range = 51413-51413
+
+dht = auto
+dht_port = 6881
+
+scgi_port = 0.0.0.0:5000
+encoding_list = UTF-8
+
+#use_udp_trackers = yes
+#peer_exchange = yes
+
+#system.daemon = true
+#system.use_daemon.set = true
+
+#min_peers = 40
+## max_peers = 1200
+## max_uploads = 15
+download_rate = 1500
+upload_rate   = 1500
+
+# Memória limit esetén a nagy torrenteket nem tudja le hash-elni!!!
+pieces.memory.max.set = 1024M 		## File mapping
+pieces.memory.max = 1024M 		## NEM korlátozza a RAM használatot!!!!
+#max_memory_usage = 512M
+#network.xmlrpc.size_limit.set = 4M
+

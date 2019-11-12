@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+L1=/tmp/D2_tor.lst
+DataLine="^<value><string>"
+#:::::: Beallitasok :::::::::::
+#:::::: Ellenorzesek ::::::::::
+	## A [,],& lecserélem mert vezérlő karakterek, vagy mert xml formátumban az &
+
+/defaults/rtorrent_get_dir |grep "$DataLine" |sed "s/$DataLine//g; s/<.*//g; " |sed 's/\[/./g; s/\]/./g; s/&amp;/./g;' 	>${L1}
+
+find /downloads -maxdepth 1 -mindepth 1 |sed 's/\[/./g; s/\]/./g; s/\&/./g; ' |while read a; do
+    grep  -e "^${a}" ${L1}	>/dev/null && continue
+    echo ">>${a}<<"
+done
+
+rm ${L1} 	2>/dev/null
+exit 0
