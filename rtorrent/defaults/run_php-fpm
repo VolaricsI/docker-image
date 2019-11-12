@@ -8,7 +8,7 @@
 	cp /defaults/php-fpm.conf.example ${CONF_FILE}
     fi
 
-    rm /tmp/php-fpm.sock 	##A régi socket biztossan nem kell
+    [ -e /tmp/php-fpm.sock ] && rm /tmp/php-fpm.sock 		##A régi socket biztossan nem kell
 
     exec 2>&1
     exec /usr/bin/php-fpm --nodaemonize --force-stderr -y ${CONF_FILE}
