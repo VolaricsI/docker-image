@@ -12,13 +12,10 @@ fi
 
     umask $UMASK >/dev/null
 
-	## Így a konzolra mehet a log...	ELAVULT
-#    chown -Rc abc:abc /config /dev/pts/0
+	## Így a konzolra mehet a log...
+    chown -Rc abc:abc /config /dev/stdout
 
     cd /config/
 
     exec 2>&1
     exec chpst -u abc /usr/bin/rtorrent -o system.daemon.set=true -o import=/config/rtorrent.rc
-
-	## Ha kilép, akkor mindenképpen álljon le a konténer
-#    kill 1
