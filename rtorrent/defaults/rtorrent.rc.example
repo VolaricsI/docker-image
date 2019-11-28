@@ -1,6 +1,6 @@
 #log.open_file 	= 		"rtorrent", /config/rtorrent.log
     ## A konzolra, hogy kikerüljön a konténeren kívülre...
-log.open_file 	= 		"rtorrent", /dev/pts/0
+log.open_file 	= 		"rtorrent", /dev/stdout
 log.add_output = "info", 	"rtorrent"
 log.add_output = "debug", 	"rtorrent"
 log.add_output = "error", 	"rtorrent"
@@ -21,19 +21,13 @@ execute.throw = sh, -c, "rm       /config/rtorrent_sess/rtorrent.lock ; exit 0 "
 session 		= /config/rtorrent_sess
 session.path.set 	= /config/rtorrent_sess
 
-# Create directories
-#execute.throw = sh, -c, (cat, "mkdir -p \"",(cfg.download),"\" ",\
-#    "\"",(cfg.logs),"\" ",\
-#    "\"",(cfg.session),"\" ",\
-#    "\"",(cfg.watch),"/load\" ", "\"",(cfg.watch),"/start\" ")
-
 
 schedule = watch_directory_1,5,5,"load.start=/config/watched/*.torrent"
 schedule = low_diskspace,5,60,close_low_diskspace=100M
 
 
 # ip = 178.32.28.51
-bind 		= 0.0.0.0
+#bind 		= 0.0.0.0
 port_range 	= 51413-51413
 
 dht 		= auto
@@ -45,9 +39,9 @@ dht_port 	= 6881
 check_hash = yes
 encryption = allow_incoming,try_outgoing,enable_retry
 
-max_uploads 	= 0
-min_peers 	= 0
-max_peers 	= 0
+#max_uploads 	= 0
+#min_peers 	= 0
+#max_peers 	= 0
 
 upload_rate 	= 7000
 download_rate 	= 23

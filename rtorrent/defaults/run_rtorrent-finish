@@ -1,4 +1,5 @@
 #!/bin/sh
 
 	## Ha az rTorrent leáll akkor a kontáner is álljon le
+date >>/config/rtorrent-finish.lst
     killall runsvdir

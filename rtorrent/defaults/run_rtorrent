@@ -12,8 +12,8 @@ fi
 
     umask $UMASK >/dev/null
 
-	## Így a konzolra mehet a log...
-    chown -Rc abc:abc /config /dev/pts/0
+	## Így a konzolra mehet a log...	ELAVULT
+#    chown -Rc abc:abc /config /dev/pts/0
 
     cd /config/
 
