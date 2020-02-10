@@ -10,11 +10,12 @@ fi
     Session_Dir=$( grep -v "#" /config/rtorrent.rc 	|grep "^session.*=" 	|head -1 |sed 's/.*[ =]//' )
     [ -e "${Session_Dir}/rtorrent.lock" ] && rm ${Session_Dir}/rtorrent.lock
 
-    umask $UMASK >/dev/null
-
 	## Így a konzolra mehet a log...
-    chown -Rc abc:abc /config /dev/stdout
+    chown -Rc abc:tty /dev/pts
 
+    umask $UMASK >/dev/null
+    chown -Rc abc:abc /config
+    HOME=/config
     cd /config/
 
     exec 2>&1
