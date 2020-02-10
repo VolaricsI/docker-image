@@ -3,8 +3,10 @@ FROM ubuntu:19.04
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"
 
-	## Alap telepítésben ezek a modulok majd tiltásra kerülnek, mert nincs mögöttük program (default)
+	## Alap telepítésben ezek a modulok majd tiltásra kerülnek, mert nincs mögöttük program (default) vagy hibásan működik: tracklabels
 ENV PLUGIN_DEFAULT_TILTVA="screenshots mediainfo spectrogram _cloudflare rss rssurlrewrite  _task unpack create " 	\
+	## A hibás plugin-ek tiltása
+    PLUGIN_HIBAS=" extsearch tracklabels " 	\
 	## Hogy a fentiek tiltva legyenek
     PLUGIN_DISABLE=default 	\
 	## Ezen programok telepítése után az összes plugin menni fog
@@ -19,10 +21,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -y instal
 		# Ezek kellenek a futáshoz
     && apt-get install -y runit rtorrent 	nginx php-fpm php-json 	\
 		# Csak azért így külön, mert ekkor nem telepítí az apache-ot és ezek amúgy is csak a plugin-ek működéséhez kellenek
-    && apt-get install -y php curl 	\
+    && apt-get install -y php curl php-zip 	\
 		# Ami csak a telepítéshez kellenek, illetve az image-ben turkálásra
     && apt-get install -y tzdata git mc	\
-		# A ruTorrent ha nem csomagból raktad fel
+		# A ruTorrent nem csomagból rakom fel
     && git clone https://github.com/Novik/ruTorrent.git /var/www/ruTorrent 	\
 		# A munin plugin-ek hibátlan működéséhez kell
     && apt-get install -y netbase 					\
