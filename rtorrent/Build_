@@ -3,12 +3,17 @@
 IMAGE_NAME=volaricsi/rtorrent
 
 
-#NOCACHE="--no-cache"
+NOCACHE="--no-cache"
 
 ALAP=$( echo $0|sed 's/.*_//g;' )
 
 if [ ! -z ${ALAP} ]; then
     A_tag=":${ALAP}"; A_file="_${ALAP}"; A_ver="${ALAP}_"
+fi
+	## Nézük meg, hogy az alap image is legyen a legfrissebb
+if [ ! -z ${NOCACHE} ]; then
+	docker image pull ubuntu:19.04
+	docker image pull alpine:3.10
 fi
 
 echo 	docker image build ${NOCACHE} --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
