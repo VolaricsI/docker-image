@@ -12,9 +12,10 @@ http {
     include /etc/nginx/mime.types;
     default_type  application/octet-stream;
 
+#	access_log 	/tmp/nginx-acces.log combined;
 #	access_log 	/dev/stdout combined;
+	access_log 	/dev/null combined;
 	error_log 	/dev/stdout error;
-
 
     fastcgi_temp_path 		/tmp/fastcgi 1 2;
     client_body_temp_path 	/tmp/client_body 1 2;
