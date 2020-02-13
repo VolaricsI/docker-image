@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+#:::::: Beallitasok :::::::::::
+#:::::: Ellenorzesek ::::::::::
+kill -s sigquit $(cat /config/rtorrent_sess/rtorrent.lock |sed 's/.*://' )

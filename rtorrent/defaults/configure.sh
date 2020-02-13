@@ -11,8 +11,8 @@
 
 	# futtatható programok beállítása és helyre mozgatása
     cd /defaults 	\
-    && chmod +x getupdate ellenorzes verzio plugins_disable plugins_install rtorrent-get-dir adduser-abc *.sh 		\
-    && mv       getupdate ellenorzes verzio plugins_disable plugins_install rtorrent-get-dir 			 /bin/ 	\
+    && chmod +x getupdate ellenorzes verzio plugins_disable plugins_install rtorrent-get-dir adduser-abc *.sh Stop 		\
+    && mv       getupdate ellenorzes verzio plugins_disable plugins_install rtorrent-get-dir Stop 			 /bin/ 	\
     && mv start.sh / 	\
     || exit 2
 
