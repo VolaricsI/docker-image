@@ -5,4 +5,4 @@
 #:::::: Fix beallitasok :::::::
 #:::::: Beallitasok :::::::::::
 #:::::: Ellenorzesek ::::::::::
-kill -s sigquit $(cat /config/rtorrent_sess/rtorrent.lock |sed 's/.*://' )
+kill -s sigquit $(cat /config/rtorrent_sess/rtorrent.lock |sed 's/.*+//' )
