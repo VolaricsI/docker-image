@@ -7,13 +7,10 @@ services:
   image: volaricsi/rtorrent
   restart: always
 
-  tty: true
-
   ports:
         - 80:80
         - 6881:6881/udp
         - 51413:51413
-        - 5000:5000
 
   volumes:
     - /srv/rtorrent/config:/config
@@ -25,7 +22,7 @@ services:
     - PGID=2002
     - UMASK=002
     - PLUGIN_DISABLE=default
-#    - DISABLE_PLUGINS=all
+    - DISABLE_PLUGINS=all
 
 
   networks:
@@ -37,4 +34,3 @@ networks:
   driver: bridge
   driver_opts:
    com.docker.network.bridge.name: docker_rtorrent
-
