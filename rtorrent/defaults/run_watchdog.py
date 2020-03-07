@@ -3,7 +3,6 @@
 import sys
 import os
 import signal
-import re
 
 from supervisor.childutils import listener
 
@@ -29,18 +28,16 @@ def main():
         write_stderr("==========>\t%s\t===>\t%s\t ++++++\n" % (body["processname"] , headers["eventname"]) );
 
         if body["processname"] != "rtorrent":
-	    continue
+            continue
 
         write_stderr("==========> most probalom kigyilkolni...\n");
 
-	pidfile = open('/config/supervisord.pid','r')
-	pid 	= int( pidfile.readline() );
+        pidfile = open('/config/supervisord.pid','r')
+        pid 	= int( pidfile.readline() );
         os.kill( pid,signal.SIGQUIT )
 
 
 if __name__ == '__main__':
-    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
-
     main()
 ## Allapotok elnevezesei:
 ###events=PROCESS_STATE,PROCESS_STATE_STARTING,PROCESS_STATE_RUNNING,PROCESS_STATE_BACKOFF,PROCESS_STATE_STOPPING,PROCESS_STATE_EXITED,PROCESS_STATE_STOPPED,PROCESS_STATE_FATAL,PROCESS_STATE_UNKNOWN

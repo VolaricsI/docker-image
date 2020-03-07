@@ -26,8 +26,5 @@
 	fi
 
     deluser abc  2>/dev/null && delgroup abc 2>/dev/null 		## Törlök mindent
-    
-
     addgroup $ParGroup && adduser  $ParUser || exit 1 			## és (újra) létre hozom
-
     chown -RL abc:abc /defaults /config || exit 2 			## és itt minden a felhasználóé
