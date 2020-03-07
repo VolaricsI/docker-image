@@ -31,9 +31,8 @@ echo	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}
 
 }
 
-	Fordit alpine-3.7
-	Fordit alpine
-	Fordit ubuntu
+	Fordit alpine-3.10
+	Fordit ubuntu-19.04
 
 
 	docker image ls |grep "${IMAGE_NAME}"
