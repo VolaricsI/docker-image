@@ -1,9 +1,9 @@
 
-    alpine/ububntu alapon, rtorrent aminek a kezelő felülete a ruTorrent; ngnix a webserver ami php-fpm -et futtat
+    alpine/ububntu alapon, rtorrent aminek a kezelő felülete a ruTorrent; ngnix a webserver ami php-fpm -et használ
 
-    Mind három alkalmazást a runit felügyeli
+    Mind három alkalmazást a supervisord felügyeli
 
-    Az "alpine-3.7"-es visszaosztásban akadozik bár az a stable, az ubuntus tökéletes;
+    Az rtorrent verziója 9.6 utáni (9.8/9.7) mivel ez már tud daemon-ként futni
 
     Az ellenőrzést már perl alapon megoldottam így nem kell kivezetni az 5000-es (xmlrpc) porttot
 
@@ -16,7 +16,7 @@
     - 	80 	A webes kezelőfelület (ruTorrent)
     - 	6881 	Az rtorrent dht portja
     - 	51413 	Az rtorrent adatcsere portja
-    - 	5000 	Az rtorrent vezérlő/lekérdező portja (nem kell kivezetni
+    - 	5000 	Az rtorrent vezérlő/lekérdező portja (nem kell kivezetni)
 
     ## Változók amin keresztül állítható a Konténer; már a készítéskor használhatók!!!
     - PUID 	: user  ID
@@ -32,6 +32,8 @@
 
 	    ## Jelenleg nem működik
 	    - INSTALL 	: Értéke bármi és induláskor feltelepíti a hiányzó csomagokat ( pl. ffmpeg sox mediainfo unrar )
+
+    ## Munin plugin-ek		(vannak csak még nem írtam le a használatukat)
 
 
     ## Futó konténerben parancsok
