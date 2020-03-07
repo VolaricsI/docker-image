@@ -36,7 +36,7 @@ COPY defaults /defaults
 RUN /defaults/configure.sh && /defaults/configure-runit.sh && /defaults/configure-rutorrent.sh && /defaults/configure-supervisord.sh && /defaults/configure-munin.sh
 
 ## dht; data ports; WebAdmin; [ távirányító/management (xmlrpc) port (5000) már nem szükséges kivezetni ]
-EXPOSE 6881/udp 51413 80 5000
+EXPOSE 6881/udp 51413 80
 
 ## Konfigok helye; ide kerülnek a letöltések
 VOLUME /config /downloads
