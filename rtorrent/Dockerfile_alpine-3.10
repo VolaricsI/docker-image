@@ -19,7 +19,7 @@ ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=defau
 		# A szükséges programok; A végén törlöm ami már nem kell; ffmpeg-től a plugin-eknek kellenek
 RUN apk update && apk upgrade 	\
 	# A futtató környezet: rtorrent, web admin; modulok
-    && apk add --no-cache runit rtorrent 	nginx php-fpm php-json 	php curl php-zip 	\
+    && apk add --no-cache supervisor runit rtorrent 	nginx php-fpm php-json 	php curl php-zip 	\
 	# Csak a telepítéshez kellenek
     && apk add git tzdata mc 	\
 	# A ruTorrent
@@ -33,7 +33,7 @@ RUN apk update && apk upgrade 	\
 
 COPY defaults /defaults
 
-RUN /defaults/configure.sh && /defaults/configure-runit.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
+RUN /defaults/configure.sh && /defaults/configure-runit.sh && /defaults/configure-rutorrent.sh && /defaults/configure-supervisord.sh && /defaults/configure-munin.sh
 
 ## dht; data ports; WebAdmin; [ távirányító/management (xmlrpc) port (5000) már nem szükséges kivezetni ]
 EXPOSE 6881/udp 51413 80 5000

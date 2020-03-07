@@ -1,7 +1,7 @@
 #!/bin/sh
 
-    sv -w5 check php-fpm 	>/dev/null || exit 1 	## A php-fpm nélül nem tud működni
-    sv -w5 check rtorrent 	>/dev/null || exit 1 	## rtorrent nélkül nincs értelme
+#    sv -w5 check php-fpm 	>/dev/null || exit 1 	## A php-fpm nélül nem tud működni
+#    sv -w5 check rtorrent 	>/dev/null || exit 1 	## rtorrent nélkül nincs értelme
 
     CONF_FILE="/config/nginx.conf"
 

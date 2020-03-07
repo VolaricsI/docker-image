@@ -1,6 +1,6 @@
 #!/bin/sh
 
-    sv -w5 check rtorrent >/dev/null || exit 1 	## rtorrent nélkül nincs értelme
+#    sv -w5 check rtorrent >/dev/null || exit 1 	## rtorrent nélkül nincs értelme
 
     CONF_FILE="/config/php-fpm.conf"
     if [ ! -e ${CONF_FILE} ]; then

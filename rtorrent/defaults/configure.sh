@@ -16,9 +16,14 @@
     && mv start.sh / 	\
     || exit 2
 
+	## supervisord sock file-ja
+    rm /var/run/supervisor.sock 2>/dev/null; touch /tmp/supervisor.sock; ln -s /tmp/supervisor.sock /var/run/supervisor.sock
 
-	## php-fpm a default log (ha van) a /tmp-ben menjen, mert induláskor létrehozza ha nincs
-    rm /var/log/php-fpm.log 2>/dev/null; touch /tmp/php-fpm.log; ln -s /tmp/php-fpm.log /var/log/php-fpm.log
+
+	## a default log-okat induláskor létrehozza/megnyitja és így (ha csinálja) akkor /tmp-ben változtat
+    rm /var/log/php-fpm.log 	2>/dev/null; touch /tmp/php-fpm.log; 		ln -s /tmp/php-fpm.log 		/var/log/php-fpm.log
+    rm /var/log/php7/error.log 	2>/dev/null; touch /tmp/php_error.log; 		ln -s /tmp/php_error.log 	/var/log/php7/error.log
+    rm /var/log/nginx/error.log 2>/dev/null; touch /tmp/nginx_error.log; 	ln -s /tmp/nginx_error.log 	/var/log/nginx/error.log
 
 	## A php-fpm futtatóját beállítom
     PhpFpmNeve=$( find /usr/sbin/ -executable|grep php-fpm )
