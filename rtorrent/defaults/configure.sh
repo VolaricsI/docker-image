@@ -21,6 +21,7 @@
 
 
 	## a default log-okat induláskor létrehozza/megnyitja és így (ha csinálja) akkor /tmp-ben változtat
+    mkdir -p /var/log/php7
     rm /var/log/php-fpm.log 	2>/dev/null; touch /tmp/php-fpm.log; 		ln -s /tmp/php-fpm.log 		/var/log/php-fpm.log
     rm /var/log/php7/error.log 	2>/dev/null; touch /tmp/php_error.log; 		ln -s /tmp/php_error.log 	/var/log/php7/error.log
     rm /var/log/nginx/error.log 2>/dev/null; touch /tmp/nginx_error.log; 	ln -s /tmp/nginx_error.log 	/var/log/nginx/error.log
