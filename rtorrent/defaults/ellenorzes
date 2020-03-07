@@ -10,7 +10,7 @@ L1=/tmp/D2_tor.lst
 
     rtorrent-get-dir 	|sed 's/\[/./g; s/\]/./g; s/&amp;/./g;' 	>${L1}
 
-    find /downloads -maxdepth 1 -mindepth 1 |sed 's/\[/./g; s/\]/./g; s/\&/./g; ' |while read a; do
+    find /downloads -maxdepth 1 -mindepth 1 |sed 's/\[/./g; s/\]/./g; s/\&/./g; ' |grep -v -e ".docker-mount-point" -e "lost+found" |sort |while read a; do
 	grep  -e "^${a}" ${L1}	>/dev/null && continue
 	echo ">>${a}<<"
     done
