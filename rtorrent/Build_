@@ -13,7 +13,7 @@ fi
 	## Nézük meg, hogy az alap image is legyen a legfrissebb
 if [ ! -z ${NOCACHE} ]; then
 	docker image pull ubuntu:19.04
-	docker image pull alpine:3.10
+	docker image pull alpine:3.11
 fi
 
 echo 	docker image build ${NOCACHE} --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
@@ -24,7 +24,7 @@ echo 	docker image build ${NOCACHE} --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A
 	fi
 
 	echo 	docker run --rm ${IMAGE_NAME}${A_tag} verzio
-	Ver=$( docker run --rm  ${IMAGE_NAME}${A_tag} verzio )
+	Ver=$( 	docker run --rm ${IMAGE_NAME}${A_tag} verzio )
 	if [ $? -ne 0 ]; then
 		echo Sikertelen verzió meghatározás.....
 		exit 1
