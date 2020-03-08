@@ -1,1 +1,1 @@
-Dockerfile_ubuntu-19.04
+Dockerfile_ubuntu
