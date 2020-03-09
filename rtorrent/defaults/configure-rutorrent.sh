@@ -19,7 +19,7 @@ DIR_RUT=/var/www/ruTorrent
     Php=$( which php ) 		## Kell az egyik plugin-nek
 				## Menjen az error a std-re, mert onnan kiolvasható
     sed -i 	"s|\"php\".*=>.*''|\"php\" => '${Php}'| 	\
-		;s|/tmp/errors.log|/dev/stdout| " 		${DIR_RUT}/conf/config.php 	\
+		;s|/tmp/errors.log|/dev/console| " 		${DIR_RUT}/conf/config.php 	\
     || exit 23
 
 # a plugin-ek kezelése: ini file megörzése; link gyártás
