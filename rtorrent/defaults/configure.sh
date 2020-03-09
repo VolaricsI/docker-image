@@ -23,6 +23,13 @@
     rm /var/log/nginx/error.log 	2>/dev/null; touch /tmp/nginx_error.log; 	ln -s /tmp/nginx_error.log 	/var/log/nginx/error.log
     rm /var/log/nginx/access.log 	2>/dev/null; touch /tmp/nginx_access.log; 	ln -s /tmp/nginx_access.log 	/var/log/nginx/access.log
 
+		## Ubuntu alatt máshol vannak
+    [ ! -e /sbin/chpst 		] && ln -s /usr/bin/chpst 	/sbin/chpst
+    [ ! -e /usr/sbin/php-fpm7 	] && ln -s /usr/sbin/php-fpm7.2 /usr/sbin/php-fpm7
+    [ ! -e /sbin/chpst 		] && exit 40
+    [ ! -e /usr/sbin/php-fpm7 	] && exit 41
+
+
 #	## A php-fpm futtatóját beállítom (nem kell: közvetlenül indítom)
 #    PhpFpmNeve=$( find /usr/sbin/ -executable|grep php-fpm )
 #        ## Ubuntu
