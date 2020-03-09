@@ -32,7 +32,7 @@ def main():
 
         write_stderr("==========> most probalom kigyilkolni...\n");
 
-        pidfile = open('/config/supervisord.pid','r')
+        pidfile = open('/run/supervisord.pid','r')
         pid 	= int( pidfile.readline() );
         os.kill( pid,signal.SIGQUIT )
 
