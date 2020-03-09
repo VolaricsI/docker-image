@@ -6,7 +6,7 @@ DIR_RUT=/var/www/ruTorrent
 
     rm -rf ${DIR_RUT}/.git* 					## Forrásból esetén nem kell a git tároló adatbázisa
 
-    mv /var/www/ruTorrent/js/webui.js /tmp/webui.js 		## Ha van $TITLE változó akkor a tmp könyvtárba kerüljön sor a változtatásra (szebb)
+    mv /var/www/ruTorrent/js/webui.js /tmp/webui.js 		## Ha van $TITLE változó akkor a tmp könyvtárba készüljön a változás (szebb)
     ln -s /tmp/webui.js /var/www/ruTorrent/js/webui.js
 
 

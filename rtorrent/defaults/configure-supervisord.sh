@@ -14,8 +14,7 @@
 		ln -s /defaults/supervisord.conf ${ConfFile}
 	fi
 
-	
-	Python3=$( apk list 2>/dev/null |grep -c ^python3 )
+	Python3=$( apk list 2>/dev/null |grep -c ^python3 ) 	## Alpine alatt python3 van, ezért kell a csere
 	if [ $Python3 -ne 0 ]; then
-	    sed -i 's/python$/python3/' /defaults/run_watchdog.py
+		sed -i 's/python$/python3/' /defaults/run_watchdog.py
 	fi
