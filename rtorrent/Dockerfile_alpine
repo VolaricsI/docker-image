@@ -24,7 +24,7 @@ RUN apk update && apk upgrade 	\
     && apk add git tzdata mc 	\
 	# A ruTorrent
     && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 		\
-	# ami már nem kell, (a tzdata törlése később)
+	# ami már nem kell, (a tzdata törlése később: a timezone beállítása után kell)
     && apk del git mc 		\
 	# A munin plugin-ek hibátlan működéséhez kell, valamint az "ellenorzes"-hez
     && apk add perl 		\
@@ -33,7 +33,7 @@ RUN apk update && apk upgrade 	\
 
 COPY defaults /defaults
 
-RUN /defaults/configure.sh && /defaults/configure-runit.sh && /defaults/configure-rutorrent.sh && /defaults/configure-supervisord.sh && /defaults/configure-munin.sh
+RUN /defaults/configure.sh && /defaults/configure-supervisord.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
 
 ## dht; data ports; WebAdmin; [ távirányító/management (xmlrpc) port (5000) már nem szükséges kivezetni ]
 EXPOSE 6881/udp 51413 80
