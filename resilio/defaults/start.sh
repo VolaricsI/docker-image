@@ -11,7 +11,7 @@ CONF=/config/sync.conf
 if [ ! -f ${CONF}  ]; then 				## Ha nincs konfig akkor kap egy alapértelmezettet
     echo "Doing initial setup."
 
-    rslsync --dump-sample-config | grep -v "/\*.*\*/" 			>$CONF
+    rslsync --dump-sample-config | grep  -v  -e "^/\*.*\*/$" -e "^//" -e "^$" 		>$CONF
 
     sed -i 's/.*listening_port\".*/\"listening_port\" : 55555 ,/g; ' 			$CONF
     sed -i 's/.*storage_path\".*/\"storage_path\" : \"\/config" ,/g; ' 			$CONF
