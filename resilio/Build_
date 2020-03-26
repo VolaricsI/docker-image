@@ -10,6 +10,11 @@ ALAP=$( echo $0|sed 's/.*_//g;' )
 if [ ! -z ${ALAP} ]; then
     A_tag=":${ALAP}"; A_file="_${ALAP}"; A_ver="${ALAP}_"
 fi
+    ## Nézük meg, hogy az alap image is legyen a legfrissebb
+if [ ! -z ${NOCACHE} ]; then
+    docker image pull frolvlad/alpine-glibc
+    docker image pull ubuntu
+fi
 
 echo 	docker image build ${NOCACHE} --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
 	docker image build ${NOCACHE} --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
