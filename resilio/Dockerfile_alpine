@@ -8,13 +8,16 @@ LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
 	## Személyre szabott beállítások; TIME_ZONE kell ha nem tudod mi legyen akkor UTC
 ENV PUID=2014 PGID=2014 UMASK=002 TIME_ZONE=Europe/Budapest
 
+	## Itt található a BtSync binárisa
+ENV BtSyncSrc="https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz"
+
 # Install required packages.: a runit-ből csak a chpst kell; resilio
 RUN apk update && apk upgrade 	\
 	## CSak a build során kell
     && apk add runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst 				\
     && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 	\
 	## A resillio beszerzése és helyére rakása
-    && cd /tmp && wget --quiet https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz 	\
+    && cd /tmp && wget --quiet  "${BtSyncSrc}" 	\
     && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && rm -rf /tmp/* 				\
 	## Mér nem kellenek
     && apk del runit tzdata 	\

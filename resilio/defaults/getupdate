@@ -25,14 +25,15 @@
 
 
     cd /tmp
-    wget --quiet --no-check-certificate 'https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz' && tar xvzf resilio-sync_x64.tar.gz >/dev/null \
-    && rm ./resilio-sync_x64.tar.gz ./LICENSE.TXT || exit 100
+    wget --quiet --no-check-certificate "${BtSyncSrc}" && tar xvzf resilio-sync_x64.tar.gz >/dev/null && rm ./resilio-sync_x64.tar.gz ./LICENSE.TXT || exit 100
 
     OldVer=$(   rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
     NewVer=$( ./rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
     rm ./rslsync
 
-    if [ ".$OldVer" != ".$NewVer" ]; then
-    echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
-    fi
+#    if [ ".$OldVer" != ".$NewVer" ]; then
+#	echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
+#    fi
+    [ ".$OldVer" != ".$NewVer" ] && echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
+
     exit 0
