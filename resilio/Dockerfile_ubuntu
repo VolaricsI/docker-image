@@ -15,10 +15,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -
     && cd /tmp && wget --quiet https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz 	\
     && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && rm -rf /tmp/* 		\
 	## Ami csak a telepítéshez kellet törlöm
-    && apt-get remove --purge -y wget runit tzdata 		\
+    && apt-get remove --purge -y runit tzdata 		\
     && apt-get remove --purge -y bzip2 ca-certificates openssl 	\
     && apt-get autoremove --purge -y && apt-get clean 		\
-##    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 		\
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 		\
     && mkdir -p /defaults /config /downloads
 
 COPY defaults /defaults
