@@ -1,0 +1,24 @@
+version: '2.1'
+
+services:
+
+ BtSync:
+  container_name: btsync
+  image: volaricsi/resilio
+  restart: always
+
+  ports:
+    - 55555:55555
+    - 8888:8888
+
+  volumes:
+    - /srv/btsync/.config:/config
+    - /srv/btsync:/downloads
+
+  environment:
+    # BtSync user
+    - PUID=2001
+    - PGID=2001
+    - UMASK=002
+
+  network_mode: host
