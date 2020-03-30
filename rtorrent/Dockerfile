@@ -1,1 +1,1 @@
-Dockerfile_ubuntu
+Dockerfile_alpine
