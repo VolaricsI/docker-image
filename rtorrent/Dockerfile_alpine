@@ -26,7 +26,7 @@ RUN apk update && apk upgrade 	\
     && cd /var/www && git clone https://github.com/Novik/ruTorrent.git 		\
 	# ami már nem kell, (a tzdata törlése később: a timezone beállítása után kell)
     && apk del git mc 		\
-	# A munin plugin-ek hibátlan működéséhez kell, valamint az "ellenorzes"-hez
+	# A munin plugin-ek hibátlan működéséhez kell
     && apk add perl 		\
 	# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
