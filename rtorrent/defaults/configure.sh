@@ -11,8 +11,8 @@
 
 	# futtatható programok beállítása és helyre mozgatása
     cd /defaults 	\
-    && chmod +x getupdate ellenorzes verzio plugins_disable plugins_install adduser-abc *.sh Stop 		\
-    && mv       getupdate ellenorzes verzio plugins_disable plugins_install Stop 			 /bin/ 	\
+    && chmod +x getupdate ellenorzes verzio plugins_disable plugins_install healthcheck adduser-abc *.sh Stop 		\
+    && mv       getupdate ellenorzes verzio plugins_disable plugins_install healthcheck Stop 			 /bin/ 	\
     && mv start.sh / 	\
     || exit 2
 

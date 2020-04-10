@@ -1,0 +1,12 @@
+#!/bin/sh
+#	Created by Volarics Istvan by Voli
+
+#:::::: Fix beallitasok :::::::
+XMLRPC_HOST=127.0.0.1/RPC
+
+
+    Count=$( curl -s --data "<methodCall> <methodName>system.hostname</methodName> </methodCall>"   "$XMLRPC_HOST" |grep -c -e $HOSTNAME )
+
+    [ "$Count" -eq 1 ] && exit 0
+
+exit 1
