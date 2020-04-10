@@ -47,5 +47,7 @@ EXPOSE 6881/udp 51413 80
 ## Konfigok helye; ide kerülnek a letöltések
 VOLUME /config /downloads
 
+HEALTHCHECK --interval=5m --timeout=10s  CMD healthcheck
+
 # Run the start script on boot.
 CMD ["/start.sh"]
