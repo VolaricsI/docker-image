@@ -6,18 +6,19 @@
 XMLRPC_HOST=127.0.0.1/RPC
 L1=/tmp/D2_tor.lst
 #:::::: Beallitasok :::::::::::
-Title="$1"
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
 
-	## A [,] lecserélem - .(pont)-ra - mert vezérlő karakterek a grep-ben
+	## A [,],&amp; lecserélem - .(pont)-ra - mert vezérlő karakterek a grep-ben
 
 curl -s --data "<methodCall> <methodName>download_list</methodName> </methodCall>"   "$XMLRPC_HOST" 		\
     |grep "<value><string>[0-9A-F]\+</string></value>" | sed 's|^<value><string>||; s|</string></value>.*||' 	\
     |while read Hash; do
 	curl -s --data "<methodCall><methodName>d.base_path</methodName> <params> <param><value><string>$Hash</string></value></param> </params> </methodCall>" "$XMLRPC_HOST" 	\
 	    |grep "^<param><value><string>.*</string></value></param>" |sed 's|^<param><value><string>||; s|</string></value></param>.*||'
-    done 	|sed 's/\[/./g; s/\]/./g;' 	>${L1}
+    done  	|sed 's|\[|.|g; s|\]|.|g; s|&amp;|.|g; ' 	>${L1}
 
-    find /downloads -maxdepth 1 -mindepth 1 |sed 's/\[/./g; s/\]/./g; ' |grep -v -e ".docker-mount-point" -e "lost+found" |sort |while read a; do
+    find /downloads -maxdepth 1 -mindepth 1 |sed 's|\[|.|g; s|\]|.|g; s|&|.|g; /.docker-mount-point/d; /lost+found/d' |while read a; do
 	grep  -e "^${a}" ${L1}	>/dev/null && continue
 
 	if [ -n "$Title" ]; then
@@ -27,6 +28,5 @@ curl -s --data "<methodCall> <methodName>download_list</methodName> </methodCall
 
 	echo ">>${a}<<"
     done
-
     rm ${L1} 	2>/dev/null
 exit 0
