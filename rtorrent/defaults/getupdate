@@ -14,7 +14,6 @@
 
     if [ -x /sbin/apk ]; then 		## Alpine alapon
 	apk update 	>/dev/null 2>&1
-#	UJsomagSzam=$( apk version -v -l '<' -l '?' |grep -v "^Installed:" |grep -c "." )
 	UJsomagSzam=$( apk version -v |grep -c -v -e " = " -e "^Installed:" )
 	Ret=$?
     fi
