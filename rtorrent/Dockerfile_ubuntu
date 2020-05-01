@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:20.04
 
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"

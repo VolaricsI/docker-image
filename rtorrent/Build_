@@ -12,7 +12,7 @@ if [ ! -z ${ALAP} ]; then
 fi
 	## Nézük meg, hogy az alap image is legyen a legfrissebb
 if [ ! -z ${NOCACHE} ]; then
-	docker image pull ubuntu:19.04
+	docker image pull ubuntu:20.04
 	docker image pull alpine:3.11
 fi
 
