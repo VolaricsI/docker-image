@@ -7,10 +7,9 @@
 	D_USER=${DELUGE_USERNAME:=deluge}
 	D_PASS=${DELUGE_PASSWORD:=deluge}
 
-
 	echo "Doing initial setup..."
 
-	mkdir /config/state/
+	mkdir -p /config/state/
 	touch /config/state/torrents.state 						# Ne legyen hibaüzenet
 
 	mkdir /config/In								# Innen fogja autómatán felemelni a torrenteket
