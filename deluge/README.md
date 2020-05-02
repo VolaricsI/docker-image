@@ -24,3 +24,8 @@
 	##A deluge managent felhasználója, ha nincs megadva akkor deluge/deluge
 -  -e DELUGE_USERNAME 	:
 -  -e DELUGE_PASSWORD 	:
+
+
+2020-05-01
+		Az ubuntu 20.04 hibát dob build-nél ezért visszaálltam a 18.04-re mert a 19.04-nek már nincsenek tárolói
+		És még nem akarunk a 2.x-es verzióra váltani, mert hibákat dobál - de megcsinálja - a deluge-console a beállítások során.
