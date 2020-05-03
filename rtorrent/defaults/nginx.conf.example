@@ -16,9 +16,11 @@ http {
 #	access_log 	/config/nginx-acces.log combined;
 #	access_log 	/dev/console combined;
 	access_log 	/dev/null combined;
+
 #	error_log 	/config/nginx-error.log error;
-	error_log 	/dev/console error;
 #	error_log 	/dev/null error;
+	error_log 	/dev/console error;
+
 
     fastcgi_temp_path 		/tmp/fastcgi 1 2;
     client_body_temp_path 	/tmp/client_body 1 2;
