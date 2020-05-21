@@ -21,6 +21,8 @@
 
     [ $Ret -ne 0 ] 	&& exit $Ret 		## Ha hiba történt
 
+    echo "Az image neve: $ImageNeve."
+
     [ -n "$UJsomagSzam" ] && echo "A(z) $1 imageben $UJsomagSzam csomagot lehet/kell frissíteni..."
 
 
@@ -31,9 +33,6 @@
     NewVer=$( ./rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
     rm ./rslsync
 
-#    if [ ".$OldVer" != ".$NewVer" ]; then
-#	echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
-#    fi
     [ ".$OldVer" != ".$NewVer" ] && echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
 
     exit 0

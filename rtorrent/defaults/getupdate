@@ -23,5 +23,6 @@
     [ -z $UJsomagSzam ] && exit 0 	## Ha nincs frissítendő csomag
 
 
+    echo "Az image neve: $ImageNeve."
     echo "A(z) $1 imageben $UJsomagSzam csomagot lehet/kell frissíteni..."
-    exit $UJsomagSzam
+    exit 0

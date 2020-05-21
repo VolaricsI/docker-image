@@ -4,12 +4,13 @@ FROM frolvlad/alpine-glibc
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
 	url="https://github.com/VolaricsI/docker-image"
 
+	## Itt található a BtSync binárisa
+ENV BtSyncSrc="https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz"
+ENV ImageNeve="resillio"
 
 	## Személyre szabott beállítások; TIME_ZONE kell ha nem tudod mi legyen akkor UTC
 ENV PUID=2014 PGID=2014 UMASK=002 TIME_ZONE=Europe/Budapest
 
-	## Itt található a BtSync binárisa
-ENV BtSyncSrc="https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz"
 
 # Install required packages.: a runit-ből csak a chpst kell; resilio
 RUN apk update && apk upgrade 	\
