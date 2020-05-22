@@ -3,8 +3,6 @@ FROM ubuntu:20.04
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"
 
-ENV ImageNeve="rtorrent"
-
 	## Alap telepítésben ezek a modulok majd tiltásra kerülnek, mert nincs mögöttük program (default) vagy hibásan működik: tracklabels
 ENV PLUGIN_DEFAULT_TILTVA="screenshots mediainfo spectrogram _cloudflare rss rssurlrewrite  _task unpack create " 	\
 	## A hibás plugin-ek tiltása

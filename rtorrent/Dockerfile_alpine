@@ -4,8 +4,6 @@ FROM alpine:3.11
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"
 
-ENV ImageNeve="rtorrent"
-
 		## Alap telepítésben ezek a modulok majd tiltásra kerülnek, mert nincs mögöttük program (default)
 ENV PLUGIN_DEFAULT_TILTVA=" mediainfo screenshots spectrogram unpack _cloudflare rss rssurlrewrite " 	\
 		## Hogy a fentiek tiltva legyenek
