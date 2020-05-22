@@ -42,6 +42,4 @@
     HOME=/config
     cd /config/
 
-#    exec /sbin/runsvdir /etc/service
 exec 	/usr/bin/supervisord --nodaemon --configuration /defaults/supervisord.conf 	## Ha supervisord-ben loglevel=warn (nem info/default) akkor nincs "...INFO reaped unknown pid..."
-#	/usr/bin/supervisord --nodaemon --configuration /defaults/supervisord.conf 	## Ezt használom az exec helyett mert így eltűnik ez a hibaüzenet: "...INFO reaped unknown pid..."
