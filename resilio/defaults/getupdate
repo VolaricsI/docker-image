@@ -33,6 +33,4 @@
     NewVer=$( ./rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
     rm ./rslsync
 
-    [ ".$OldVer" != ".$NewVer" ] && echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
-
-    exit 0
+    [ ".$OldVer" == ".$NewVer" ] || echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
