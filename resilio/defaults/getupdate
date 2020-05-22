@@ -21,7 +21,7 @@
 
     [ $Ret -ne 0 ] 	&& exit $Ret 		## Ha hiba történt
 
-    echo "Az image neve: $ImageNeve."
+    echo "Az image neve: resillio/btsync ($1)."
 
     [ -n "$UJsomagSzam" ] && echo "A(z) $1 imageben $UJsomagSzam csomagot lehet/kell frissíteni..."
 
