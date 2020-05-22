@@ -25,7 +25,7 @@
 
 		## Ubuntu alatt máshol vannak
     [ ! -e /sbin/chpst 		] && ln -s /usr/bin/chpst 	/sbin/chpst
-    [ ! -e /usr/sbin/php-fpm7 	] && ln -s /usr/sbin/php-fpm7.2 /usr/sbin/php-fpm7
+    [ ! -e /usr/sbin/php-fpm7 	] && ln -s $( ls /usr/sbin/php-fpm7*) /usr/sbin/php-fpm7
     [ ! -e /sbin/chpst 		] && exit 40
     [ ! -e /usr/sbin/php-fpm7 	] && exit 41
 
