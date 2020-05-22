@@ -3,8 +3,6 @@ FROM ubuntu:18.04
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"
 
-ENV ImageNeve="deluge"
-
 	## Személyre szabott beállítások
 ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest PLUGIN_DISABLE=default
 
