@@ -1,0 +1,32 @@
+FROM ubuntu
+
+LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
+	url="https://github.com/VolaricsI/docker-image"
+
+	## Személyre szabott beállítások; TIME_ZONE kell ha nem tudod mi legyen akkor UTC
+ENV PUID=2014 PGID=2014 TIME_ZONE=Europe/Budapest
+
+
+# Install required packages.: a runit-ből csak a chpst kell
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -y 						\
+    && apt-get install -y wget runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst  					\
+    && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 				\
+    && cd /tmp && wget --quiet ${BtSyncSrc} && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && rm -rf /tmp/* 	\
+	## Ami csak a telepítéshez kellet törlöm
+    && apt-get remove --purge -y runit tzdata 		\
+    && apt-get remove --purge -y bzip2 ca-certificates openssl 	\
+    && apt-get autoremove --purge -y && apt-get clean 		\
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 		\
+    && mkdir -p /defaults /config /downloads
+
+COPY defaults /defaults
+
+RUN /defaults/configure.sh
+
+# management port;
+EXPOSE 31416
+
+## Konfigok helye, ide kerülnek a letöltések
+VOLUME /config
+
+CMD ["/start.sh"]

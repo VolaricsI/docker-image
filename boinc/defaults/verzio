@@ -1,0 +1,7 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+Ver=$( boinc --version|sed 's/ .*//' )
+BDate=$( cat /defaults/BuildDate.txt )
+
+echo -n "${Ver}_${BDate}"

@@ -1,0 +1,24 @@
+version: '2.4'
+
+services:
+
+ Boinc:
+  container_name: boinc
+  image: volaricsi/boinc
+  restart: always
+
+  mem_limit: 5g
+#  cpu_count: 1
+
+  ports:
+    - 31416:31416
+
+  volumes:
+    - /home/boinc/:/config
+
+  environment:
+    # Boinc user
+    - PUID=2001
+    - PGID=2001
+
+  network_mode: host

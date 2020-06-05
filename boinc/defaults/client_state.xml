@@ -1,0 +1,1027 @@
+<client_state>
+<host_info>
+    <timezone>7200</timezone>
+    <domain_name>tu20</domain_name>
+    <ip_addr>127.0.1.1</ip_addr>
+    <host_cpid>abbd527b1d476cb04baa2c5c87cec8da</host_cpid>
+    <p_ncpus>1</p_ncpus>
+    <p_vendor>AuthenticAMD</p_vendor>
+    <p_model>AMD Ryzen 5 3400G with Radeon Vega Graphics [Family 23 Model 24 Stepping 1]</p_model>
+    <p_features>fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb hw_pstate sme ssbd sev ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec xgetbv1 xsaves clzero irperf xsaveerptr arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif overflow_recov succor smca</p_features>
+    <p_fpops>6330702529.593056</p_fpops>
+    <p_iops>69394722477.681595</p_iops>
+    <p_membw>1000000000.000000</p_membw>
+    <p_calculated>1591356781.086701</p_calculated>
+    <p_vm_extensions_disabled>0</p_vm_extensions_disabled>
+    <m_nbytes>31482507264.000000</m_nbytes>
+    <m_cache>524288.000000</m_cache>
+    <m_swap>226839556096.000000</m_swap>
+    <d_total>135148863488.000000</d_total>
+    <d_free>9982078976.000000</d_free>
+    <os_name>Linux Alpine Linux</os_name>
+    <os_version>Alpine Linux edge [5.4.0-34-generic]</os_version>
+    <n_usable_coprocs>0</n_usable_coprocs>
+    <wsl_available>0</wsl_available>
+    <coprocs>
+    </coprocs>
+</host_info>
+<time_stats>
+    <on_frac>0.792386</on_frac>
+    <connected_frac>-1.000000</connected_frac>
+    <cpu_and_network_available_frac>0.999932</cpu_and_network_available_frac>
+    <active_frac>0.999932</active_frac>
+    <gpu_active_frac>0.999932</gpu_active_frac>
+    <client_start_time>1591361577.718542</client_start_time>
+    <total_start_time>1591134395.994676</total_start_time>
+    <total_duration>24303.488925</total_duration>
+    <total_active_duration>24243.340014</total_active_duration>
+    <total_gpu_active_duration>24243.340014</total_gpu_active_duration>
+    <previous_uptime>0.059195</previous_uptime>
+    <last_update>1591361554.284642</last_update>
+</time_stats>
+<net_stats>
+    <bwup>26741.916989</bwup>
+    <avg_up>2291434075.501802</avg_up>
+    <avg_time_up>1591355488.042640</avg_time_up>
+    <bwdown>6245905.207016</bwdown>
+    <avg_down>673199346874.292847</avg_down>
+    <avg_time_down>1591361516.400749</avg_time_down>
+</net_stats>
+<project>
+    <master_url>https://boinc.bakerlab.org/rosetta/</master_url>
+    <project_name>Rosetta@home</project_name>
+    <symstore></symstore>
+    <user_name>VolaricsI</user_name>
+    <team_name>FSF.hu Alap&#195;&#173;tv&#195;&#161;ny - Free Software Foundation Hungary</team_name>
+    <host_venue></host_venue>
+    <email_hash>134e57429464789fa149b93ddbb6aad0</email_hash>
+    <cross_project_id>f8319020c97862def5083f993cc586c2</cross_project_id>
+    <external_cpid>e5aadc405f8b5730bea89826012f2a6b</external_cpid>
+    <cpid_time>1591076711.000000</cpid_time>
+    <user_total_credit>2276.053584</user_total_credit>
+    <user_expavg_credit>196.206486</user_expavg_credit>
+    <user_create_time>1591076711.000000</user_create_time>
+    <rpc_seqno>2</rpc_seqno>
+    <userid>2159324</userid>
+    <teamid>18488</teamid>
+    <hostid>4548100</hostid>
+    <host_total_credit>0.000000</host_total_credit>
+    <host_expavg_credit>0.000000</host_expavg_credit>
+    <host_create_time>1591355415.000000</host_create_time>
+    <nrpc_failures>0</nrpc_failures>
+    <master_fetch_failures>0</master_fetch_failures>
+    <min_rpc_time>0.000000</min_rpc_time>
+    <next_rpc_time>0.000000</next_rpc_time>
+    <rec>36.700348</rec>
+    <rec_time>1591361560.793438</rec_time>
+    <resource_share>100.000000</resource_share>
+    <desired_disk_usage>0.000000</desired_disk_usage>
+    <duration_correction_factor>1.000000</duration_correction_factor>
+    <sched_rpc_pending>0</sched_rpc_pending>
+    <send_time_stats_log>0</send_time_stats_log>
+    <send_job_log>0</send_job_log>
+    <njobs_success>0</njobs_success>
+    <njobs_error>0</njobs_error>
+    <elapsed_time>34854.192617</elapsed_time>
+    <last_rpc_time>1591355488.168757</last_rpc_time>
+    <dont_use_dcf/>
+    <verify_files_on_app_start/>
+    <rsc_backoff_time>
+        <name>CPU</name>
+        <value>0.000000</value>
+    </rsc_backoff_time>
+    <rsc_backoff_interval>
+        <name>CPU</name>
+        <value>0.000000</value>
+    </rsc_backoff_interval>
+    <scheduler_url>https://bwsrv1.bakerlab.org/rosetta_cgi/cgi</scheduler_url>
+    <code_sign_key>
+1024
+da94985671f399f2ccbb8711004a4d7b782f239babc54e4db341dd1c7b94fbf3
+745d30084d332667546f400f5063e683c812a69a5d0945f53f0421961337e3f0
+cfad19652eb4f50523473f92ee3b1f43d358a5ba911479e553f43c91b8a4939a
+6aa5258107ef609a240bcffcfc9a19c8a8b0df99fdb9508694d499478fb0a931
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000010001
+.
+</code_sign_key>
+    <cpu_ec>530.821190</cpu_ec>
+    <cpu_time>36222.639325</cpu_time>
+    <gpu_ec>0.000000</gpu_ec>
+    <gpu_time>0.000000</gpu_time>
+    <disk_usage>1947446802.000000</disk_usage>
+    <disk_share>0.000000</disk_share>
+</project>
+<app>
+    <name>rosetta</name>
+    <user_friendly_name>Rosetta</user_friendly_name>
+    <non_cpu_intensive>0</non_cpu_intensive>
+</app>
+<file>
+    <name>rosetta_4.20_x86_64-pc-linux-gnu</name>
+    <nbytes>125232600.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <status>1</status>
+    <executable/>
+    <signature_required/>
+    <file_signature>
+5f0604a43dbb24b9021b32a8d12bdff26f63e28cff39becb0b76082ddadd2f05
+8458510dcd9374a3a8c6508aa93488231215e6ae9af980e8b0a2c31d8e6d1169
+99d1305e0a0e94c56fb939f79250a60d63790147b404b0ae69d6717c83d05672
+1b273f84564550115ce77a569daaffd8f3e8a86bf4a5005611485000046e796a
+.
+</file_signature>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/rosetta_4.20_x86_64-pc-linux-gnu</download_url>
+</file>
+<file>
+    <name>rosetta_graphics_4.20_x86_64-pc-linux-gnu</name>
+    <nbytes>123794008.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <status>1</status>
+    <executable/>
+    <signature_required/>
+    <file_signature>
+34b282b17a9261de8818079318b326c9558d3ef5fe44158df0f30c08710824f3
+093d628a345f6f6e633793b78eea4c3f867f2e413ab0a06821143eb650f77082
+75ee3ca1b8e3f9a8171a4d771f77fa75fadc85734b4ea47b5772be6191835c10
+9ae045410fc7d24bcbaacf5ecae422a2dad0371c8182c09529879310a7f63cf2
+.
+</file_signature>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/rosetta_graphics_4.20_x86_64-pc-linux-gnu</download_url>
+</file>
+<file>
+    <name>database_357d5d93529_n_methyl.zip</name>
+    <nbytes>507570722.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <status>1</status>
+    <executable/>
+    <signature_required/>
+    <file_signature>
+5e068440d35441ba0935c3d420d2fac7a951fa515b6169eb13a2e39ed6dae1da
+6a81e90de8782825ffb7c09cdee4ccd7787785210af6646d6d08e21d0bead83f
+371acec4f22ecfe89477588ff2062b7484b46711c551084f0a8deeb04ff4d42c
+addffd640f1098027f515bd449dd627508ef7ab6fcae8fc0b99e35df12c2f8c5
+.
+</file_signature>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/database_357d5d93529_n_methyl.zip</download_url>
+</file>
+<file>
+    <name>LiberationSans-Regular.ttf</name>
+    <nbytes>352308.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <status>1</status>
+    <executable/>
+    <signature_required/>
+    <file_signature>
+0cdda636e1e5df078a4afd7291b88c2306b29d50ffc04b5ebfe8d5523e4a154a
+070d975eec8f848a027da9d505609af4df683349e41ad645aa2ad0d86afec71a
+69ac5d2296d96173ee97d041b663acaf453e5965e609dd2995b13517353cc603
+2a9355e6d56a3dabf4bc550a6dd9673e6f711ef94295d037a577a228cae0bd19
+.
+</file_signature>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/LiberationSans-Regular.ttf</download_url>
+</file>
+<file>
+    <name>a5075c3cabe1fa8be410d5d5fa36c448_data.zip</name>
+    <nbytes>93008.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>848d1427596dfa1bbf1e5e8f95f375f0</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/2f5/a5075c3cabe1fa8be410d5d5fa36c448_data.zip</download_url>
+</file>
+<file>
+    <name>a5075c3cabe1fa8be410d5d5fa36c448_fold_SAVE_ALL_OUT_939475_62_0_r1413723680_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>flags</name>
+    <nbytes>12.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>c49334110e310ab85270104357a2874c</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/d6/flags</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.zip</name>
+    <nbytes>61973.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>3560409f78d8ffc2f96b5527ee1aa581</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/25f/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.zip</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.flags</name>
+    <nbytes>193.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>36bf7515f734c5a0930042aae64f985a</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/101/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.flags</download_url>
+</file>
+<file>
+    <name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.zip</name>
+    <nbytes>3782.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>d39a7e05c1f802eb3be672f24b7db34e</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/36f/12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.zip</download_url>
+</file>
+<file>
+    <name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.flags</name>
+    <nbytes>1097.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>8b2b57af15251b50dd5be2c73dce73b4</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/2a8/12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.flags</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.zip</name>
+    <nbytes>61074.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>08339f679a0f1dc8228163c121416753</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/12b/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.zip</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.flags</name>
+    <nbytes>193.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>cd6d654e464d78216e90f7a5fdd64855</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/321/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.flags</download_url>
+</file>
+<file>
+    <name>flags_covid_site2</name>
+    <nbytes>696.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>3250d3a8ff11862ab74dcd5cbce2398b</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/256/flags_covid_site2</download_url>
+</file>
+<file>
+    <name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.zip</name>
+    <nbytes>1857483.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>3759f8d7d850fa3ea348cb03064f6489</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/8f/Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.zip</download_url>
+</file>
+<file>
+    <name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.flags</name>
+    <nbytes>2753.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>8ca89dbcbea2f086c54b15a3ad040f89</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/3ac/Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.flags</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.zip</name>
+    <nbytes>62795.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>80dbf19c40f42e3fabfd4e3ab872d908</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/3d3/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.zip</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.flags</name>
+    <nbytes>193.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>8c934577f8f1d188280503edc56f8e9e</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/1ea/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.flags</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x_929581_39_0_r858318556_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001_SAVE_ALL_OUT_944979_202_0_r2039978228_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e_929582_36_0_r2086729706_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x_944113_1_0_r815736966_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f_929388_39_0_r433631221_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.zip</name>
+    <nbytes>3950.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>41719add7d3dd038ffe1a2629d0804c8</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/e9/12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.zip</download_url>
+</file>
+<file>
+    <name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.flags</name>
+    <nbytes>1096.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>4cf04f6c9efd130b01f22da793f91ce7</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/1f5/12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.flags</download_url>
+</file>
+<file>
+    <name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.zip</name>
+    <nbytes>3909.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>524e1d8bc2f920101598d4fe62458f54</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/b6/12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.zip</download_url>
+</file>
+<file>
+    <name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.flags</name>
+    <nbytes>1095.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>012d3c4645c236f62b886ec4ff61989d</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/1e7/12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.flags</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.zip</name>
+    <nbytes>64218.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>529fdce2f71106212066cfc5c833ab8b</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/3c8/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.zip</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.flags</name>
+    <nbytes>193.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>4478f507de6f5396bdcc84cc36136b41</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/3a5/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.flags</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.zip</name>
+    <nbytes>61431.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>dfd071665ade29e8053acffed5dd495d</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/95/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.zip</download_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.flags</name>
+    <nbytes>193.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>3c543f2a4520ed06539b610ad28b87c2</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/15a/Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.flags</download_url>
+</file>
+<file>
+    <name>f3cf0379f7d8917a5ded8e57990660f6_data.zip</name>
+    <nbytes>85926.000000</nbytes>
+    <max_nbytes>0.000000</max_nbytes>
+    <md5_cksum>922a2faa468a7d6270e68befb6df1230</md5_cksum>
+    <status>1</status>
+    <download_url>https://boinc-files.bakerlab.org/rosetta/download/26c/f3cf0379f7d8917a5ded8e57990660f6_data.zip</download_url>
+</file>
+<file>
+    <name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001_SAVE_ALL_OUT_945509_202_0_r1376365340_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001_SAVE_ALL_OUT_945528_152_0_r914363665_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c_929582_36_0_r873408270_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c_929582_36_0_r1363105873_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<file>
+    <name>f3cf0379f7d8917a5ded8e57990660f6_fold_SAVE_ALL_OUT_939475_62_0_r201981042_0</name>
+    <nbytes>0.000000</nbytes>
+    <max_nbytes>800000000.000000</max_nbytes>
+    <status>0</status>
+    <upload_url>https://boinc.bakerlab.org/rosetta_cgi/file_upload_handler</upload_url>
+</file>
+<app_version>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <avg_ncpus>1.000000</avg_ncpus>
+    <flops>5656014456.350497</flops>
+    <api_version>7.9.0</api_version>
+    <file_ref>
+        <file_name>rosetta_4.20_x86_64-pc-linux-gnu</file_name>
+        <main_program/>
+    </file_ref>
+    <file_ref>
+        <file_name>rosetta_graphics_4.20_x86_64-pc-linux-gnu</file_name>
+        <open_name>graphics_app</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>database_357d5d93529_n_methyl.zip</file_name>
+        <open_name>minirosetta_database.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>LiberationSans-Regular.ttf</file_name>
+    </file_ref>
+</app_version>
+<workunit>
+    <name>a5075c3cabe1fa8be410d5d5fa36c448_fold_SAVE_ALL_OUT_939475_62</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-abinitio::fastrelax 1 -ex2aro 1 -frag3 00001.200.3mers.index -in:file:native 00001.pdb -silent_gz 1 -frag9 00001.200.9mers.index -out:file:silent default.out  -ex1 1 -abinitio::rsd_wt_loop 0.5 -relax::default_repeats 5 -abinitio::use_filters false -abinitio::increase_cycles 10 -abinitio::rsd_wt_helix 0.5 -beta 1 -abinitio::rg_reweight 0.5 -in:file:boinc_wu_zip a5075c3cabe1fa8be410d5d5fa36c448_data.zip  -out:file:silent default.out -silent_gz -mute all -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2354119
+    </command_line>
+    <file_ref>
+        <file_name>a5075c3cabe1fa8be410d5d5fa36c448_data.zip</file_name>
+        <open_name>a5075c3cabe1fa8be410d5d5fa36c448_data.zip</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x_929581_39</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-run:protocol jd2_scripting -parser:protocol jhr_boinc_v4_cart.xml  @flags -in:file:silent Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.silent -in:file:silent_struct_type binary -silent_gz -mute all -silent_read_through_errors true -out:file:silent_struct_type binary -out:file:silent default.out -in:file:boinc_wu_zip Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.zip @Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2854828
+    </command_line>
+    <file_ref>
+        <file_name>flags</file_name>
+        <open_name>flags</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.zip</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.flags</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001_SAVE_ALL_OUT_944979_202</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+@12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -mute all -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 3532799
+    </command_line>
+    <file_ref>
+        <file_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.zip</file_name>
+        <open_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.flags</file_name>
+        <open_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e_929582_36</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-run:protocol jd2_scripting -parser:protocol jhr_boinc_v4_cart.xml  @flags -in:file:silent Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.silent -in:file:silent_struct_type binary -silent_gz -mute all -silent_read_through_errors true -out:file:silent_struct_type binary -out:file:silent default.out -in:file:boinc_wu_zip Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.zip @Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2018471
+    </command_line>
+    <file_ref>
+        <file_name>flags</file_name>
+        <open_name>flags</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.zip</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.flags</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x_944113_1</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-run:protocol jd2_scripting -parser:protocol predictor_v11_boinc--fuse--covid_at3_design_boinc_v1.xml  @flags_covid_site2 -in:file:silent Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.silent -in:file:silent_struct_type binary -silent_gz -mute all -silent_read_through_errors true -out:file:silent_struct_type binary -out:file:silent default.out -in:file:boinc_wu_zip Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.zip @Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2366975
+    </command_line>
+    <file_ref>
+        <file_name>flags_covid_site2</file_name>
+        <open_name>flags_covid_site2</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.zip</file_name>
+        <open_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.flags</file_name>
+        <open_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f_929388_39</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-run:protocol jd2_scripting -parser:protocol jhr_boinc_v4_cart.xml  @flags -in:file:silent Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.silent -in:file:silent_struct_type binary -silent_gz -mute all -silent_read_through_errors true -out:file:silent_struct_type binary -out:file:silent default.out -in:file:boinc_wu_zip Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.zip @Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2454390
+    </command_line>
+    <file_ref>
+        <file_name>flags</file_name>
+        <open_name>flags</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.zip</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.flags</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001_SAVE_ALL_OUT_945509_202</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+@12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -mute all -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 3003738
+    </command_line>
+    <file_ref>
+        <file_name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.zip</file_name>
+        <open_name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.flags</file_name>
+        <open_name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001_SAVE_ALL_OUT_945528_152</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+@12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -mute all -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2984788
+    </command_line>
+    <file_ref>
+        <file_name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.zip</file_name>
+        <open_name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.flags</file_name>
+        <open_name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c_929582_36</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-run:protocol jd2_scripting -parser:protocol jhr_boinc_v4_cart.xml  @flags -in:file:silent Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.silent -in:file:silent_struct_type binary -silent_gz -mute all -silent_read_through_errors true -out:file:silent_struct_type binary -out:file:silent default.out -in:file:boinc_wu_zip Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.zip @Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 1823911
+    </command_line>
+    <file_ref>
+        <file_name>flags</file_name>
+        <open_name>flags</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.zip</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.flags</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c_929582_36</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-run:protocol jd2_scripting -parser:protocol jhr_boinc_v4_cart.xml  @flags -in:file:silent Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.silent -in:file:silent_struct_type binary -silent_gz -mute all -silent_read_through_errors true -out:file:silent_struct_type binary -out:file:silent default.out -in:file:boinc_wu_zip Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.zip @Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.flags -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 2213031
+    </command_line>
+    <file_ref>
+        <file_name>flags</file_name>
+        <open_name>flags</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.zip</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.zip</open_name>
+    </file_ref>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.flags</file_name>
+        <open_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c.flags</open_name>
+    </file_ref>
+</workunit>
+<workunit>
+    <name>f3cf0379f7d8917a5ded8e57990660f6_fold_SAVE_ALL_OUT_939475_62</name>
+    <app_name>rosetta</app_name>
+    <version_num>420</version_num>
+    <rsc_fpops_est>80000000000000.000000</rsc_fpops_est>
+    <rsc_fpops_bound>100000000000000000.000000</rsc_fpops_bound>
+    <rsc_memory_bound>1800000000.000000</rsc_memory_bound>
+    <rsc_disk_bound>1800000000.000000</rsc_disk_bound>
+    <command_line>
+-abinitio::fastrelax 1 -ex2aro 1 -frag3 00001.200.3mers.index -in:file:native 00001.pdb -silent_gz 1 -frag9 00001.200.9mers.index -out:file:silent default.out  -ex1 1 -abinitio::rsd_wt_loop 0.5 -relax::default_repeats 5 -abinitio::use_filters false -abinitio::increase_cycles 10 -abinitio::rsd_wt_helix 0.5 -beta 1 -abinitio::rg_reweight 0.5 -in:file:boinc_wu_zip f3cf0379f7d8917a5ded8e57990660f6_data.zip  -out:file:silent default.out -silent_gz -mute all -nstruct 10000  -cpu_run_time 28800 -boinc:max_nstruct 20000 -checkpoint_interval 120 -database minirosetta_database -in::file::zip minirosetta_database.zip -boinc::watchdog -boinc::cpu_run_timeout 36000 -run::rng mt19937 -constant_seed -jran 1424619
+    </command_line>
+    <file_ref>
+        <file_name>f3cf0379f7d8917a5ded8e57990660f6_data.zip</file_name>
+        <open_name>f3cf0379f7d8917a5ded8e57990660f6_data.zip</open_name>
+    </file_ref>
+</workunit>
+<result>
+    <name>a5075c3cabe1fa8be410d5d5fa36c448_fold_SAVE_ALL_OUT_939475_62_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>a5075c3cabe1fa8be410d5d5fa36c448_fold_SAVE_ALL_OUT_939475_62</wu_name>
+    <report_deadline>1591614615.000000</report_deadline>
+    <received_time>1591355416.108059</received_time>
+    <file_ref>
+        <file_name>a5075c3cabe1fa8be410d5d5fa36c448_fold_SAVE_ALL_OUT_939475_62_0_r1413723680_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001_SAVE_ALL_OUT_944979_202_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001_SAVE_ALL_OUT_944979_202</wu_name>
+    <report_deadline>1591614651.000000</report_deadline>
+    <received_time>1591355452.135596</received_time>
+    <file_ref>
+        <file_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001_SAVE_ALL_OUT_944979_202_0_r2039978228_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e_929582_36_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e_929582_36</wu_name>
+    <report_deadline>1591614651.000000</report_deadline>
+    <received_time>1591355452.135596</received_time>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e_929582_36_0_r2086729706_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f_929388_39_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f_929388_39</wu_name>
+    <report_deadline>1591614651.000000</report_deadline>
+    <received_time>1591355452.135596</received_time>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f_929388_39_0_r433631221_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x_929581_39_0</name>
+    <final_cpu_time>110.008300</final_cpu_time>
+    <final_elapsed_time>108.282322</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <final_peak_working_set_size>1159118848</final_peak_working_set_size>
+    <final_peak_swap_size>1319927808</final_peak_swap_size>
+    <final_peak_disk_usage>25284753</final_peak_disk_usage>
+    <wu_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x_929581_39</wu_name>
+    <report_deadline>1591614651.000000</report_deadline>
+    <received_time>1591355452.135596</received_time>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x_929581_39_0_r858318556_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x_944113_1_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x_944113_1</wu_name>
+    <report_deadline>1591614651.000000</report_deadline>
+    <received_time>1591355452.135596</received_time>
+    <file_ref>
+        <file_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x_944113_1_0_r815736966_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c_929582_36_0</name>
+    <final_cpu_time>502.022200</final_cpu_time>
+    <final_elapsed_time>673.169454</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <final_peak_working_set_size>1198747648</final_peak_working_set_size>
+    <final_peak_swap_size>1351315456</final_peak_swap_size>
+    <final_peak_disk_usage>25282038</final_peak_disk_usage>
+    <wu_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c_929582_36</wu_name>
+    <report_deadline>1591614687.000000</report_deadline>
+    <received_time>1591355488.168757</received_time>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c_929582_36_0_r1363105873_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001_SAVE_ALL_OUT_945509_202_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001_SAVE_ALL_OUT_945509_202</wu_name>
+    <report_deadline>1591614687.000000</report_deadline>
+    <received_time>1591355488.168757</received_time>
+    <file_ref>
+        <file_name>12V45HB2_rest_method_2_12mer_design_00049_001447_019108_0001_SAVE_ALL_OUT_945509_202_0_r1376365340_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c_929582_36_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c_929582_36</wu_name>
+    <report_deadline>1591614687.000000</report_deadline>
+    <received_time>1591355488.168757</received_time>
+    <file_ref>
+        <file_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_7xx1cm1c_929582_36_0_r873408270_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001_SAVE_ALL_OUT_945528_152_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001_SAVE_ALL_OUT_945528_152</wu_name>
+    <report_deadline>1591614687.000000</report_deadline>
+    <received_time>1591355488.168757</received_time>
+    <file_ref>
+        <file_name>12V45HB2_rest_method_2_12mer_design_00059_018709_017468_0001_SAVE_ALL_OUT_945528_152_0_r914363665_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<result>
+    <name>f3cf0379f7d8917a5ded8e57990660f6_fold_SAVE_ALL_OUT_939475_62_0</name>
+    <final_cpu_time>0.000000</final_cpu_time>
+    <final_elapsed_time>0.000000</final_elapsed_time>
+    <exit_status>0</exit_status>
+    <state>2</state>
+    <platform>x86_64-pc-linux-gnu</platform>
+    <version_num>420</version_num>
+    <wu_name>f3cf0379f7d8917a5ded8e57990660f6_fold_SAVE_ALL_OUT_939475_62</wu_name>
+    <report_deadline>1591614687.000000</report_deadline>
+    <received_time>1591355488.168757</received_time>
+    <file_ref>
+        <file_name>f3cf0379f7d8917a5ded8e57990660f6_fold_SAVE_ALL_OUT_939475_62_0_r201981042_0</file_name>
+        <open_name>default.out.gz</open_name>
+    </file_ref>
+</result>
+<active_task_set>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>a5075c3cabe1fa8be410d5d5fa36c448_fold_SAVE_ALL_OUT_939475_62_0</result_name>
+    <active_task_state>1</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>0</slot>
+    <checkpoint_cpu_time>1108.524000</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>1334.644140</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.029321</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>1334.644140</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>1108.524000</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>330498048.000000</swap_size>
+    <working_set_size>242380800.000000</working_set_size>
+    <working_set_size_smoothed>243488000.000000</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>12V45HB1_rest_method_1_12mer_design_00463_015822_010730_0001_SAVE_ALL_OUT_944979_202_0</result_name>
+    <active_task_state>0</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>1</slot>
+    <checkpoint_cpu_time>1472.034000</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>2561.934889</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.087609</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>2561.934889</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>1472.034000</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>392806400.000000</swap_size>
+    <working_set_size>321867776.000000</working_set_size>
+    <working_set_size_smoothed>291596544.005912</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_3st6qz4e_929582_36_0</result_name>
+    <active_task_state>0</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>2</slot>
+    <checkpoint_cpu_time>1121.188000</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>1331.665298</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.017299</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>1331.665298</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>1121.188000</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>471011328.000000</swap_size>
+    <working_set_size>381214720.000000</working_set_size>
+    <working_set_size_smoothed>367254784.000000</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2ks4qt5f_929388_39_0</result_name>
+    <active_task_state>0</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>3</slot>
+    <checkpoint_cpu_time>1115.688000</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>1309.038565</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.017214</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>1309.038565</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>1115.688000</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>472854528.000000</swap_size>
+    <working_set_size>383057920.000000</working_set_size>
+    <working_set_size_smoothed>365933824.001076</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_0gy6vb5x_929581_39_0</result_name>
+    <active_task_state>0</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>4</slot>
+    <checkpoint_cpu_time>885.108600</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>1069.826564</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.013653</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>1069.826564</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>885.108600</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>471015424.000000</swap_size>
+    <working_set_size>380817408.000000</working_set_size>
+    <working_set_size_smoothed>356270968.046875</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>Mini_Protein_binds_COVID-19_boinc_site2_2_SAVE_ALL_OUT_IGNORE_THE_REST_5fh6wd8x_944113_1_0</result_name>
+    <active_task_state>0</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>5</slot>
+    <checkpoint_cpu_time>1116.353000</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>1334.644140</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.027362</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>1334.644140</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>1116.353000</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>605077504.000000</swap_size>
+    <working_set_size>522956800.000000</working_set_size>
+    <working_set_size_smoothed>480391040.000000</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+<active_task>
+    <project_master_url>https://boinc.bakerlab.org/rosetta/</project_master_url>
+    <result_name>Junior_HalfRoid_design6_cart_COVID-19_SAVE_ALL_OUT_IGNORE_THE_REST_2xg3ht3c_929582_36_0</result_name>
+    <active_task_state>0</active_task_state>
+    <app_version_num>420</app_version_num>
+    <slot>6</slot>
+    <checkpoint_cpu_time>624.256800</checkpoint_cpu_time>
+    <checkpoint_elapsed_time>648.605463</checkpoint_elapsed_time>
+    <checkpoint_fraction_done>0.009623</checkpoint_fraction_done>
+    <checkpoint_fraction_done_elapsed_time>648.605463</checkpoint_fraction_done_elapsed_time>
+    <current_cpu_time>624.256800</current_cpu_time>
+    <once_ran_edf>0</once_ran_edf>
+    <swap_size>468303872.000000</swap_size>
+    <working_set_size>378351616.000000</working_set_size>
+    <working_set_size_smoothed>344653568.039067</working_set_size_smoothed>
+    <page_fault_rate>0.000000</page_fault_rate>
+    <bytes_sent>0.000000</bytes_sent>
+    <bytes_received>0.000000</bytes_received>
+</active_task>
+</active_task_set>
+<platform_name>x86_64-pc-linux-gnu</platform_name>
+<core_client_major_version>7</core_client_major_version>
+<core_client_minor_version>16</core_client_minor_version>
+<core_client_release>1</core_client_release>
+<user_run_request>2</user_run_request>
+<user_run_prev_request>2</user_run_prev_request>
+<user_gpu_request>2</user_gpu_request>
+<user_gpu_prev_request>2</user_gpu_prev_request>
+<user_network_request>2</user_network_request>
+<new_version_check_time>1591355416.108059</new_version_check_time>
+<all_projects_list_check_time>1591354038.401672</all_projects_list_check_time>
+<client_version_check_url>https://boinc.berkeley.edu/download.php?xml=1</client_version_check_url>
+</client_state>
