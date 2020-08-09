@@ -6,7 +6,7 @@ LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
 
 
 	## Személyre szabott beállítások; TIME_ZONE kell ha nem tudod mi legyen akkor UTC
-ENV PUID=2014 PGID=2014 TIME_ZONE=Europe/Budapest
+ENV PUID=2012 PGID=2012 TIME_ZONE=Europe/Budapest
 
 
 # Csak ebben a tárolóban van a boinc; Install required packages.: a runit-ből csak a chpst kell;
@@ -19,9 +19,6 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories
 COPY defaults /defaults
 
 RUN /defaults/configure.sh
-
-# management port;
-EXPOSE 31416
 
 ## Konfigok helye; ide kerülnek a letöltések
 VOLUME /config

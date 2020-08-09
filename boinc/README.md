@@ -11,3 +11,6 @@
 
 -  -e PUID : user  ID
 -  -e GUID : group ID
+
+
+Beállítási tanácsok a boinc-hez: https://scalar.vector.im/etherpad/p/!USTzJWlsqnMRklBMhn_grin.hu_Hardver

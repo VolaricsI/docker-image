@@ -7,8 +7,13 @@ services:
   image: volaricsi/boinc
   restart: always
 
+#  logging:
+#      driver: syslog
+#      options:
+#        tag: "{{.Name}}"
+
+
   mem_limit: 5g
-#  cpu_count: 1
 
   ports:
     - 31416:31416
