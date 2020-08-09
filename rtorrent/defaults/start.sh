@@ -35,8 +35,8 @@
     Session_Dir=$( grep -v "#" /config/rtorrent.rc 	|grep "^session.*=" 	|head -1 |sed 's/.*[ =]//' )
     [ -e "${Session_Dir}/rtorrent.lock" ] && rm ${Session_Dir}/rtorrent.lock
 
-    chown -RLc abc:abc 	/config /var/www/* 			# Jól álljanak a jogosultságok
-    chown -RLc abc: 	/downloads
+    time chown -RLc abc:abc 	/config /var/www/* /dev/console 			# Jól álljanak a jogosultságok
+    time chown -RLc abc: 	/downloads
 
     umask $UMASK >/dev/null
     HOME=/config
