@@ -19,8 +19,11 @@
     fi
 
 
-    [ $Ret -ne 0 ] 	&& exit $Ret 		## Ha hiba történt
-    [ -z $UJsomagSzam ] && exit 0 		## Ha nincs frissítendő csomag
+    [ $Ret -ne 0 	] && exit $Ret 		## Ha hiba történt
+    [ -z "$UJsomagSzam" ] && exit 0 		## Ha nincs frissítendő csomag
 
     echo "Az image neve: deluge_1.3.x."
     echo "A(z) $1 imageben $UJsomagSzam csomagot lehet/kell frissíteni..."
+    [ -x /usr/bin/apt ] && apt list --upgradable
+    [ -x /sbin/apk    ] && apk version -v |grep -v -e " = " -e "^Installed:"
+    exit 0
