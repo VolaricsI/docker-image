@@ -7,10 +7,9 @@
 #:::::: Ellenorzesek ::::::::::
 
     if [ -x /usr/bin/apt ]; then 	## Ubuntu alap
-	UJsomagSzam=$( apt update 2>/dev/null |grep "apt list --upgradable" |sed 's/ package.*//; s/ csomag.*// ' )
+	UJsomagSzam=$( apt update 2>/dev/null |grep "apt list --upgradable" 2>/dev/null |sed 's/ package.*//; s/ csomag.*// ' )
 	Ret=$?
     fi
-
 
     if [ -x /sbin/apk ]; then 		## Alpine alapon
 	apk update 	>/dev/null 2>&1
@@ -18,10 +17,11 @@
 	Ret=$?
     fi
 
+    [ $Ret -ne 0 	] && exit $Ret 		## Ha hiba történt
+    [ -z "$UJsomagSzam" ] && exit 0 		## Ha nincs frissítendő csomag
 
-    [ $Ret -ne 0 ] 	&& exit $Ret 		## Ha hiba történt
-    [ -z $UJsomagSzam ] && exit 0 		## Ha nincs frissítendő csomag
-
-    echo "Az image neve: $ImageNeve."
-    echo "A(z) $1 imageben $UJsomagSzam csomagot lehet/kell frissíteni..."
+    echo "Az image neve: deluge_1.3.x."
+    [ -n "$1" ] && echo "A(z) $1 contenerben $UJsomagSzam csomagot lehet/kell frissíteni..."
+    [ -x /usr/bin/apt ] && apt list --upgradable 2>/dev/null
+    [ -x /sbin/apk    ] && apk version -v |grep -v -e " = " -e "^Installed:"
     exit 0
