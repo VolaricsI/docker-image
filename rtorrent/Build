@@ -3,48 +3,54 @@
 
 #:::::: Beallitasok :::::::::::
 	IMAGE_NAME="volaricsi/rtorrent"
-	Lista_Alap=" alpine:3.10 ubuntu alpine:3.11 alpine"
-	Lista_Fordit=" alpine-3.10 ubuntu alpine " 					## Az utolsó lesz a "latest"
+	AlapImagek=" alpine:3.10 alpine:3.11 alpine ubuntu "
 	BuildParam="--no-cache"
 
 #:::::: Fuggvenyek ::::::::::::
-Fordit(){
-	while [ ! -z "$1"  ] ; do
-	echo 	docker image build $BuildParam --tag ${IMAGE_NAME}:$1 -f Dockerfile_$1 .
-		docker image build $BuildParam --tag ${IMAGE_NAME}:$1 -f Dockerfile_$1 .
-		[ $? -ne 0 ] && exit 1
+Fordit(){ 			##$1: Dockerfile_neve
+	tag=$( echo $1|sed 's/.*_//g;' )
+	if [ ".$1" = ".$tag" ]; then
+	    echo "hibás filenev: $1."
+	    exit 1
+	fi
 
-		echo 	docker run --rm ${IMAGE_NAME}:$1 verzio
-		Ver=$( 	docker run --rm ${IMAGE_NAME}:$1 verzio )
-		[ $? -ne 0 ] && exit 2
-		if [ -z "$Ver" ]; then
-			echo Sikertelen verzió meghatározás.....
-			exit 3
-		fi
+	echo 	docker image build $BuildParam --tag ${IMAGE_NAME}:$tag -f $1 .
+		docker image build $BuildParam --tag ${IMAGE_NAME}:$tag -f $1 .
+	[ $? -ne 0 ] && exit 2 								## Ha hibás a build akkor nincs tovább
 
-		docker tag ${IMAGE_NAME}:$1 ${IMAGE_NAME}:$1_$Ver
-		docker tag ${IMAGE_NAME}:$1 ${IMAGE_NAME}:latest
-
-		docker image rm ${IMAGE_NAME}:$1 		## Ez a TAG nem kell, így lekerül róla
-	    shift
-	done
+	echo 	docker run --rm ${IMAGE_NAME}:$tag verzio 				## Verzió meghatározás
+	Ver=$( 	docker run --rm ${IMAGE_NAME}:$tag verzio )
+	if [ $? -ne 0 ] || [ -z "$Ver" ]; then
+		echo Sikertelen verzió meghatározás.....
+		exit 3
+	fi
+	docker tag ${IMAGE_NAME}:$tag ${IMAGE_NAME}:latest
+	docker tag ${IMAGE_NAME}:$tag ${IMAGE_NAME}:${tag}_$Ver
+	docker image rm ${IMAGE_NAME}:$tag 						## Ez a TAG nem kell, így lekerül róla
 }
-Fordit_full(){
-	for la in $Lista_Alap ; do 			## Az alap image-ekből használjuk a legfrissebbet
+
+Fordit_mind(){
+	for la in $AlapImagek ; do 			## Az alap image-ekből használjuk a legfrissebbet
 		docker image pull $la
 	done
 
-	Fordit $Lista_Fordit
+	Alap=$( basename $( readlink -e Dockerfile ) ) 				## Hogy a végén legyen a Dockerfile
+	Lista=" $(ls Dockerfile_* |grep -v "^$Alap$" |sort -r) $Alap " 		## Mert az lesz a latest
+
+	for fname in $Lista; do
+	    Fordit $fname
+	done
 }
 
 #:::::::: Start :::::::::::::::
-    Alap=$( basename $0|sed 's/.*_//g;' )
+    Nevem=$( basename $0 ); Tag=$( basename $0|sed 's/.*_//g;' )
 
-    case "$Alap" in
-	"$( basename $0 )") 	Fordit_full
+    case "$Tag" in
+	"$Nevem") 	Fordit_mind
 	;;
-	*) 			Fordit $Alap
+	*) 		Fordit Dockerfile_$Tag
 	;;
     esac
     echo "Sikeressen vége..."
     docker image ls |grep "${IMAGE_NAME}"
+#echo .................; read a; 
