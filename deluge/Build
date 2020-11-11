@@ -1,37 +1,56 @@
 #!/bin/sh
+#	Create by Voli
 
-IMAGE_NAME=volaricsi/deluge
-BuildParam="--no-cache"
+#:::::: Beallitasok :::::::::::
+	IMAGE_NAME="volaricsi/deluge"
+	AlapImagek=" alpine:edge ubuntu:20.04 "
+	BuildParam="--no-cache"
 
-Fordit(){
-
-echo "**************** $1 ***********************"
-
-    A_tag=":$1"; A_file="_$1"; A_ver="$1_"
-
-echo 	docker image build $BuildParam --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
-	docker image build $BuildParam --tag ${IMAGE_NAME}${A_tag} -f Dockerfile${A_file} .
-	if [ $? -ne 0 ]; then
-		echo Sikertelen build.....
-		exit 1
+#:::::: Fuggvenyek ::::::::::::
+Fordit(){ 			##$1: Dockerfile_neve
+	tag=$( echo $1|sed 's/.*_//g;' )
+	if [ ".$1" = ".$tag" ]; then
+	    echo "hibás filenev: $1."
+	    exit 1
 	fi
 
-	echo 	docker run --rm ${IMAGE_NAME}${A_tag} verzio
-	Ver=$( 	docker run --rm ${IMAGE_NAME}${A_tag} verzio )
-	if [ $? -ne 0 ]; then
+	echo 	docker image build $BuildParam --tag ${IMAGE_NAME}:$tag -f $1 .
+		docker image build $BuildParam --tag ${IMAGE_NAME}:$tag -f $1 .
+	[ $? -ne 0 ] && exit 2 								## Ha hibás a build akkor nincs tovább
+
+	echo 	docker run --rm ${IMAGE_NAME}:$tag verzio 				## Verzió meghatározás
+	Ver=$( 	docker run --rm ${IMAGE_NAME}:$tag verzio )
+	if [ $? -ne 0 ] || [ -z "$Ver" ]; then
 		echo Sikertelen verzió meghatározás.....
-		exit 1
+		exit 3
 	fi
-
-echo	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}
-	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${A_ver}${Ver}
-
-	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:${Ver}
-	docker tag ${IMAGE_NAME}${A_tag} ${IMAGE_NAME}:latest
-
+	docker tag ${IMAGE_NAME}:$tag ${IMAGE_NAME}:latest
+	docker tag ${IMAGE_NAME}:$tag ${IMAGE_NAME}:${tag}_$Ver
+	docker image rm ${IMAGE_NAME}:$tag 						## Ez a TAG nem kell, így lekerül róla
 }
 
-#	Fordit alpine
-	Fordit ubuntu
+Fordit_mind(){
+	for la in $AlapImagek ; do 			## Az alap image-ekből használjuk a legfrissebbet
+		docker image pull $la
+	done
 
-	docker image ls |grep "${IMAGE_NAME}"
+	Alap=$( basename $( readlink -e Dockerfile ) ) 				## Hogy a végén legyen a Dockerfile
+	Lista=" $(ls Dockerfile_* |grep -v "^$Alap$" |sort -r) $Alap " 		## Mert az lesz a latest
+
+	for fname in $Lista; do
+	    Fordit $fname
+	done
+}
+
+#:::::::: Start :::::::::::::::
+    Nevem=$( basename $0 ); Tag=$( basename $0|sed 's/.*_//g;' )
+
+    case "$Tag" in
+	"$Nevem") 	Fordit_mind
+	;;
+	*) 		Fordit Dockerfile_$Tag
+	;;
+    esac
+    echo "Sikeressen vége..."
+    docker image ls |grep "${IMAGE_NAME}"
+#echo .................; read a; 
