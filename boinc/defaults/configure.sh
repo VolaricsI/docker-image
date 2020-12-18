@@ -10,8 +10,12 @@
 
     date +%Y-%m-%d 	>/defaults/BuildDate.txt
 
-    rmdir /var/lib/boinc
+    [ -d /var/lib/boinc 	] && rm -r /var/lib/boinc 			## Alpine
+    [ -d /var/lib/boinc-client 	] && rm -r /var/lib/boinc-client 		## Ubuntu
+
     ln -s /config /var/lib/boinc
+    ln -s /config /var/lib/boinc-client
+
 
     mkdir -p 		/config
     chown -RL abc:abc 	/config
