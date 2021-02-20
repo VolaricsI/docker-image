@@ -7,50 +7,10 @@
 	BuildParam="--no-cache"
 
 #:::::: Fuggvenyek ::::::::::::
-Fordit(){ 			##$1: Dockerfile_neve
-	tag=$( echo $1|sed 's/.*_//g;' )
-	if [ ".$1" = ".$tag" ]; then
-	    echo "hibás filenev: $1."
-	    exit 1
-	fi
-
-	echo 	docker image build $BuildParam --tag ${IMAGE_NAME}:$tag -f $1 .
-		docker image build $BuildParam --tag ${IMAGE_NAME}:$tag -f $1 .
-	[ $? -ne 0 ] && exit 2 								## Ha hibás a build akkor nincs tovább
-
-	echo 	docker run --rm ${IMAGE_NAME}:$tag verzio 				## Verzió meghatározás
-	Ver=$( 	docker run --rm ${IMAGE_NAME}:$tag verzio )
-	if [ $? -ne 0 ] || [ -z "$Ver" ]; then
-		echo Sikertelen verzió meghatározás.....
-		exit 3
-	fi
-	docker tag ${IMAGE_NAME}:$tag ${IMAGE_NAME}:latest
-	docker tag ${IMAGE_NAME}:$tag ${IMAGE_NAME}:${tag}_$Ver
-	docker image rm ${IMAGE_NAME}:$tag 						## Ez a TAG nem kell, így lekerül róla
-}
-
-Fordit_mind(){
-	for la in $AlapImagek ; do 			## Az alap image-ekből használjuk a legfrissebbet
-		docker image pull $la
-	done
-
-	Alap=$( basename $( readlink -e Dockerfile ) ) 				## Hogy a végén legyen a Dockerfile
-	Lista=" $(ls Dockerfile_* |grep -v "^$Alap$" |sort -r) $Alap " 		## Mert az lesz a latest
-
-	for fname in $Lista; do
-	    Fordit $fname
-	done
-}
-
+FV_TAROLO="../Build"
 #:::::::: Start :::::::::::::::
-    Nevem=$( basename $0 ); Tag=$( basename $0|sed 's/.*_//g;' )
-
-    case "$Tag" in
-	"$Nevem") 	Fordit_mind
-	;;
-	*) 		Fordit Dockerfile_$Tag
-	;;
-    esac
-    echo "Sikeressen vége..."
-    docker image ls |grep "${IMAGE_NAME}"
-#echo .................; read a; 
+    if [ ! -e "$FV_TAROLO" ]; then
+        echo "Hiányző file: $FV_TAROLO ($(readlink -f $FV_TAROLO))."
+        exit 1
+    fi
+    . "$FV_TAROLO"
