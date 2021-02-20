@@ -1,0 +1,9 @@
+#!/bin/sh
+
+    docker image ls|grep "^volaricsi/" |sed 's/ \+/:/ ; s/ .*// ' |sort |while read f ; do
+	echo "======================= $f ================="
+	docker push $f
+
+    done
+
+
