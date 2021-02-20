@@ -1,0 +1,17 @@
+#!/bin/sh
+#	Create by Voli
+
+#:::::: Beallitasok :::::::::::
+	IMAGE_NAME="volaricsi/boinc"
+	Lista_Alap=" ubuntu alpine:edge "
+	Lista_Fordit=" alpine "
+	BuildParam="--no-cache"
+
+#:::::: Fuggvenyek ::::::::::::
+FV_TAROLO="../Build"
+#:::::::: Start :::::::::::::::
+	if [ ! -e "$FV_TAROLO" ]; then
+	    echo "Hiányző file: $FV_TAROLO ($(readlink -f $FV_TAROLO))."
+	    exit 1
+	fi
+	. "$FV_TAROLO"
