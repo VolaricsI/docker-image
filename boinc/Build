@@ -3,49 +3,14 @@
 
 #:::::: Beallitasok :::::::::::
 	IMAGE_NAME="volaricsi/boinc"
-	Lista_Alap=" ubuntu alpine:edge "
-	Lista_Fordit=" alpine "
-#	Lista_Fordit=" ubuntu alpine " 					## Az utolsó lesz a "latest"
+	AlapImagek=" ubuntu alpine:edge "
 	BuildParam="--no-cache"
 
 #:::::: Fuggvenyek ::::::::::::
-Fordit(){
-	while [ ! -z "$1"  ] ; do
-	echo 	docker image build $BuildParam --tag ${IMAGE_NAME}:$1 -f Dockerfile_$1 .
-		docker image build $BuildParam --tag ${IMAGE_NAME}:$1 -f Dockerfile_$1 .
-		[ $? -ne 0 ] && exit 1
-
-		echo 	docker run --rm ${IMAGE_NAME}:$1 verzio
-		Ver=$( 	docker run --rm ${IMAGE_NAME}:$1 verzio )
-		[ $? -ne 0 ] && exit 2
-		if [ -z "$Ver" ]; then
-			echo Sikertelen verzió meghatározás.....
-			exit 3
-		fi
-
-		docker tag ${IMAGE_NAME}:$1 ${IMAGE_NAME}:$1_$Ver
-		docker tag ${IMAGE_NAME}:$1 ${IMAGE_NAME}:latest
-
-		docker image rm ${IMAGE_NAME}:$1 		## Ez a TAG nem kell, így lekerül róla
-	    shift
-	done
-}
-Fordit_full(){
-	for la in $Lista_Alap ; do 			## Az alap image-ekből használjuk a legfrissebbet
-		docker image pull $la
-	done
-
-	Fordit $Lista_Fordit
-}
-
+FV_TAROLO="../Build"
 #:::::::: Start :::::::::::::::
-    Alap=$( basename $0|sed 's/.*_//g;' )
-
-    case "$Alap" in
-	"$( basename $0 )") 	Fordit_full
-	;;
-	*) 			Fordit $Alap
-	;;
-    esac
-    echo "Sikeressen vége..."
-    docker image ls |grep "${IMAGE_NAME}"
+    if [ ! -e "$FV_TAROLO" ]; then
+	echo "Hiányző file: $FV_TAROLO ($(readlink -f $FV_TAROLO))."
+	exit 1
+    fi
+    . "$FV_TAROLO"
