@@ -8,10 +8,9 @@ ENV PUID=2012 PGID=2012 TIME_ZONE=Europe/Budapest
 
 
 # Install required packages.: a runit-ből csak a chpst kell
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -y 						\
-    && apt-get install -y wget runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst  					\
-    && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 				\
-    && cd /tmp && wget --quiet ${BtSyncSrc} && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && rm -rf /tmp/* 	\
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -y 				\
+    && apt-get install -y boinc-client runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst  		\
+    && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 		\
 	## Ami csak a telepítéshez kellet törlöm
     && apt-get remove --purge -y runit tzdata 		\
     && apt-get remove --purge -y bzip2 ca-certificates openssl 	\
