@@ -1,0 +1,9 @@
+#!/bin/sh
+
+    docker image ls|grep -v -e "^REPOSITORY" -e "<none>" |sed 's/ \+/:/ ; s/ .*// ' |sort |while read f ; do
+	echo "======================= $f ================="
+	docker pull "$f"
+
+    done
+
+
