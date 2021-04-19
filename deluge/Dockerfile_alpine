@@ -1,3 +1,4 @@
+		## Mert csak ebben van
 FROM alpine:edge
 
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\

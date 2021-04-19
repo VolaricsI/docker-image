@@ -1,4 +1,4 @@
-    Az alpine verziió jelenleg (2018-12-04) sokszor hibás a verzió (rc)
+    Az alpine verzió jelenleg (2018-12-04) sokszor hibás a verzió (rc)
 
 
     alpine/ubuntu alapon, 

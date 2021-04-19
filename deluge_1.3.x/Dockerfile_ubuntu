@@ -1,3 +1,4 @@
+			# Mert csak ebben van ez a verzió
 FROM ubuntu:18.04
 
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
