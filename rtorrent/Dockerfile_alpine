@@ -1,5 +1,5 @@
-		## Mert ebben van a 0.9.8-r0 STABIL rtorrent
-FROM alpine:3.11
+		## Mert ebben van a 0.9.8-r0 STABIL rtorrent és ez a mainstream
+FROM alpine
 
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"
