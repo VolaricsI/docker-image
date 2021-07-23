@@ -13,7 +13,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -
     && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 		\
 	## Ami csak a telepítéshez kellet törlöm
     && apt-get remove --purge -y runit tzdata 		\
-    && apt-get remove --purge -y bzip2 ca-certificates openssl 	\
+    && apt-get remove --purge -y bzip2 			\
     && apt-get autoremove --purge -y && apt-get clean 		\
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 		\
     && mkdir -p /defaults /config /downloads
