@@ -27,5 +27,6 @@ fi
 
     umask $UMASK
 
+    cd /config || exit 2
     echo "Starting resilio..."
     exec chpst -u abc:abc /usr/bin/rslsync --nodaemon --config ${CONF}
