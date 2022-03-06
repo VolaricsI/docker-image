@@ -16,27 +16,17 @@
 	chown -Rc abc:abc 	/config
 
 ## Programozói hiba kijavítása....
-##	diff -u file1.html file2.html > patchfile.patch		!!!!!example
-##	Forrás: https://git.deluge-torrent.org/deluge/commit/?h=develop&id=d6c96d629183e8bab2167ef56457f994017e7c85
-#echo	patch /usr/lib/python3/dist-packages/deluge/i18n/util.py /defaults/patch/util.py.patch
-#	patch /usr/lib/python3/dist-packages/deluge/i18n/util.py /defaults/patch/util.py.patch
-##	Forrás: https://github.com/deluge-torrent/deluge/pull/268
-#echo	patch /usr/lib/python3/dist-packages/deluge/ui/console/cmdline/commands/config.py /defaults/patch/config.py.patch
-#	patch /usr/lib/python3/dist-packages/deluge/ui/console/cmdline/commands/config.py /defaults/patch/config.py.patch
+	cp /usr/lib/python3/dist-packages/deluge/i18n/util.py 				/usr/lib/python3/dist-packages/deluge/i18n/util.py.orig
+	cp /usr/lib/python3/dist-packages/deluge/ui/console/cmdline/commands/config.py 	/usr/lib/python3/dist-packages/deluge/ui/console/cmdline/commands/config.py.orig
+	patch /usr/lib/python3/dist-packages/deluge/i18n/util.py 				</defaults/patch/util.py.patch
+	patch /usr/lib/python3/dist-packages/deluge/ui/console/cmdline/commands/config.py 	</defaults/patch/config.py.patch
 echo "1--------------------------------"
 
-##### EZ CSAK AZÉRT MERT NEM KEZELI A STRINGEKET A deluge-console ; MÉG JELENLEG
-#	chpst -u  abc deluged -c /config 						# A megfelelő felhasználó configuráljon
-#	while [ ! -f /config/core.conf ]; do sleep 1; done 				# Így biztos lesz konfigja
-#	deluge-console -c /config "halt"; sleep 1					# Legyen ideje leállni
-#	sed -i 's|"download_location":.*,|"download_location": "/downloads",|'			/config/core.conf	# setup default paths to go to the user's defined data folder.
-#	sed -i 's|"move_completed_path":.*,|"move_completed_path": "/downloads",|'		/config/core.conf
-#	sed -i 's|"torrentfiles_location":.*,|"torrentfiles_location": "/config/Backup",|'	/config/core.conf
 
 ##A deluge-console programmal 
 	chpst -u  abc deluged -c /config 						# A megfelelő felhasználó configuráljon
-#	while [ ! -f /config/core.conf ]; do sleep 1; done 				# Wait until auth file created; így már elindult
-sleep 10
+#	while [ ! -f /config/core.conf ]; do sleep 1; done 				# Wait until auth file created; Ekkor már elindult
+	sleep 10 									# Biztos ami biztos
 
 echo "2-------------------------------"
 	deluge-console -c /config "config -s allow_remote 		true" 		# Nem csak a konténerből lehet managelni
