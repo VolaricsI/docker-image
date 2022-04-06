@@ -28,6 +28,9 @@ DIR_RUT=/var/www/ruTorrent
     && chown -RL abc:abc /defaults /var/www 	\
     || exit 24
 
+# a port ellenőrzés régóta nem jó
+    rm -rf ${DIR_RUT}/plugins/check_port
+
 # A _task nem találja a plugin-t akkor kézzel bedrótozom a helyét
     sed -i  "s| = '';| = '/usr/bin/pgrep';|" /var/www/ruTorrent/plugins/_task/conf.php
 
