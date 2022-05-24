@@ -6,34 +6,31 @@
 #:::::: Beallitasok :::::::::::
 #:::::: Ellenorzesek ::::::::::
 
-    if [ -x /usr/bin/apt ]; then 	## Ubuntu alap
-	UJsomagSzam=$( apt update 2>/dev/null |grep "apt list --upgradable" 2>/dev/null |sed 's/ package.*//; s/ csomag.*// ' )
+    if [ -x /usr/bin/apt ]; then 	## Ubuntu alapon
+	Result=$( apt update  2>/dev/null )
 	Ret=$?
+	UJsomagSzam=$( echo "$Result" |grep "apt list --upgradable" |sed 's/ package.*//; s/ csomag.*// ' )
+	[ -z "$UJsomagSzam" ] && UJsomagSzam=0
     fi
-
 
     if [ -x /sbin/apk ]; then 		## Alpine alapon
 	apk update 	>/dev/null 2>&1
-	UJsomagSzam=$( apk version -v -l '<' -l '?' |grep -v "^Installed:" |grep -v -e "^glibc-bin-" -e "^glibc-" |grep -c "." )
 	Ret=$?
+	UJsomagSzam=$( apk version -v -l '<' -l '?' |grep -v "^Installed:" |grep -v -c -e "^glibc-bin-" -e "^glibc-" )
     fi
-
 
     [ $Ret -ne 0 ] 	&& exit $Ret 		## Ha hiba történt
 
-    echo "Az image neve: resillio/btsync ($1)."
-
-    if [ -n "$UJsomagSzam" ]; then
-	echo "A(z) $1 imageben $UJsomagSzam csomagot lehet/kell frissíteni..."
-	apk version -v -l '<' -l '?' |grep -v "^Installed:"
-    fi
-
-
     cd /tmp
-    wget --quiet --no-check-certificate "${BtSyncSrc}" && tar xvzf resilio-sync_x64.tar.gz >/dev/null && rm ./resilio-sync_x64.tar.gz ./LICENSE.TXT || exit 100
+    wget --quiet --no-check-certificate -O - "${BtSyncSrc}" |tar xvzf - >/dev/null
 
     OldVer=$(   rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
     NewVer=$( ./rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
-    rm ./rslsync
+    rm -rf ./rslsync ./LICENSE.TXT ./resilio_dumps
 
-    [ ".$OldVer" == ".$NewVer" ] || echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
+    [ $UJsomagSzam -eq 0 ] && [ ".$OldVer" = ".$NewVer" ] && exit 0
+
+    [ -z "$1" ] && echo "Az image: resillio/btsync."
+    [ -n "$1" ] && 	echo "A(z) $1 contenerben $UJsomagSzam csomagot lehet/kell frissíteni..."
+    [ $UJsomagSzam -ne 0 ] 	&& echo "A(z) $1 contenerben $UJsomagSzam csomagot lehet/kell frissíteni..."
+    [ .$OldVer = .$NewVer ] 	|| echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
