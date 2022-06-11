@@ -23,6 +23,10 @@
 
     cd /tmp
     wget --quiet --no-check-certificate -O - "${BtSyncSrc}" |tar xvzf - >/dev/null
+    if [ ! -e ./rslsync ]; then
+	echo "Sikertelen az új verzió letöltése..."
+	exit 1
+    fi
 
     OldVer=$(   rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
     NewVer=$( ./rslsync --help|grep 'Resilio Sync'|sed 's/Resilio Sync//g; s/ \+//g; s/(/./g; s/).*//g; ' )
@@ -33,4 +37,5 @@
     [ -z "$1" ] && echo "Az image: resillio/btsync."
     [ -n "$1" ] && 	echo "A(z) $1 contenerben $UJsomagSzam csomagot lehet/kell frissíteni..."
     [ $UJsomagSzam -ne 0 ] 	&& echo "A(z) $1 contenerben $UJsomagSzam csomagot lehet/kell frissíteni..."
+    [ -x /usr/bin/apt ] 	&& apt list --upgradable
     [ .$OldVer = .$NewVer ] 	|| echo "Régi verzió: $OldVer, az új: >>$NewVer<<."
