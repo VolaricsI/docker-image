@@ -22,6 +22,6 @@
 
     [ -z "$1" ] && echo "Az image: deluge_1.3.x."
     [ -n "$1" ] && echo "A(z) $1 contenerben $UJsomagSzam csomagot lehet/kell frissíteni..."
-    [ -x /usr/bin/apt ] && apt list --upgradable 2>/dev/null
+    [ -x /usr/bin/apt ] && apt list --upgradable 2>/dev/null |grep -v -e "^Listing"
     [ -x /sbin/apk    ] && apk version -v |grep -v -e " = " -e "^Installed:"
     exit 0
