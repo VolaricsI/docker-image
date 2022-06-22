@@ -22,7 +22,7 @@
     [ $Ret -ne 0 ] 	&& exit $Ret 		## Ha hiba történt
 
     cd /tmp
-    wget --quiet --no-check-certificate -O - "${BtSyncSrc}" |tar xvzf - >/dev/null
+    wget --quiet --no-check-certificate -O - "${BtSyncSrc}" |tar xvzf - 2>/dev/null >/dev/null
     if [ ! -e ./rslsync ]; then
 	echo "Sikertelen az új verzió letöltése..."
 	exit 1
