@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+XMLRPC_HOST=127.0.0.1/RPC
+#:::::: Beallitasok :::::::::::
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
+
+Get(){
+	curl -s --data "<methodCall><methodName>$1</methodName> <params> <param><value><string>$2</string></value></param> </params> </methodCall>" "$XMLRPC_HOST"
+}
+
+    Get download_list 	|grep "<value><string>[0-9A-F]\+</string></value>" |sed 's|^<value><string>\(.*\)</string></value>.*|\1|' 	\
+    |while read Hash; do
+	Get d.is_active $Hash	|grep "^<param><value><i8>0</i8></value></param>"
+	[ $? -eq 0 ] && Get d.name $Hash |grep -e "<param><value><string>.*</string></value></param>"
+    done
+
+exit 0
