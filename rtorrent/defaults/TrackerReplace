@@ -1,0 +1,12 @@
+#/bin/sh
+
+##64:http://tvstore.me:7687/6199c3207a2fc99220d7bd06b8097c5a/announce
+##68:https://tracker.tvstore.me/6199c3207a2fc99220d7bd06b8097c5a/announce
+
+
+ls *.torrent |sort |while read f; do
+		echo $f
+
+		perl -pi -w -e 's|64:http://tvstore.me:7687/6199c3207a2fc99220d7bd06b8097c5a/announce|68:https://tracker.tvstore.me/6199c3207a2fc99220d7bd06b8097c5a/announce| ' "$f"
+
+	done
