@@ -5,6 +5,7 @@ LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 	\
 
     ## Itt található a BtSync binárisa
 ENV BtSyncSrc="https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz"
+ENV BtSyncSrc="https://download-cdn.resilio.com/stable/linux/x64/0/resilio-sync_x64.tar.gz"
 
     ## Személyre szabott beállítások; TIME_ZONE kell ha nem tudod mi legyen akkor UTC
 ENV PUID=2014 PGID=2014 UMASK=002 TIME_ZONE=Europe/Budapest
@@ -12,7 +13,7 @@ ENV PUID=2014 PGID=2014 UMASK=002 TIME_ZONE=Europe/Budapest
 
 # Install required packages.: a runit-ből csak a chpst kell; resilio
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -y 						\
-    && apt-get install -y wget runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst  					\
+    && apt-get install -y adduser wget runit tzdata && cp $( find / -iname chpst ) /usr/sbin/chpst  				\
     && ln -nf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo "${TIME_ZONE}" >/etc/timezone 				\
     && cd /tmp && wget --quiet ${BtSyncSrc} && tar xvzf resilio-sync_x64.tar.gz && cp rslsync /usr/bin/ && rm -rf /tmp/* 	\
 	## Ami csak a telepítéshez kellet törlöm
