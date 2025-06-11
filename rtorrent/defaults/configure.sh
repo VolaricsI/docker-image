@@ -24,7 +24,8 @@
     rm /var/log/nginx/access.log 	2>/dev/null; touch /tmp/nginx_access.log; 	ln -s /tmp/nginx_access.log 	/var/log/nginx/access.log
 
 		## A külömböző verziók miatt
-    [ ! -e /sbin/chpst 		] && ln -s /usr/bin/chpst 	/sbin/chpst
+    [ ! -e /sbin/chpst 		] && [ -e /usr/bin/chpst  ] && ln -s /usr/bin/chpst 	/sbin/chpst
+    [ ! -e /sbin/chpst 		] && [ -e /usr/sbin/chpst ] && ln -s /usr/sbin/chpst 	/sbin/chpst
 
     Bin=$( ls /usr/sbin/php-fpm* )
     [ -e $Bin 	] && ln -s $Bin /defaults/php-fpm

@@ -33,7 +33,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -y instal
 		# A szügségtelen programok, melyek az alap image-ben vannak
     && apt-get remove --purge -y manpages manpages-dev openssl publicsuffix xz-utils geoip-database bzip2 krb5-locales openssh-client xauth patch less shared-mime-info mc	\
 		# A csomagkezelő adatainak tisztítása
-    && apt-get autoremove --purge -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache && mkdir -p mkdir -p /var/cache/apt/archives/partial	\
+    && apt-get autoremove --purge -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache && mkdir -p /var/cache/apt/archives/partial	\
 		# Az alap könyvtárak
     && mkdir -p /defaults /config /downloads
 

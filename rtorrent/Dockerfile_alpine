@@ -32,7 +32,11 @@ RUN apk update && apk upgrade 	\
 
 COPY defaults /defaults
 
-RUN /defaults/configure.sh && /defaults/configure-supervisord.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
+#RUN /defaults/configure.sh && /defaults/configure-supervisord.sh && /defaults/configure-rutorrent.sh && /defaults/configure-munin.sh
+RUN /defaults/configure.sh 
+RUN /defaults/configure-supervisord.sh 
+RUN /defaults/configure-rutorrent.sh 
+RUN /defaults/configure-munin.sh
 
 ## dht; data ports; WebAdmin; [ távirányító/management (xmlrpc) port (5000) már nem szükséges kivezetni ]
 EXPOSE 6881/udp 51413 80
@@ -40,7 +44,7 @@ EXPOSE 6881/udp 51413 80
 ## Konfigok helye; ide kerülnek a letöltések
 VOLUME /config /downloads
 
-HEALTHCHECK --interval=5m --timeout=10s  CMD healthcheck
+#HEALTHCHECK --interval=5m --timeout=10s  CMD healthcheck
 
 
 CMD ["/start.sh"]
