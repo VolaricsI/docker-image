@@ -6,7 +6,7 @@
 
     if [ .$( cat /downloads/.docker-mount-point ) != ./downloads ]; then		## Csak akkor fusson ha VALÓBAN a megfelelő könyvtár van alatta
 	echo "Nem megfelelő a csatolt könyvtár...."
-	exit 1
+	exit 2
     fi
 
 		##Ha meg van adva akkor ez lesz a web-es felület fejléce (title)
@@ -35,8 +35,10 @@
     Session_Dir=$( grep -v "#" /config/rtorrent.rc 	|grep "^session.*=" 	|head -1 |sed 's/.*[ =]//' )
     [ -e "${Session_Dir}/rtorrent.lock" ] && rm ${Session_Dir}/rtorrent.lock
 
-    time chown -RLc abc:abc 	/config /var/www/* /dev/console 			# Jól álljanak a jogosultságok
-    time chown -RLc abc: 	/downloads
+#    time chown -RLc abc:abc 	/config /var/www/* /dev/console 			# Jól álljanak a jogosultságok
+#    time chown -RLc abc: 	/downloads
+    time find /config /var/www /dev/console 	! \( -user abc -a -group abc \) -exec chown -Lc abc:abc {} +
+    time find /downloads			! \( -user abc -a -group abc \) -exec chown -Lc abc:    {} +
 
     umask $UMASK >/dev/null
     HOME=/config
