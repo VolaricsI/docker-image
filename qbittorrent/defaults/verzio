@@ -1,0 +1,12 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+Apk=$(  find /usr/sbin /sbin -xdev  -iname apk  -type f -perm  -u+rwx )
+Dpkg=$( find /usr/bin  /bin  -xdev  -iname dpkg -type f -perm  -u+rwx )
+
+Ver1a=$( [ ".$Apk" != "."  ] && $Apk info qbittorrent-nox |grep installed |sed 's|.*qbittorrent-nox-||; s| .*||' )
+Ver1d=$( [ ".$Dpkg" != "." ] && $Dpkg  -s qbittorrent-nox |grep Version: |sed 's|Version: *||' )
+
+BDate=$( cat /defaults/BuildDate.txt )
+
+echo -n "qBitTorrent-${Ver1a}${Ver1d}_${BDate}"

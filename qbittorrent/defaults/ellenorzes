@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+HOST="http://localhost:8080/api/v2/torrents/info"
+L1=/config/torren.lst
+#:::::: Beallitasok :::::::::::
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
+
+    curl -s ${HOST} | jq -r '.[] | if .root_path != "" then .root_path else .content_path end'	>$L1
+
+    find /downloads -maxdepth 1 -mindepth 1 |grep -v  -e ".docker-mount-point" -e "lost+found"		\
+	|while read a; do
+	    grep  -F -x -q  "${a}" ${L1} && continue
+	    if [ -n "$Title" ]; then
+		echo "A(z) >>>$Title<<< nevű konténer nem használt könyvtárai..."
+		echo ""
+		Title=""
+	    fi
+	    echo ">${a}<"
+	done
+    rm "$L1"
+exit 0

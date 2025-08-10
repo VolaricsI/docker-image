@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+HOST="http://localhost:8080"
+#:::::: Beallitasok :::::::::::
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
+
+    curl -s -o /dev/null -w "%{http_code}" ${HOST}
+
