@@ -1,0 +1,28 @@
+services:
+
+ transmission:
+  container_name: transmission
+  image: volaricsi/transmission
+  restart: always
+
+  environment:
+    # torrent user
+    - PUID=2002
+    - PGID=2002
+    - UMASK=002
+
+    - WebUI_Port=9091
+    - LOG_LEVEL=error		#error, info, debug
+
+    - TITLE=A_Konténer_neve_amit_ellenörzéskor_ír_ki
+
+    - MUNIN_CATEGORIA=A_Munin_Plugin_melyik_kategóriába_kerüéjön
+
+  volumes:
+    - /srv/rtorrent/config:/config
+    - /srv/rtorrent/:/downloads
+
+  ports:
+      - "9091:9091" 		# WebUI
+      - "51413:51413" 		# TCP peer port
+      - "51413:51413/udp" 	# UDP peer port

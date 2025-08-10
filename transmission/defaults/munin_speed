@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+from transmission_rpc import Client
+
+client = Client()
+
+def print_config():
+    category = os.getenv("MUNIN_CATEGORIA", "network")
+    print("graph_title Transmission sebességek")
+    print("graph_vlabel Up / Down (kbyte/s)")
+    print("graph_category network")
+    print(f"graph_category {category}")
+    print("download.label Letöltés")
+    print("download.type GAUGE")
+    print("upload.label Feltöltés")
+    print("upload.type GAUGE")
+
+def print_values():
+    session = client.session_stats()
+    # byte/sec → kilobyte/sec
+    down = session.download_speed / 1024
+    up = session.upload_speed / 1024
+    print(f"download.value {down:.2f}")
+    print(f"upload.value {up:.2f}")
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "config":
+        print_config()
+    else:
+        print_values()

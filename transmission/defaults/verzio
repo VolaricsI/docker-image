@@ -1,0 +1,10 @@
+#!/bin/sh
+#	Created by Volarics Istvan (Voli)
+
+Apk=$(  find /usr/sbin /sbin -xdev  -iname apk  -type f -perm  -u+rwx )
+
+Ver=$( [ ".$Apk" != "."  ] && $Apk info -d transmission |grep transmission |sed 's/.*transmission//g; s/ .*//g; s/^-//g; ' )
+
+BDate=$( cat /defaults/BuildDate.txt )
+
+echo -n "transmission-${Ver}_${BDate}"

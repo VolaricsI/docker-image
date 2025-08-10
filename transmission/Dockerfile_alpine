@@ -1,0 +1,39 @@
+FROM alpine:3.22
+
+LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
+	url="https://github.com/VolaricsI/docker-image"
+
+		## Személyre szabott beállítások
+ENV PUID=2002 PGID=2002 UMASK=002 TIME_ZONE=Europe/Budapest
+
+
+		# A szükséges programok; A végén törlöm ami már nem kell;
+RUN apk update && apk upgrade 	\
+	# A futtató környezet: transmission összetevők
+    && apk add --no-cache transmission-daemon transmission-cli transmission-extra transmission-remote	\
+    && apk add runit 											\
+	# Csak a telepítéshez kellenek
+    && apk add tzdata mc 									\
+	# Munin plugin működéséhez kell
+    && apk add py3-transmission-rpc py3-yaml						\
+	# ami már nem kell, (a tzdata törlése később: a timezone beállítása után kell)
+#    && apk del git mc 										\
+	# Az alap könyvtárak
+    && mkdir -p /defaults /config /config/watch /downloads
+
+COPY defaults /defaults
+
+RUN    /defaults/configure.sh
+
+## WebAdmin; data ports tcp/udp;
+EXPOSE 9091 51413
+
+## Konfigok helye; torrentek csoportos beolvasása; ide kerülnek a letöltések;
+VOLUME /config /config/watch /downloads
+
+HEALTHCHECK --interval=5m --timeout=10s  CMD /defaults/healthcheck
+
+# Az entrypoint beállítása
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["/start.sh"]

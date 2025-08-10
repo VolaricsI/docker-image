@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+L1=/config/torren.lst
+#:::::: Beallitasok :::::::::::
+
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
+
+
+    transmission-remote -l | awk 'NR>1 && $1 != "Sum:" {print $1}' |while read id; do
+	transmission-remote -t "$id" -i |grep "Name: " |sed 's|^ \+Name: \+||g; '
+    done >${L1}
+
+    find /downloads -maxdepth 1 -mindepth 1 |grep -v  -e ".docker-mount-point" -e "lost+found" \
+	    |sed 's|/downloads/||g; ' |sort \
+		|while read a; do
+		    grep -q -F -x  "${a}" ${L1} 	&& continue
+		    if [ -n "$Title" ]; then
+			echo "A(z) >>>$Title<<< nevű konténer nem használt könyvtárai..."
+			echo ""
+			Title=""
+		    fi
+		    echo ">${a}<"
+		done
+
+exit 0
