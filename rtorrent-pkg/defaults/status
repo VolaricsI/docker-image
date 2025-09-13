@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+HOST="http://127.0.0.1/RPC2"
+#:::::: Beallitasok :::::::::::
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
+
+    HOST="${XMLRPC_HOST:-$HOST}"	## Ha kívülről akkor az legyen
+
+    xmlrpc "$HOST" download_list |grep 'Index [0-9]\+ String:' |sed "s/^.*String: *//g; s|\'||g; "	\
+    |while read Hash; do
+	Status=$( xmlrpc "$HOST" d.is_active "$Hash" |grep "64-bit integer:" |sed 's/.* integer://g; s/ *//g; ' )
+	[ "$Status" -eq 1 ] && continue
+	xmlrpc "$HOST" d.name "$Hash"|grep "String:" |sed "s|^.*String: *\'||g; s|\~||g; "
+    done
+
+exit 0

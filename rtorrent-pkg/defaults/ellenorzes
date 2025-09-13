@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+HOST="http://127.0.0.1/RPC2"
+L1=/config/torren.lst
+#:::::: Beallitasok :::::::::::
+    Title=$TITLE 			## A globális cimke
+    [ -n "$1" ] && Title="$1" 		## Parancssorból is kaphatja
+
+    HOST="${XMLRPC_HOST:-$HOST}"	## Ha kívülről akkor az legyen
+
+	xmlrpc "$HOST" download_list |grep 'Index' |sed "s/^.*String: *//g; s|\'||g; "		\
+		|while read Hash; do
+			FileNev=$( xmlrpc "$HOST" d.base_path "$Hash"|grep "^String:" |sed "s|^String: *'||g; s|'$||g; " )
+			echo -e "$FileNev"
+		done |sort >${L1}
+
+    find /downloads -maxdepth 1 -mindepth 1 |grep -v  -e ".docker-mount-point" -e "lost+found"		\
+    |while read a; do
+	grep -q -F -e  "${a}" ${L1} 	&& continue
+	if [ -n "$Title" ]; then
+		echo "A(z) >>>$Title<<< nevű konténer nem használt könyvtárai..."
+		echo ""
+		Title=""
+	fi
+	echo ">${a}<"
+    done
+    rm ${L1}
+
+exit 0

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+	exec /defaults/php-fpm --nodaemonize --force-stderr -y /config/php-fpm.conf

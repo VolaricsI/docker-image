@@ -1,0 +1,71 @@
+###########################################
+# rTorrent konfiguráció, (ruTorrent kompatibilis), docker konténerem részére
+# 	A config file (ez itt ni) helye a /config/rtorrent.rc, mert bele van drótozva az indító script-be
+
+# ⚙️ Session elérési út és alapértelmezett letöltési könyvtár
+session.path.set 	= "/config/session/"
+directory.default.set 	= "/downloads/"
+
+# 📝 Konzol logolás (később bővíthető fájlokra is)
+#   Levels = critical error warn notice info debug fatal tracker_debug
+log.open_file 	= "log", 	/dev/stdout
+log.add_output 	= "info",	"log"
+log.xmlrpc  	= "/config/xmlrpc.log"
+log.execute 	= "/config/execute.log"
+
+
+# 🛠️ Alap rendszerbeállítások
+# Memória limit esetén a nagy torrenteket nem mindíg tudja le hash-elni!!! (kíméletes beállítás)
+pieces.memory.max.set 	= 512M
+#system.daemon.set 	= true 		## Nem kell mivel az indító parancsba már be van drótozva
+system.umask.set 	= 002 		# fájl jogosultság: 775/664
+encoding.add 		= utf8 		# UTF-8 karakterkódolás
+
+# 📁 Könyvtárak létrehozása indításkor (kommentelhető később)
+execute.throw = sh, -c, "mkdir -p /config/session /config/watched"
+
+# 📥 Watch könyvtár figyelés automatikus betöltéssel
+#schedule2 	= watch_load, 		10, 10, ( ( load.start_verbose,  "/config/watched/*.torrent"
+#schedule2 	= monitor_diskspace, 	15, 60, ( ( close_low_diskspace, 10G ) )
+
+# 📡 SCGI kommunikáció a ruTorrent számára; XMLRPC korlát a ruTorrent kommunikációhoz
+scgi_port 			= 127.0.0.1:5000 	# helyi SCGI port
+network.xmlrpc.size_limit.set 	= 4M
+check_hash 			= yes
+
+# 🔐 Hálózati portok és titkosítás
+network.port_range.set 		= 51413-51413 		# fix port a bejövő kapcsolatoknak
+network.port_random.set 	= no
+protocol.encryption.set 	= allow_incoming,try_outgoing,enable_retry
+
+# 🌍 DHT és UDP tracker támogatás
+dht.mode.set 		= on
+dht.port.set 		= 6881
+protocol.pex.set 	= yes 		# Peer Exchange engedélyezése
+trackers.use_udp.set 	= yes 		# UDP trackerek engedélyezése
+
+# 🌱 Bootstrap DHT node-ok (nyilvános)
+schedule2 	= dht_node_1, 5, 0, "dht.add_node=router.utorrent.com:6881"
+schedule2 	= dht_node_2, 5, 0, "dht.add_node=dht.transmissionbt.com:6881"
+schedule2 	= dht_node_3, 5, 0, "dht.add_node=router.bitcomet.com:6881"
+schedule2 	= dht_node_4, 5, 0, "dht.add_node=dht.aelitis.com:6881"
+
+schedule2 	= dht_node_5, 5, 0, "udp://tracker.opentrackr.org:1337/announce"
+schedule2 	= dht_node_6, 5, 0, "udp://tracker.torrent.eu.org:451/announce"
+schedule2 	= dht_node_7, 5, 0, "udp://tracker.cyberia.is:6969/announce"
+
+----------------------------------------------------------------------
+#throttle.global_up.max_rate.set_kb   = 7168
+
+# Peer settings
+throttle.max_uploads.set = 100
+throttle.max_uploads.global.set = 250
+throttle.min_peers.normal.set = 20
+throttle.max_peers.normal.set = 60
+throttle.min_peers.seed.set = 30
+throttle.max_peers.seed.set = 80
+trackers.numwant.set = 80
+# Limits for file handle resources, this is optimized for an `ulimit` of 1024 (a common default). You MUST leave a ceiling of handles reserved for rTorrent's internal needs!
+network.http.max_open.set 	= 50
+network.max_open_files.set 	= 600
+network.max_open_sockets.set 	= 300

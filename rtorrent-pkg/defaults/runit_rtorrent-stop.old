@@ -1,0 +1,11 @@
+#!/bin/sh
+
+    echo runit rTorrent Stop
+
+    sv stop mginx php-fpm
+
+    LockFile=$( find /config -name rtorrent.lock )
+
+    kill -QUIT $(cat $LockFile |sed 's/.*+//' )
+
+    [ -n "$LockFile" ] && [ -e "$LockFile" ] && exit 1

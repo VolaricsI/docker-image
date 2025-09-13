@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+#:::::: Beallitasok :::::::::::
+
+    docker container run -it --rm --memory=512m --memory-swap=1g -p 90:80 --name volaricsi_rtorrent-pkg_latest  volaricsi/rtorrent-pkg:latest

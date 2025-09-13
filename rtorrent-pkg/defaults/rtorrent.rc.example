@@ -1,0 +1,62 @@
+###########################################
+# rTorrent konfiguráció, (ruTorrent kompatibilis), docker konténerem részére
+# A config file helye a /config/rtorrent.rc
+
+# Session elérési út és alapértelmezett letöltési könyvtár
+directory 	= /downloads/
+session 	= /config/session/
+
+# Konzol logolás
+log.open_file = log, /dev/stdout
+log.add_output = info, log
+
+# Alap rendszerbeállítások
+pieces.memory.max.set 	= 512M
+system.umask.set 	= 002
+encoding_list 		= UTF-8
+
+# Könyvtárak létrehozása (nem minden verzió támogatja az execute.throw-t)
+# Inkább a Docker ENTRYPOINT/indító script intézze
+# execute = sh, -c, mkdir -p /config/session /config/watched
+
+# Watch könyvtár figyelése
+schedule = watch_load, 		10, 10, load_start_verbose=/config/watched/*.torrent
+schedule = monitor_diskspace, 	15, 60, close_low_diskspace=10G
+
+# Hálózati portok
+port_range 	= 51413-51413
+port_random 	= no
+check_hash 	= yes
+encryption 	= allow_incoming,try_outgoing,enable_retry
+
+# DHT és UDP trackerek
+dht 			= auto
+dht_port 		= 6881
+#peer_exchange 		= yes		## Régi neven érhető el
+protocol.pex.set 	= yes
+#use_udp_trackers 	= yes		## Régi neven érhető el
+trackers.use_udp.set 	= yes
+
+# Bootstrap DHT node-ok (csak a router.* sorokat hagyjuk meg, a többire nincs parancs)
+schedule = dht_node_1, 5, 0, dht_add_node=router.utorrent.com:6881
+schedule = dht_node_2, 5, 0, dht_add_node=dht.transmissionbt.com:6881
+schedule = dht_node_3, 5, 0, dht_add_node=router.bitcomet.com:6881
+schedule = dht_node_4, 5, 0, dht_add_node=dht.aelitis.com:6881
+
+# Fájlkezelési limitek
+network.http.max_open.set 	= 50
+network.max_open_files.set 	= 600
+network.max_open_sockets.set 	= 300
+
+# Peer limit beállítások
+throttle.max_uploads.global.set = 250
+throttle.max_uploads.set 	= 100
+throttle.min_peers.normal.set 	= 20
+throttle.max_peers.normal.set 	= 60
+throttle.min_peers.seed.set 	= 30
+throttle.max_peers.seed.set 	= 80
+trackers.numwant.set 		= 80
+
+# SCGI + XMLRPC méret limit
+scgi_port 			= 0.0.0.0:5000
+#network.xmlrpc.size_limit.set 	= 4194304		# 4M bájt

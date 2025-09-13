@@ -1,0 +1,5 @@
+#!/bin/sh
+
+	cd /downloads
+
+	exec /sbin/chpst -u abc /usr/bin/rtorrent -o system.daemon.set=true -o import=/config/rtorrent.rc

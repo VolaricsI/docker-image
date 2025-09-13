@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+#:::::: Beallitasok :::::::::::
+
+    docker container exec -it  volaricsi_rtorrent-pkg_latest /bin/sh

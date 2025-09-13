@@ -1,0 +1,16 @@
+# Create instance directories
+execute.throw = sh, -c, "mkdir -p /downloads /config/session /config/watched "
+
+directory.default.set 	= /downloads/
+session.path.set 	= /config/session/
+
+system.daemon.set = true
+
+scgi_port 	= 0.0.0.0:5000
+
+network.port_range.set  = 51413-51413
+network.port_random.set = no
+dht.port.set 		= 6881
+
+schedule2 = watch_start, 	10, 10, ((load.start_verbose,"/config/watched/*.torrent"))
+schedule2 = monitor_diskspace, 	15, 60, ((close_low_diskspace,1000M))

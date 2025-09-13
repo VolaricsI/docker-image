@@ -1,0 +1,10 @@
+#!/bin/sh
+#	Created by Volarics Istvan by Voli
+
+#:::::: Fix beallitasok :::::::
+HOST="http://127.0.0.1/RPC"
+#:::::: Beallitasok :::::::::::
+    HOST="${XMLRPC_HOST:-$HOST}"	## Ha kívülről akkor az legyen
+
+    xmlrpc "$HOST" system.hostname
+exit $?

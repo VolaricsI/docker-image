@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+#	Create by Voli
+
+#:::::: Fix beallitasok :::::::
+XMLRPC_HOST=127.0.0.1/RPC
+#:::::: Beallitasok :::::::::::
+Tracker_OLD="http://tvstore.me:7687/6199c3207a2fc99220d7bd06b8097c5a/announce"
+Tracker_NEW="https://tracker.tvstore.me/6199c3207a2fc99220d7bd06b8097c5a/announce"
+
+curl -s --data "<methodCall> <methodName>download_list</methodName> </methodCall>"   "$XMLRPC_HOST" 		\
+    |grep "<value><string>[0-9A-F]\+</string></value>" | sed 's|^<value><string>||; s|</string></value>.*||' 	\
+    |while read Hash; do
+	Van0=$( curl -s --data "<methodCall><methodName>t.url</methodName> <params> <param><value><string>$Hash:t0</string></value></param> </params> </methodCall>" "$XMLRPC_HOST" |grep -e "$Tracker_OLD" )
+	Van1=$( curl -s --data "<methodCall><methodName>t.url</methodName> <params> <param><value><string>$Hash:t1</string></value></param> </params> </methodCall>" "$XMLRPC_HOST" |grep -e "$Tracker_OLD" )
+	if [ -z "${Van0}${Van1}" ]; then continue; fi
+    echo ${Van0}${Van1}
+
+    curl -s --data "<methodCall><methodName>d.tracker.insert</methodName> <params> <param><value><string>$Hash</string></value></param> <param><value><i8>0</i8></value></param>  <param><value><string>${Tracker_NEW}</string></value></param>  </params> </methodCall>" "$XMLRPC_HOST"
+
+    done
+exit 0
