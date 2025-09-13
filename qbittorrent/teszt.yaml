@@ -2,6 +2,9 @@ services:
   qbittorrent:
     image: volaricsi/qbittorrent:latest
     container_name: qbittorrent-voli
+
+    mem_limit: 4g                   # memóriakorlát (Docker Compose v2+ támogatja)
+
     environment:
       - PUID=2002 			# saját user ID (igazítsd)
       - PGID=2002 			# saját group ID (igazítsd)
@@ -17,9 +20,10 @@ services:
     volumes:
       - /home/torrent/qbittorrent:/config
       - /srv/Rtorrent:/downloads
+
     ports:
       - 8080:8080                    # WebUI
       - 51423:51423                  # Torrent TCP
       - 51423:51423/udp              # Torrent UDP
+
     restart: unless-stopped
-    mem_limit: 4g                   # memóriakorlát (Docker Compose v2+ támogatja)
