@@ -13,9 +13,8 @@
 
     if [ -x /sbin/apk ]; then 		## Alpine alapon
 	apk update 	>/dev/null 2>&1
-	UJsomagSzam=$( apk version -v -l '<' -l '?' |grep -v "^Installed:" |grep -c "." )
+	UJsomagSzam=$( apk version -v |grep -v -e " = " -e "^Installed:" |grep -c "." )
 	Ret=$?
-	[ -e /var/cache/apk ] && rm -rf /var/cache/apk
     fi
 
     [ $Ret -ne 0 	] && exit $Ret 		## Ha hiba történt
