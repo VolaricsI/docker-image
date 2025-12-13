@@ -1,7 +1,11 @@
-		## Mert ebben van a 0.9.8-r0 STABIL rtorrent és ez a mainstream
-#FROM alpine:edge
+		#0.9.8-r2
+#FROM alpine:3.20
+		#0.15.2-r0
 #FROM alpine:3.22
-FROM alpine:3.20
+		#0.15.4-r0
+FROM alpine:edge
+
+
 
 LABEL 	maintainer="Volarics István volaricsi@volarics.hu" 		\
 	url="https://github.com/VolaricsI/docker-image"
