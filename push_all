@@ -1,9 +1,7 @@
 #!/bin/sh
 
-    docker image ls |grep -v -e "^REPOSITORY" -e "<none>" |grep "^volaricsi/" |sed 's/ \+/:/ ; s/ .*// ' |sort |while read f ; do
+    docker image ls -a --format '{{.Repository}}:{{.Tag}}' |grep -v -e "<none>" |grep "^volaricsi/" |sort |while read f ; do
 	echo "======================= $f ================="
-	docker push "$f"
+	docker push "$f" |grep -v -e "The push refers to repository" -e ": Layer already exists" -e ": Preparing" -e ": Waiting"
 
     done
-
-

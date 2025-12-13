@@ -1,9 +1,7 @@
 #!/bin/sh
 
-    docker image ls|grep -v -e "^REPOSITORY" -e "<none>" |sed 's/ \+/:/ ; s/ .*// ' |sort |while read f ; do
+    docker image ls -a --format '{{.Repository}}:{{.Tag}}' |grep -v -e "<none>" |grep "^volaricsi/" |sort |while read f ; do
 	echo "======================= $f ================="
 	docker pull "$f"
 
     done
-
-
