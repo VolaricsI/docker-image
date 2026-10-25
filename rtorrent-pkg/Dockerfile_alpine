@@ -21,6 +21,7 @@ RUN apk update && apk upgrade 	\
     && apk add --no-cache runit rtorrent 	nginx php php-fpm php-json 	xmlrpc-c-tools	\
 	# A ruTorrent Plugin-jeihez kellő programok. van ami a configure-rutorrent.sh-ban van
     && apk add php83-xml php83-session php83-dom php83-fileinfo curl ffmpeg sox mediainfo	\
+		php-sqlite3 php-openssl php-phar php-mbstring php-ctype php-zip			\
 	# A munin plugin-ek hibátlan működéséhez kell
     && apk add perl 										\
 	# Csak a telepítéshez kellenek
